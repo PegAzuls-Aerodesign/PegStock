@@ -1,5 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,60 @@ public class MaterialService {
    public void delete(Long id) {
       materialRepository.deleteById(id);
    }
+
+   // Check if product exists
+   public boolean existsById(Long id) {
+      return materialRepository.existsById(id);
+   }
+
+   // Method to verify if the product is in stock
+   public boolean isStock(Long id) {
+      Material material = materialRepository.findById(id).orElse(null);
+
+      if (material.getQuantity() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   // Method to verify if the product is expired
+   public boolean isExpired(Long id) {
+      Material material = materialRepository.findById(id).orElse(null);
+
+      if (LocalDate.now().isAfter(material.getExpirationDate())) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   // Method to verify most available product ; dá pra fazer o de menos disponível tb 
+   public Material mostAvailable() {
+      List<Material> materials = materialRepository.findAll();
+      Material material = materials.get(0);
+
+      for (Material m : materials) {
+         if (m.getQuantity() > material.getQuantity()) {
+            material = m;
+         }
+      }
+
+      return material;
+   }
+
+   // Method to verify nearest expiration product
+   public Material nearestExpiration() {
+      List<Material> materials = materialRepository.findAll();
+      Material material = materials.get(0);
+
+      for (Material m : materials) {
+         if (m.getExpirationDate().isBefore(material.getExpirationDate())) {
+            material = m;
+         }
+      }
+
+      return material;
+   }
+   
 }
