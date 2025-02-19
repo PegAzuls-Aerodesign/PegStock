@@ -2,6 +2,8 @@ package com.pegazuls.aerodesign.PegStock.model.dto;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 
+
+
 public record DTOShoppingDetails(
         String name,
         int quantity,

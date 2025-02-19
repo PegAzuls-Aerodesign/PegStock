@@ -3,6 +3,7 @@ package com.pegazuls.aerodesign.PegStock.model.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -14,11 +15,21 @@ public class ShoppingList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long cod;
+
+    @Column(nullable = false)
     private String productName;
+
+    @Column(nullable = false)
     private int quantity;
+
+    @Column(nullable = false)
     private double price;
+
+    @Column(nullable = false)
     private String supplier;
     private LocalDate date;
+
+    @Column(nullable = false)
     private String link;
 
     public ShoppingList(String productName, int quantity, double price, String supplier, String link) {

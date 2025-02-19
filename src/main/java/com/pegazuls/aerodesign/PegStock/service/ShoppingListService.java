@@ -1,5 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
+import com.pegazuls.aerodesign.PegStock.infra.validation.ValidationCreateSL;
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOShoppingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOShoppingSummary;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
@@ -16,12 +17,12 @@ public class ShoppingListService {
     @Autowired
     private ShoppingListRepository repository;
 
-    //@Autowired
-    //private List<ValidationCreateSL> validations;
+    @Autowired
+    private List<ValidationCreateSL> validations;
 
     @Transactional
     public void create(ShoppingList shoppingList) {
-        //validations.forEach(ValidationCreateSL::validate);
+        validations.forEach(v -> v.validate(shoppingList));
         repository.save(shoppingList);
     }
 
@@ -49,6 +50,7 @@ public class ShoppingListService {
 
     @Transactional
     public void update(Long id, ShoppingList shoppingList){
+        validations.forEach(v -> v.validate(shoppingList));
         ShoppingList product = repository.findById(id).orElseThrow();
         product.setProductName(shoppingList.getProductName());
         product.setQuantity(shoppingList.getQuantity());

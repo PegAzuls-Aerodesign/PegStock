@@ -19,22 +19,9 @@ public class Principal {
 
     public void teste() {
 
-        // Testing findALL
-        List<DTOShoppingDetails> products = service.findAll();
+        // try to create a shoppinglist with null fields
+        ShoppingList shoppingList = new ShoppingList("produto 9", -5, 70, "organizações tabajara", "www.google.com");
+        service.create(shoppingList);
 
-        products.forEach(System.out::println);
-
-        // Testing findByName
-        DTOShoppingDetails product = service.findById(1L);
-        System.out.println(product);
-
-        // Testing findByMostExpensive
-        DTOShoppingSummary expensive = service.findMostExpensive();
-        System.out.println(expensive);
-
-        // Testing delete
-        service.delete(1L);
-        products = service.findAll();
-        products.forEach(System.out::println);
     }
 }
