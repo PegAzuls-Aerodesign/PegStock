@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class MaterialService {
 
@@ -16,6 +18,7 @@ public class MaterialService {
    private MaterialRepository materialRepository;
 
    // Register new product
+   @Transactional
    public Material create(Material material) {
       return materialRepository.save(material);
    }
@@ -31,6 +34,7 @@ public class MaterialService {
    }
 
    // Update product
+   @Transactional
    public void update(Material material, Long id) {
       Material materialUpdate = materialRepository.findById(id).orElse(null);
 
