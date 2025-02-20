@@ -15,6 +15,8 @@ public class Principal {
 
     @Autowired
     private MaterialService materialService;
+    
+    
 
     public void teste() {
         // Create a new material
@@ -37,7 +39,19 @@ public class Principal {
             5,
             Category.NAO_CONSUMIVEIS,
             Box.ESTANTE,
-            LocalDate.of(2024, 12, 31),
+            LocalDate.of(2025, 12, 31),
+            LocalDate.of(2024, 1, 1),
+            LocalDate.now()
+        );
+
+        Material material3 = new Material(
+            null, 
+            "Material 2",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lorem purus, maximus sed sollicitudin vel, varius in mauris.",
+            50,
+            Category.NAO_CONSUMIVEIS,
+            Box.ESTANTE,
+            LocalDate.of(2025, 12, 31),
             LocalDate.of(2024, 1, 1),
             LocalDate.now()
         );
@@ -45,6 +59,7 @@ public class Principal {
         // Save 
         material1 = materialService.create(material1);
         material2 = materialService.create(material2);
+        material3 = materialService.create(material3);
 
         // List all 
         List<Material> materials = materialService.findAll();
@@ -53,38 +68,5 @@ public class Principal {
             System.out.println(material.getName());
         }
 
-        // Find by ID
-        Material foundMaterial = materialService.findById(material1.getCod());
-        System.out.println("Found material: " + foundMaterial.getName());
-
-        // Update
-        material1.setName("Updated Material 1");
-        materialService.update(material1, material1.getCod());
-        System.out.println("Material 1: " + material1.getName());
-
-        // Check if material is in stock
-        boolean isInStock = materialService.isStock(material1.getCod());
-        System.out.println("Is material in stock: " + isInStock);
-        System.out.println("Material 1 quantity: " + material1.getQuantity());
-
-        // Check if material is expired
-        boolean isExpired = materialService.isExpired(material2.getCod());
-        System.out.println("Is material expired: " + isExpired);
-
-        // Find the most available material
-        Material mostAvailableMaterial = materialService.mostAvailable();
-        System.out.println("Most available material: " + mostAvailableMaterial.getName());
-
-        // Find the nearest expiration material
-        Material nearestExpirationMaterial = materialService.nearestExpiration();
-        System.out.println("Nearest expiration material: " + nearestExpirationMaterial.getName());
-
-        // Delete
-        materialService.delete(material1.getCod());
-        System.out.println("Material deleted: " + material1.getCod());
-
-         // Check if material exists
-         boolean exists = materialService.existsById(material1.getCod());
-         System.out.println("Material exists: " + exists);
     }
 }
