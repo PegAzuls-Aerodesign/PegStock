@@ -29,17 +29,21 @@ public class Borrowing {
     @Column(nullable = false)
     private LocalDate createdDate;
 
+    @Column(nullable = false)
+    private boolean returned = false;
+
     @ManyToOne
     @JoinColumn(name = "material_cod")
     private Material material;
 
-    public Borrowing(Long cod, int quantity, String borrower, LocalDate expirationDate, LocalDate createdDate, Material material) {
+    public Borrowing(Long cod, int quantity, String borrower, LocalDate expirationDate, Material material) {
         this.cod = cod;
         this.quantity = quantity;
         this.borrower = borrower;
         this.expirationDate = expirationDate;
-        this.createdDate = createdDate;
+        this.createdDate = LocalDate.now();
         this.material = material;
+        this.returned = false;
     }
 
     public Borrowing() {
@@ -78,13 +82,6 @@ public class Borrowing {
         this.expirationDate = expirationDate;
     }
 
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
 
     public Material getMaterial() {
         return material;
@@ -92,5 +89,13 @@ public class Borrowing {
 
     public void setMaterial(Material material) {
         this.material = material;
+    }
+
+    public boolean isReturned() {
+        return returned;
+    }
+
+    public void setReturned(boolean returned) {
+        this.returned = returned;
     }
 }

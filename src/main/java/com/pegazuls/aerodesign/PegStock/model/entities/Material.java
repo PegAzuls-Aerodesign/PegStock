@@ -39,7 +39,7 @@ public class Material {
    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<Borrowing> borrowing;
 
-   public Material(Long cod, String name, String description, int quantity, Category category, Box box, LocalDate expirationDate, LocalDate createdDate, LocalDate registerDate, List<Borrowing> borrowing) {
+   public Material(Long cod, String name, String description, int quantity, Category category, Box box, LocalDate expirationDate, LocalDate registerDate, List<Borrowing> borrowing) {
       this.cod = cod;
       this.name = name;
       this.description = description;
@@ -47,7 +47,7 @@ public class Material {
       this.category = category;
       this.box = box;
       this.expirationDate = expirationDate;
-      this.createdDate = createdDate;
+      this.createdDate = LocalDate.now();
       this.registerDate = registerDate;
       this.borrowing = borrowing;
    }

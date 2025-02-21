@@ -1,5 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
+import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBorrowing;
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
@@ -19,14 +20,29 @@ public class BorrowingService {
     @Autowired
     private MaterialService materialService;
 
+    @Autowired
+    private List<ValidationBorrowing> validation;
+
 
     @Transactional
     public Borrowing create(Long materialCod, Borrowing borrowing){
+        validation.forEach(v -> v.validate(borrowing));
         Material material = materialService.findById(materialCod);
         borrowing.setMaterial(material);
         material.getBorrowing().add(borrowing);
+        material.setQuantity(material.getQuantity() - borrowing.getQuantity());
         return borrowingRepository.save(borrowing);
     }
+
+    public Borrowing devolution(Long cod) {
+        Borrowing borrowing = borrowingRepository.findById(cod).orElseThrow();
+        Material material = borrowing.getMaterial();
+        material.setQuantity(material.getQuantity() + borrowing.getQuantity());
+        borrowing.setReturned(true);
+        materialService.update(material, material.getCod());
+        return borrowingRepository.save(borrowing);
+    }
+
 
     public Borrowing findById(Long cod){
         return borrowingRepository.findById(cod).orElseThrow();
@@ -50,6 +66,7 @@ public class BorrowingService {
 
     @Transactional
     public void update(Long cod, Borrowing borrowing){
+        validation.forEach(v -> v.validate(borrowing));
         Borrowing borrowing1 = borrowingRepository.findById(cod).orElseThrow();
         borrowing1.setExpirationDate(borrowing.getExpirationDate());
     }

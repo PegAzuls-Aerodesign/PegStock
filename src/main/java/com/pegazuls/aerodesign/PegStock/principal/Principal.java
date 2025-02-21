@@ -4,7 +4,6 @@ import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.info.ProjectInfoAutoConfiguration;
 import org.springframework.stereotype.Component;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
@@ -22,8 +21,7 @@ public class Principal {
 
     @Autowired
     private BorrowingService borrowingService;
-    @Autowired
-    private ProjectInfoAutoConfiguration projectInfoAutoConfiguration;
+
 
     public void teste() {
         // Create a new material
@@ -35,7 +33,6 @@ public class Principal {
                 Category.CONSUMIVEIS, // category
                 Box.ARMARIO4, // box
                 LocalDate.of(2025, 12, 31), // expirationDate
-                LocalDate.of(2023, 1, 1), // createdDate
                 LocalDate.now(), // registerDate
                 null
         );
@@ -48,7 +45,6 @@ public class Principal {
                 Category.NAO_CONSUMIVEIS, // category
                 Box.ESTANTE, // box
                 LocalDate.of(2024, 12, 31), // expirationDate
-                LocalDate.of(2022, 6, 15), // createdDate
                 LocalDate.now(), // registerDate
                 null
         );
@@ -63,8 +59,7 @@ public class Principal {
                 null, // cod
                 10, // quantity
                 "Borrower 1", // borrower
-                LocalDate.of(2022, 12, 31), // expirationDate
-                LocalDate.now(), // createdDate
+                LocalDate.of(2025, 12, 31), // expirationDate
                 material1
         );
 
@@ -72,34 +67,31 @@ public class Principal {
                 null, // cod
                 5, // quantity
                 "Borrower 2", // borrower
-                LocalDate.of(2023, 12, 31), // expirationDate
-                LocalDate.now(), // createdDate
+                LocalDate.of(2025, 12, 31), // expirationDate
                 material2
         );
 
         Borrowing borrowing3 = new Borrowing(
                 null, // cod
                 5, // quantity
-                "Pra deletar", // borrower
-                LocalDate.of(2023, 12, 31), // expirationDate
-                LocalDate.now(), // createdDate
+                "Borrower 3", // borrower
+                LocalDate.of(2025, 12, 31), // expirationDate
                 material2
         );
+
+        // Create borrowings
 
         borrowing1 = borrowingService.create(material1.getCod(), borrowing1);
         borrowing2 = borrowingService.create(material2.getCod(), borrowing2);
         borrowing3 = borrowingService.create(material2.getCod(), borrowing3);
 
-        // Listar os emprestimos do material 2
+        // Find borrowings of material 2
 
         List<DTOBorrowingDetails> borrowings = materialService.getBorrowings(material2.getCod());
-
         System.out.println("Borrowings of material 2: ");
         for (DTOBorrowingDetails borrowing : borrowings) {
             System.out.println(borrowing.expirationDate());
         }
-
-        // find by id
 
 
         // Find all
@@ -116,10 +108,12 @@ public class Principal {
         System.out.println("Borrowing 2: " + borrowing2.getExpirationDate());
 
 
-
+        // Delete
         System.out.println(borrowing3.getCod());
         borrowingService.delete(borrowing3.getCod());
         System.out.println("Borrowing deleted");
 
+        // Return borrowing
+        Borrowing borrowing = borrowingService.devolution(borrowing1.getCod());
     }
 }
