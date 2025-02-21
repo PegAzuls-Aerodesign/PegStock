@@ -8,10 +8,5 @@ public class Principal {
 
 
     public void teste() {
-        Material material = new Material();
-
-        material.setName("Teste");
-        material.setDescription("Teste");
-        System.out.println(material.getName());
     }
 }
