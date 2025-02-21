@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -62,6 +64,27 @@ public class ShoppingListService {
     public DTOShoppingSummary findMostExpensive(){
         ShoppingList product = repository.findFirstByOrderByPriceDesc();
         return new DTOShoppingSummary(product);
+    }
+
+    public void generateShoppingListCSV() throws IOException {
+        List<ShoppingList> products = repository.findAll();
+        String fileName = "shoppingList.csv";
+        String fileHeader = "Produto; Quantidade; Preço; Fornecedor; Link; Descrição; Valor total\n";
+        StringBuilder fileContent = new StringBuilder(fileHeader);
+        for (ShoppingList product : products) {
+            fileContent.append(product.getProductName()).append(";")
+                    .append(product.getQuantity()).append(";")
+                    .append(product.getPrice()).append(";")
+                    .append(product.getSupplier()).append(";")
+                    .append(product.getLink()).append(";")
+                    .append(product.getDescription()).append(";")
+                    .append(product.getTotalValue()).append("\n");
+        }
+        // Use OutputStreamWriter with UTF-8 encoding
+        try (BufferedWriter bufferedWriter = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(fileName), StandardCharsets.UTF_8))) {
+            bufferedWriter.write(fileContent.toString());
+        }
     }
 
 }
