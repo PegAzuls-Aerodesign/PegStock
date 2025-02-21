@@ -20,7 +20,7 @@ public class ShoppingList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cod;
+    private Long cod;
 
     @Column(nullable = false)
     private String productName;
