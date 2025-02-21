@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Table(name = "tb_borrowing")
 @Entity(name = "Borrowing")
-@AllArgsConstructor
 @Setter
 @Getter
 public class Borrowing {

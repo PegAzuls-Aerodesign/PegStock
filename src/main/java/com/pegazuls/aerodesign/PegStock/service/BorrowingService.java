@@ -25,8 +25,7 @@ public class BorrowingService {
         Material material = materialService.findById(materialCod);
         borrowing.setMaterial(material);
         material.getBorrowing().add(borrowing);
-        materialService.create(material);
-        return borrowing;
+        return borrowingRepository.save(borrowing);
     }
 
     public Borrowing findById(Long cod){
@@ -37,8 +36,16 @@ public class BorrowingService {
         return borrowingRepository.findAll();
     }
 
-    public void delete(Long cod){
-        borrowingRepository.deleteById(cod);
+    @Transactional
+    public void delete(Long cod) {
+        Borrowing borrowing = borrowingRepository.findById(cod).orElseThrow();
+        Material material = borrowing.getMaterial();
+
+        if (material != null) {
+            material.getBorrowing().remove(borrowing); // Remove da lista do Material
+        }
+
+        borrowingRepository.delete(borrowing);
     }
 
     @Transactional
