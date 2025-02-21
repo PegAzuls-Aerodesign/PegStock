@@ -3,6 +3,7 @@ package com.pegazuls.aerodesign.PegStock.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,6 +106,10 @@ public class MaterialService {
       }
 
       return material;
+   }
+
+   public List<Material> lowStockMaterials() {
+      return materialRepository.findByCategoryAndQuantityLessThan(Category.CONSUMIVEIS, 7);
    }
    
 }
