@@ -5,7 +5,10 @@
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -58,23 +61,23 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="444.0" prefWidth="210.0" styleClass="left-form" stylesheets="@../styles/templateDesign.css" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="buttonHome" layoutY="28.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="200.0" styleClass="button" stylesheets="@../styles/templateDesign.css" text="Home">
+                              <Button fx:id="buttonHome" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="190.0" styleClass="button-template" stylesheets="@../styles/templateDesign.css" text="Home">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="HOME" size="1.5em" styleClass="icon" text="" />
                                  </graphic></Button>
-                              <Button fx:id="buttonDashboard" layoutX="-2.0" layoutY="106.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="200.0" styleClass="button" stylesheets="@../styles/templateDesign.css" text="Dashboard">
+                              <Button fx:id="buttonDashboard" layoutX="11.0" layoutY="103.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="190.0" styleClass="button-template" stylesheets="@../styles/templateDesign.css" text="Dashboard">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="BAR_CHART" size="1.5em" styleClass="icon" text="" />
                                  </graphic></Button>
-                              <Button fx:id="buttonStock" layoutX="-1.0" layoutY="66.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="200.0" styleClass="button" stylesheets="@../styles/templateDesign.css" text="Estoque">
+                              <Button fx:id="buttonStock" layoutX="12.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="190.0" styleClass="button-template" stylesheets="@../styles/templateDesign.css" text="Estoque">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="DROPBOX" size="1.5em" styleClass="icon" text="" />
                                  </graphic></Button>
-                              <Button fx:id="buttonBuyList" layoutY="144.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="200.0" styleClass="button" stylesheets="@../styles/templateDesign.css" text="Lista de Compras">
+                              <Button fx:id="buttonBuyList" layoutX="14.0" layoutY="142.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="190.0" styleClass="button-template" stylesheets="@../styles/templateDesign.css" text="Lista de Compras">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="LIST_ALT" size="1.5em" styleClass="icon" text="" />
                                  </graphic></Button>
-                              <Button fx:id="buttonLoan" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="200.0" stylesheets="@../styles/templateDesign.css" text="Empréstimo">
+                              <Button fx:id="buttonLoan" layoutX="14.0" layoutY="179.0" mnemonicParsing="false" onMouseClicked="#pages" prefHeight="32.0" prefWidth="190.0" styleClass="button-template" stylesheets="@../styles/templateDesign.css" text="Empréstimo">
                                  <graphic>
                                     <FontAwesomeIcon glyphName="MONEY" size="1.5em">
                                        <styleClass>
@@ -102,18 +105,18 @@
                                  <children>
                                     <TextField layoutX="6.0" layoutY="8.0" prefHeight="26.0" prefWidth="177.0" promptText="Search" styleClass="search" stylesheets="@../styles/centerDesign.css" />
                                     <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH" layoutX="11.0" layoutY="25.0" size="1.2em" text="" />
-                                    <TableView layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="721.0" styleClass="table" stylesheets="@../styles/centerDesign.css">
+                                    <TableView layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="787.0" styleClass="table" stylesheets="@../styles/centerDesign.css">
                                       <columns>
                                         <TableColumn prefWidth="59.0" text="Detalhar" />
                                         <TableColumn prefWidth="112.0" text="Produto" />
                                           <TableColumn prefWidth="79.0" text="Quantidade" />
                                           <TableColumn prefWidth="133.0" text="Categoria" />
                                           <TableColumn prefWidth="99.0" text="Armario" />
-                                          <TableColumn minWidth="2.0" prefWidth="129.0" text="Validade" />
-                                          <TableColumn prefWidth="109.0" text="Ações" />
+                                          <TableColumn minWidth="2.0" prefWidth="147.66668701171875" text="Validade" />
+                                          <TableColumn prefWidth="157.33331298828125" text="Ações" />
                                       </columns>
                                     </TableView>
-                                    <Button layoutX="601.0" layoutY="6.0" mnemonicParsing="false" stylesheets="@../styles/centerDesign.css" text="Adicionar Produto" />
+                                    <Button fx:id="buttonRegister" layoutX="658.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#showRegisterPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar Produto" />
                                     <ComboBox layoutX="213.0" layoutY="6.0" prefHeight="28.0" prefWidth="102.0" promptText="Filtrar" styleClass="button-filter" stylesheets="@../styles/centerDesign.css">
                                         <items>
                                             <FXCollections fx:factory="observableArrayList">
@@ -162,6 +165,76 @@
                                     </Text>
                                  </children>
                               </AnchorPane>
+                              <AnchorPane fx:id="registerPageBackground" layoutX="-215.0" layoutY="-99.0" prefHeight="705.0" prefWidth="1054.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false" />
+                              <AnchorPane fx:id="registerPage" layoutX="192.0" layoutY="28.0" prefHeight="518.0" prefWidth="361.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
+                                 <children>
+                                    <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Material">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Label layoutX="20.0" layoutY="148.0" text="Nome">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="145.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o nome do material" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="20.0" layoutY="191.0" text="Código">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="188.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o código do material" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="21.0" layoutY="237.0" text="Descrição">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="122.0" layoutY="234.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe a descrição detalhada" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="21.0" layoutY="286.0" text="Fabricação">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker layoutX="122.0" layoutY="284.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe a data de fabricação" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="21.0" layoutY="331.0" text="Validade">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <DatePicker layoutX="121.0" layoutY="329.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe a data de validade" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="21.0" layoutY="378.0" text="Categoria">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox layoutX="121.0" layoutY="376.0" prefHeight="25.0" prefWidth="225.0" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="21.0" layoutY="422.0" text="Armário">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ChoiceBox layoutX="121.0" layoutY="420.0" prefHeight="25.0" prefWidth="225.0" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Button layoutX="213.0" layoutY="482.0" mnemonicParsing="false" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar material" />
+                                    <Button layoutX="121.0" layoutY="482.0" mnemonicParsing="false" styleClass="button-cancel" stylesheets="@../styles/centerDesign.css" text="Cancelar" />
+                                    <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0" prefWidth="106.0" styleClass="select-image" stylesheets="@../styles/centerDesign.css">
+                                       <children>
+                                          <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="115.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                       </children>
+                                    </AnchorPane>
+                                    <Button fx:id="buttonNavigate" layoutX="220.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#selectImage" styleClass="button-image" stylesheets="@../styles/centerDesign.css" text="Navegue" />
+                                    <Label layoutX="189.0" layoutY="73.0" text="Arraste a imagem aqui ou">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="17.0" layoutY="13.0" prefHeight="604.0" prefWidth="770.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="10.0" layoutY="27.0" prefHeight="417.0" prefWidth="743.0" />
                            </children>
                         </AnchorPane>
                      </children>

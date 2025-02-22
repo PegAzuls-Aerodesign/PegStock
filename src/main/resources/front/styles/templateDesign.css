@@ -17,7 +17,7 @@
     -fx-background-color: white; /* Cor da "margem" */
 }
 
-.button{
+.button-template{
     -fx-border-radius: 10px;
     -fx-background-color: transparent;
     -fx-cursor: hand;
@@ -27,7 +27,7 @@
 }
 
 /* Quando o mouse passa por cima */
-.button:hover{
+.button-template:hover{
     -fx-background-color: #1258aa;
     -fx-text-fill: white;
 }
@@ -38,7 +38,7 @@
 }
 
 /* Quando o mouse passa por cima */
-.button:hover .icon{
+.button-template:hover .icon{
     -fx-fill: white;
 }
 
