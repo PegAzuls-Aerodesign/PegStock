@@ -28,8 +28,10 @@ public class Material {
 
    private int quantity;
 
+   @Enumerated(EnumType.STRING)
    private Category category;
 
+   @Enumerated(EnumType.STRING)
    private Box box;
 
    private LocalDate expirationDate; // data de validade
@@ -43,6 +45,21 @@ public class Material {
 
    public Material() {
       registerDate = LocalDate.now();
+   }
+
+   @Override
+   public String toString() {
+      return "Material{" +
+              "cod=" + cod +
+              ", name='" + name + '\'' +
+              ", description='" + description + '\'' +
+              ", quantity=" + quantity +
+              ", category=" + category +
+              ", box=" + box +
+              ", expirationDate=" + expirationDate +
+              ", createdDate=" + createdDate +
+              ", registerDate=" + registerDate +
+              '}';
    }
 
 }

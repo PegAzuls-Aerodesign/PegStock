@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.model.dto;
+package com.pegazuls.aerodesign.PegStock.model.dto.material;
 
 
 import java.time.LocalDate;
