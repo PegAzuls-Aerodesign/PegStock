@@ -1,12 +1,14 @@
 package com.pegazuls.aerodesign.PegStock.model.entities;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.pegazuls.aerodesign.PegStock.model.enums.*;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Table
@@ -38,6 +40,9 @@ public class Material {
 
    private LocalDate registerDate; // data de registro no sistema
 
+   @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+   private List<Borrowing> borrowing;
+
    public Material() {
       registerDate = LocalDate.now();
    }
@@ -56,4 +61,5 @@ public class Material {
               ", registerDate=" + registerDate +
               '}';
    }
+
 }
