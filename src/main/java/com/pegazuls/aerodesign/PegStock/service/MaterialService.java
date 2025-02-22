@@ -5,10 +5,13 @@ import java.util.List;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.material.ValidationMaterial;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
 
 import jakarta.transaction.Transactional;
@@ -117,6 +120,18 @@ public class MaterialService {
       }
 
       return material;
+   }
+
+   // List products by category
+   @Query("SELECT m FROM Material m WHERE m.category = :category")
+   public List<Material> findByCategory(Category category) {
+      return materialRepository.findByCategory(category);
+   }
+
+   // List products by box
+   @Query("SELECT m FROM Material m WHERE m.box = :box")
+   public List<Material> findByBox(Box box) {
+      return materialRepository.findByBox(box);
    }
    
 }

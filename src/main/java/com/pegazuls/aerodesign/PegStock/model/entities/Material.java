@@ -42,7 +42,7 @@ public class Material {
    private List<Borrowing> borrowing;
 
    public Material() {
-      registerDate = LocalDate.now();
+      this.registerDate = LocalDate.now();
    }
 
 }
