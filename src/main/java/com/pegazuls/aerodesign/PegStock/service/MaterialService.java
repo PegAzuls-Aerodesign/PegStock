@@ -3,10 +3,10 @@ package com.pegazuls.aerodesign.PegStock.service;
 import java.time.LocalDate;
 import java.util.List;
 
-
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOLowStockMaterial;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

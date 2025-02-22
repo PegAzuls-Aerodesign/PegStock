@@ -11,7 +11,7 @@ public class ValidationBorrowingQuantity implements ValidationBorrowing {
     public void validate(Borrowing borrowing) {
         // Verificar se a quantidade é válida
         if(borrowing.getQuantity() > borrowing.getMaterial().getQuantity()){
-            throw new ValidationException("Quantidade inválida!!! Você não pode pegar uma quantidade negativa de itens");
+            throw new ValidationException("Quantidade inválida!!! A quantidade solicitada é maior que a quantidade disponível em estoque.");
         }
     }
 }
