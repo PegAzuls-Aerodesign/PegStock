@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.model.dto;
+package com.pegazuls.aerodesign.PegStock.model.dto.shopping_list;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 

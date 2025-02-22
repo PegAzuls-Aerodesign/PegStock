@@ -1,7 +1,8 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBorrowing;
-import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.repository.BorrowingRepository;
@@ -9,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -69,5 +71,10 @@ public class BorrowingService {
         validation.forEach(v -> v.validate(borrowing));
         Borrowing borrowing1 = borrowingRepository.findById(cod).orElseThrow();
         borrowing1.setExpirationDate(borrowing.getExpirationDate());
+    }
+
+    public List<DTOBorrowingList> getExpiredBorrowings(LocalDate date){
+        List<Borrowing> expiredBorrowings = borrowingRepository.findByExpirationDateBeforeAndReturnedFalse(date);
+        return expiredBorrowings.stream().map(DTOBorrowingList::new).toList();
     }
 }

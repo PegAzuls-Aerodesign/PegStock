@@ -3,7 +3,10 @@ package com.pegazuls.aerodesign.PegStock.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOLowStockMaterial;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,6 +113,7 @@ public class MaterialService {
       return material;
    }
 
+
    // List products by category
    public List<Material> findByCategory(Category category) {
       return materialRepository.findByCategory(category);
@@ -158,6 +162,12 @@ public class MaterialService {
          materials.removeIf(m -> !isStock(m.getCod()));
       }
       return materials;
+   }
+
+   public List<DTOLowStockMaterial> lowStockMaterials() {
+      List<Material> materials = materialRepository.findByCategoryAndQuantityLessThan(Category.CONSUMIVEIS, 7);
+
+       return materials.stream().map(DTOLowStockMaterial::new).toList();
    }
 
 }

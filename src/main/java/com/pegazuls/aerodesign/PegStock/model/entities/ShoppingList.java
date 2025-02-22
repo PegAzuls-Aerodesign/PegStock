@@ -5,17 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 @Table(name = "tb_shopping_list")
 @Entity(name = "ShoppingList")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class ShoppingList {
 
     @Id
@@ -39,5 +37,9 @@ public class ShoppingList {
     @Column(nullable = false)
     private String link;
 
+    @Column(nullable = false)
+    private String description;
+
+    private Double totalValue;
 
 }
