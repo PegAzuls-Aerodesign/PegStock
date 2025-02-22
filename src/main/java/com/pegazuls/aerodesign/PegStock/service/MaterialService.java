@@ -120,4 +120,18 @@ public class MaterialService {
       return materialRepository.findByBox(box);
    }
 
+   // list expired products
+   public List<Material> findExpired() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> !isExpired(m.getCod()));
+      return materials;
+   }
+
+   // list products about to expire (30 days)
+   public List<Material> findAboutToExpire() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> !m.getExpirationDate().isBefore(LocalDate.now().plusDays(30)) || isExpired(m.getCod()));
+      return materials;
+   }
+
 }
