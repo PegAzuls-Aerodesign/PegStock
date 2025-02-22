@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.material.ValidationMaterial;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
 
 import jakarta.transaction.Transactional;
@@ -35,7 +37,6 @@ public class MaterialService {
       Material material = materialRepository.findById(cod).orElseThrow();
       return material.getBorrowing().stream().map(DTOBorrowingDetails::new).toList();
    }
-
 
    // List products
    public List<Material> findAll() {
@@ -75,26 +76,16 @@ public class MaterialService {
    // Method to verify if the product is in stock
    public boolean isStock(Long id) {
       Material material = materialRepository.findById(id).orElse(null);
-
-      if (material.getQuantity() > 0) {
-         return true;
-      } else {
-         return false;
-      }
+      return material != null && material.getQuantity() > 0;
    }
 
    // Method to verify if the product is expired
    public boolean isExpired(Long id) {
       Material material = materialRepository.findById(id).orElse(null);
-
-      if (LocalDate.now().isAfter(material.getExpirationDate())) {
-         return true;
-      } else {
-         return false;
-      }
+      return material != null && LocalDate.now().isAfter(material.getExpirationDate());
    }
 
-   // Method to verify most available product ; dá pra fazer o de menos disponível tb 
+   // Method to verify most available product
    public Material mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
@@ -122,12 +113,61 @@ public class MaterialService {
       return material;
    }
 
+
+   // List products by category
+   public List<Material> findByCategory(Category category) {
+      return materialRepository.findByCategory(category);
+   }
+
+   // List products by box
+   public List<Material> findByBox(Box box) {
+      return materialRepository.findByBox(box);
+   }
+
+   // list expired products
+   public List<Material> findExpired() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> !isExpired(m.getCod()));
+      return materials;
+   }
+
+   // list products about to expire (30 days)
+   public List<Material> findAboutToExpire() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> !m.getExpirationDate().isBefore(LocalDate.now().plusDays(30)) || isExpired(m.getCod()));
+      return materials;
+   }
+
+   // list products out of stock
+   public List<Material> findOutOfStock() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> isStock(m.getCod()));
+      return materials;
+   }
+
+   // filter products by multiple criteria (category, box, expirated, stock)
+   public List<Material> filter(Category category, Box box, boolean expired, boolean stock) {
+      List<Material> materials = materialRepository.findAll();
+      
+      if (category != null) {
+         materials.removeIf(m -> m.getCategory() != category);
+      }
+      if (box != null) {
+         materials.removeIf(m -> m.getBox() != box);
+      }
+      if (expired) {
+         materials.removeIf(m -> !isExpired(m.getCod()));
+      }
+      if (stock) {
+         materials.removeIf(m -> !isStock(m.getCod()));
+      }
+      return materials;
+   }
+
    public List<DTOLowStockMaterial> lowStockMaterials() {
       List<Material> materials = materialRepository.findByCategoryAndQuantityLessThan(Category.CONSUMIVEIS, 7);
 
        return materials.stream().map(DTOLowStockMaterial::new).toList();
    }
-
-
 
 }
