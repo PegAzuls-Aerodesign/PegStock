@@ -84,7 +84,6 @@ public class ShoppingListService {
         }
         try {
             Files.writeString(Paths.get(fileName), fileContent.toString());
-            System.out.println("Arquivo gravado com sucesso!");
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
