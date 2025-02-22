@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.DTOBorrowingDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.material.ValidationMaterial;
@@ -35,7 +34,6 @@ public class MaterialService {
       Material material = materialRepository.findById(cod).orElseThrow();
       return material.getBorrowing().stream().map(DTOBorrowingDetails::new).toList();
    }
-
 
    // List products
    public List<Material> findAll() {
@@ -75,26 +73,16 @@ public class MaterialService {
    // Method to verify if the product is in stock
    public boolean isStock(Long id) {
       Material material = materialRepository.findById(id).orElse(null);
-
-      if (material.getQuantity() > 0) {
-         return true;
-      } else {
-         return false;
-      }
+      return material != null && material.getQuantity() > 0;
    }
 
    // Method to verify if the product is expired
    public boolean isExpired(Long id) {
       Material material = materialRepository.findById(id).orElse(null);
-
-      if (LocalDate.now().isAfter(material.getExpirationDate())) {
-         return true;
-      } else {
-         return false;
-      }
+      return material != null && LocalDate.now().isAfter(material.getExpirationDate());
    }
 
-   // Method to verify most available product ; dá pra fazer o de menos disponível tb 
+   // Method to verify most available product
    public Material mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
@@ -123,15 +111,13 @@ public class MaterialService {
    }
 
    // List products by category
-   @Query("SELECT m FROM Material m WHERE m.category = :category")
    public List<Material> findByCategory(Category category) {
       return materialRepository.findByCategory(category);
    }
 
    // List products by box
-   @Query("SELECT m FROM Material m WHERE m.box = :box")
    public List<Material> findByBox(Box box) {
       return materialRepository.findByBox(box);
    }
-   
+
 }
