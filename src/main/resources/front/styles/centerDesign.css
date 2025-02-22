@@ -1,0 +1,79 @@
+/* Efeito sombra */
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 20, 0, 0, 0);
+}
+
+/* Efeito sombra card */
+.shadow-card{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 6, 0, 0, 0);
+}
+
+/* Background */
+.background{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+}
+
+/* Search */
+.search{
+    -fx-background-color: transparent;
+    -fx-border-color: #858D9D;
+    -fx-border-width: .8px;
+    -fx-border-radius: 6px;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-padding: 0px 0px 0px 20px;
+}
+
+.search:focused{
+    -fx-border-width: 1.8px;
+}
+
+/* Table */
+.table{
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+}
+
+.table .table-column{
+    -fx-alignment: CENTER;
+}
+
+.table .column-header-background{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table .column-header .label{
+    -fx-text-fill: #858D9D;
+    -fx-font-family: Tahoma;
+}
+
+/* Button */
+.button{
+    -fx-background-color: #1258aa;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+    -fx-padding: 5px 10px;
+}
+
+/* Button Filter */
+.button-filter{
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-border-color: #858D9D;
+    -fx-text-fill: #1258aa;
+    -fx-border-width: .8px;
+    -fx-border-radius: 6px;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 12px;
+    -fx-padding: 0px 0px 0px 20px;
+}
