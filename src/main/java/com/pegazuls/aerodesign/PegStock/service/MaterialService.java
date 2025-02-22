@@ -134,4 +134,30 @@ public class MaterialService {
       return materials;
    }
 
+   // list products out of stock
+   public List<Material> findOutOfStock() {
+      List<Material> materials = materialRepository.findAll();
+      materials.removeIf(m -> isStock(m.getCod()));
+      return materials;
+   }
+
+   // filter products by multiple criteria (category, box, expirated, stock)
+   public List<Material> filter(Category category, Box box, boolean expired, boolean stock) {
+      List<Material> materials = materialRepository.findAll();
+      
+      if (category != null) {
+         materials.removeIf(m -> m.getCategory() != category);
+      }
+      if (box != null) {
+         materials.removeIf(m -> m.getBox() != box);
+      }
+      if (expired) {
+         materials.removeIf(m -> !isExpired(m.getCod()));
+      }
+      if (stock) {
+         materials.removeIf(m -> !isStock(m.getCod()));
+      }
+      return materials;
+   }
+
 }
