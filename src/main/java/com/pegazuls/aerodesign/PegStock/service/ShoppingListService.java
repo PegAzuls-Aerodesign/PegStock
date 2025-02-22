@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -66,10 +68,10 @@ public class ShoppingListService {
         return new DTOShoppingSummary(product);
     }
 
-    public void generateShoppingListCSV() throws IOException {
+    public void generateShoppingListCSV(){
         List<ShoppingList> products = repository.findAll();
         String fileName = "shoppingList.csv";
-        String fileHeader = "Produto; Quantidade; Preço; Fornecedor; Link; Descrição; Valor total\n";
+        String fileHeader = "Produto; Quantidade; Preco; Fornecedor; Link; Descricao; Valor total\n";
         StringBuilder fileContent = new StringBuilder(fileHeader);
         for (ShoppingList product : products) {
             fileContent.append(product.getProductName()).append(";")
@@ -80,10 +82,11 @@ public class ShoppingListService {
                     .append(product.getDescription()).append(";")
                     .append(product.getTotalValue()).append("\n");
         }
-        // Use OutputStreamWriter with UTF-8 encoding
-        try (BufferedWriter bufferedWriter = new BufferedWriter(
-                new OutputStreamWriter(new FileOutputStream(fileName), StandardCharsets.UTF_8))) {
-            bufferedWriter.write(fileContent.toString());
+        try {
+            Files.writeString(Paths.get(fileName), fileContent.toString());
+            System.out.println("Arquivo gravado com sucesso!");
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
