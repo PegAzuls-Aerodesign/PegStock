@@ -1,8 +1,8 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.ValidationCreateSL;
-import com.pegazuls.aerodesign.PegStock.model.dto.DTOShoppingDetails;
-import com.pegazuls.aerodesign.PegStock.model.dto.DTOShoppingSummary;
+import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingSummary;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 import com.pegazuls.aerodesign.PegStock.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;

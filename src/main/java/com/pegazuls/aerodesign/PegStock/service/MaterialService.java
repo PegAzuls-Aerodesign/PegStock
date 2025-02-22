@@ -1,10 +1,9 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import com.pegazuls.aerodesign.PegStock.model.dto.DTOLowStockMaterial;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOLowStockMaterial;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
