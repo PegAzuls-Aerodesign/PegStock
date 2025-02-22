@@ -26,13 +26,16 @@ public class PegStockFrontController {
     private Button buttonLoan;
 
     @FXML
-    private Button buttonStock;
-
-    @FXML
     private Button buttonNavigate;
 
     @FXML
-    private Button buttonRegister;
+    private Button buttonRegisterBuyList;
+
+    @FXML
+    private Button buttonRegisterStock;
+
+    @FXML
+    private Button buttonStock;
 
     @FXML
     private ImageView imageView;
@@ -41,13 +44,22 @@ public class PegStockFrontController {
     private Text nameOut;
 
     @FXML
+    private AnchorPane registerBuyListPage;
+
+    @FXML
+    private AnchorPane registerBuyListPageBackground;
+
+    @FXML
+    private AnchorPane registerStockPage;
+
+    @FXML
+    private AnchorPane registerStockPageBackground;
+
+    @FXML
     private AnchorPane stockPage;
 
     @FXML
-    private AnchorPane registerPage;
-
-    @FXML
-    private AnchorPane registerPageBackground;
+    private AnchorPane buyListPage;
 
     @FXML
     void pages(MouseEvent event) {
@@ -61,6 +73,7 @@ public class PegStockFrontController {
             buttonStock.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> stockPage.setVisible(true));
         } else if (event.getSource() == buttonBuyList) {
             buttonBuyList.setOnMouseClicked(event1 -> nameOut.setText(buttonBuyList.getText()));
+            buttonBuyList.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> buyListPage.setVisible(true));
         } else if (event.getSource() == buttonLoan) {
             buttonLoan.setOnMouseClicked(event1 -> nameOut.setText(buttonLoan.getText()));
         }
@@ -80,10 +93,18 @@ public class PegStockFrontController {
     }
 
     @FXML
-    void showRegisterPage(MouseEvent event) {
+    void showRegisterStockPage(MouseEvent event) {
         // Exibe a página de registro
-        buttonRegister.setOnMouseClicked(event1 -> registerPageBackground.setVisible(true));
-        buttonRegister.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> registerPage.setVisible(true));
+        buttonRegisterStock.setOnMouseClicked(event1 -> registerStockPageBackground.setVisible(true));
+        buttonRegisterStock.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> registerStockPage.setVisible(true));
+    }
+
+    @FXML
+    void showRegisterBuyListPage(MouseEvent event) {
+        // Exibe a página de lista de compras
+        buttonRegisterBuyList.setOnMouseClicked(event1 -> registerBuyListPageBackground.setVisible(true));
+        buttonRegisterBuyList.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> registerBuyListPage.setVisible(true));
+
     }
 
 }

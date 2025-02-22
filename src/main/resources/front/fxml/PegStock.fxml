@@ -4,6 +4,7 @@
 <?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
@@ -116,7 +117,7 @@
                                           <TableColumn prefWidth="157.33331298828125" text="Ações" />
                                       </columns>
                                     </TableView>
-                                    <Button fx:id="buttonRegister" layoutX="658.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#showRegisterPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar Produto" />
+                                    <Button fx:id="buttonRegisterStock" layoutX="658.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#showRegisterStockPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar Produto" />
                                     <ComboBox layoutX="213.0" layoutY="6.0" prefHeight="28.0" prefWidth="102.0" promptText="Filtrar" styleClass="button-filter" stylesheets="@../styles/centerDesign.css">
                                         <items>
                                             <FXCollections fx:factory="observableArrayList">
@@ -165,8 +166,8 @@
                                     </Text>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="registerPageBackground" layoutX="-215.0" layoutY="-99.0" prefHeight="705.0" prefWidth="1054.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false" />
-                              <AnchorPane fx:id="registerPage" layoutX="192.0" layoutY="28.0" prefHeight="518.0" prefWidth="361.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
+                              <AnchorPane fx:id="registerStockPageBackground" layoutX="-215.0" layoutY="-99.0" prefHeight="705.0" prefWidth="1054.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false" />
+                              <AnchorPane fx:id="registerStockPage" layoutX="192.0" layoutY="28.0" prefHeight="518.0" prefWidth="361.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
                                  <children>
                                     <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Material">
                                        <font>
@@ -232,9 +233,82 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="17.0" layoutY="13.0" prefHeight="604.0" prefWidth="770.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="buyListPage" prefHeight="606.0" prefWidth="839.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutX="10.0" layoutY="27.0" prefHeight="417.0" prefWidth="743.0" />
+                              <AnchorPane layoutX="21.0" layoutY="23.0" prefHeight="551.0" prefWidth="787.0" stylesheets="@../styles/centerDesign.css">
+                                 <styleClass>
+                                    <String fx:value="background" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField layoutX="7.0" layoutY="7.0" prefHeight="27.0" prefWidth="180.0" promptText="Search" styleClass="search" stylesheets="@../styles/centerDesign.css" />
+                                    <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH" layoutX="14.0" layoutY="24.0" />
+                                    <Button fx:id="buttonRegisterBuyList" layoutX="645.0" layoutY="8.0" mnemonicParsing="false" onMouseClicked="#showRegisterBuyListPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar Produto">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button layoutX="474.0" layoutY="7.0" mnemonicParsing="false" styleClass="button-cancel" stylesheets="@../styles/centerDesign.css" text="Gerar lista de compras" />
+                                    <TableView layoutX="8.0" layoutY="53.0" prefHeight="441.0" prefWidth="766.0" styleClass="table" stylesheets="@../styles/centerDesign.css">
+                                      <columns>
+                                        <TableColumn prefWidth="114.0" text="Produto" />
+                                        <TableColumn prefWidth="79.0" text="Quantidade" />
+                                          <TableColumn prefWidth="118.0" text="Valor Unitário" />
+                                          <TableColumn prefWidth="95.0" text="Loja" />
+                                          <TableColumn prefWidth="192.0" text="Link da compra" />
+                                          <TableColumn prefWidth="168.0" text="Ações" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="registerBuyListPageBackground" layoutX="-214.0" layoutY="-36.0" prefHeight="642.0" prefWidth="1054.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false" />
+                              <AnchorPane fx:id="registerBuyListPage" layoutX="218.0" layoutY="20.0" prefHeight="464.0" prefWidth="361.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
+                                 <children>
+                                    <Text layoutX="15.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Novo Produto" wrappingWidth="121.6197509765625">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Text>
+                                    <Label layoutX="22.0" layoutY="92.0" text="Nome">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="123.0" layoutY="89.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o nome do material" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="20.0" layoutY="139.0" text="Quantidade">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="123.0" layoutY="137.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe a quantidade" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="22.0" layoutY="189.0" text="Valor">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="123.0" layoutY="184.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o valor unitário" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="19.0" layoutY="241.0" text="Loja">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="122.0" layoutY="239.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o nome da loja" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="20.0" layoutY="296.0" text="Link">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="122.0" layoutY="293.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o link da compra" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="18.0" layoutY="348.0" text="Especificação">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="121.0" layoutY="345.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe o link da compra" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Button layoutX="215.0" layoutY="406.0" mnemonicParsing="false" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar produto" />
+                                    <Button layoutX="123.0" layoutY="405.0" mnemonicParsing="false" styleClass="button-cancel" stylesheets="@../styles/centerDesign.css" text="Cancelar" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>
