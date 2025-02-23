@@ -1,7 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBorrowing;
-import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;

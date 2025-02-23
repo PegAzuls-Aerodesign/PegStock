@@ -8,9 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
-import com.pegazuls.aerodesign.PegStock.model.enums.Category;
-
-import java.util.List;
 
 public interface MaterialRepository extends JpaRepository<Material, Long> {
 
