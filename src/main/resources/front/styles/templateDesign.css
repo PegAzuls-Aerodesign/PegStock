@@ -1,0 +1,49 @@
+
+.top-form{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #7d7b7b;
+    -fx-border-width: .0px .0px .0px .2px;
+}
+
+.left-form{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #7d7b7b;
+    -fx-border-width: .2px .0px .0px .0px;
+}
+
+/* Parte da logo */
+.container-logo {
+    -fx-padding: 10px;
+    -fx-background-color: white; /* Cor da "margem" */
+}
+
+.button-template{
+    -fx-border-radius: 10px;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-text-fill: black;
+}
+
+/* Quando o mouse passa por cima */
+.button-template:hover{
+    -fx-background-color: #1258aa;
+    -fx-text-fill: white;
+}
+
+.icon{
+    -fx-font-size: 20px;
+    -fx-fill: #1258aa;
+}
+
+/* Quando o mouse passa por cima */
+.button-template:hover .icon{
+    -fx-fill: white;
+}
+
+
+
+
+
+
