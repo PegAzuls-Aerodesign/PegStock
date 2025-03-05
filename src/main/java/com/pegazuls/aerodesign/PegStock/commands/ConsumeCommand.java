@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@Getter
 public class ConsumeCommand extends Command {
 
 

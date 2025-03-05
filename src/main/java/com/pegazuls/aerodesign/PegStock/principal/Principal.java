@@ -25,22 +25,22 @@ public class Principal {
 
     public void teste() {
 
-//        Material material = service.findById(9L);
-//        consumeCommand.setParameters(material, 10);
-//
-//        Material material2 = service.findById(6L);
-//        addCommand.setParameters(material2, 10);
-//
-//        invoker.execute(consumeCommand);
-//        invoker.execute(addCommand);
-//
-//        Material material3 = service.findById(6L);
-//        addCommand.setParameters(material3, 10);
-//        invoker.execute(addCommand);
-//
-//        Material material4 = service.findById(3L);
-//        consumeCommand.setParameters(material4, 50);
-//        invoker.execute(consumeCommand);
+        Material material = service.findById(9L);
+        consumeCommand.setParameters(material, 1);
+
+        Material material2 = service.findById(6L);
+        addCommand.setParameters(material2, 10);
+
+        invoker.execute(consumeCommand);
+        invoker.execute(addCommand);
+
+        Material material3 = service.findById(6L);
+        addCommand.setParameters(material3, 10);
+        invoker.execute(addCommand);
+
+        Material material4 = service.findById(3L);
+        consumeCommand.setParameters(material4, 3);
+        invoker.execute(consumeCommand);
 
         invoker.generateReport();
 
