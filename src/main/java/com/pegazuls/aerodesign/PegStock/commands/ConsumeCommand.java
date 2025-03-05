@@ -3,12 +3,14 @@ package com.pegazuls.aerodesign.PegStock.commands;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
 @Getter
+@NoArgsConstructor
 public class ConsumeCommand extends Command {
 
 

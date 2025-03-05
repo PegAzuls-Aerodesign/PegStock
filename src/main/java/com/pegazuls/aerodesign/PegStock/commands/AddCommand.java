@@ -3,19 +3,24 @@ package com.pegazuls.aerodesign.PegStock.commands;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 
 @Component
 @Getter
 public class AddCommand extends Command {
 
-    @Autowired
-    private MaterialService service;
 
-    public AddCommand(Material material, int quantity) {
+    private final MaterialService service;
+
+    @Autowired
+    public AddCommand(MaterialService service) {
+        this.service = service;
+    }
+
+    public void setParameters(Material material, int quantity) {
         this.name = "Adicionar";
         this.material = material;
         this.quantity = quantity;
