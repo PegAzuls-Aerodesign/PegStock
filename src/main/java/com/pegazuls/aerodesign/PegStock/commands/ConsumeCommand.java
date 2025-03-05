@@ -10,16 +10,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Getter
-@NoArgsConstructor
 public class ConsumeCommand extends Command {
 
 
     @Autowired
-    private MaterialService service;
+    private final MaterialService service;
 
-
-    public ConsumeCommand(Material material, int quantity) {
+    public ConsumeCommand(MaterialService service) {
         this.name = "Consumir";
+        this.service = service;
+    }
+
+    public void setParameters(Material material, int quantity) {
         this.material = material;
         this.quantity = quantity;
     }

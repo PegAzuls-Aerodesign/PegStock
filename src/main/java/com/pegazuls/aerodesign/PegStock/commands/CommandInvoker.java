@@ -30,7 +30,7 @@ public class CommandInvoker {
     public void generateReport() {
         List<CommandEntity> commands = repository.findAll();
         String fileName = "report.csv";
-        String header = "Acao, Material, Quantidade, Data\n";
+        String header = "Acao; Material; Quantidade; Data\n";
         StringBuilder content = new StringBuilder(header);
         commands.forEach(c -> {
             content.append(c.getCommandName())

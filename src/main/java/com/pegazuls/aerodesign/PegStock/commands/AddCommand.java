@@ -17,11 +17,11 @@ public class AddCommand extends Command {
 
     @Autowired
     public AddCommand(MaterialService service) {
+        this.name = "Adicionar";
         this.service = service;
     }
 
     public void setParameters(Material material, int quantity) {
-        this.name = "Adicionar";
         this.material = material;
         this.quantity = quantity;
     }
