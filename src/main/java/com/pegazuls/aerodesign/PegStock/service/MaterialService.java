@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +55,7 @@ public class MaterialService {
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
       materialUpdate.setQuantity(material.getQuantity());
+      materialUpdate.setConsumerQuantity(material.getConsumerQuantity());
       materialUpdate.setCategory(material.getCategory());
       materialUpdate.setBox(material.getBox());
       materialUpdate.setExpirationDate(material.getExpirationDate());
@@ -151,6 +153,11 @@ public class MaterialService {
          materials.removeIf(m -> !isStock(m.getCod()));
       }
       return materials;
+   }
+   
+   public DTOMaterialMostConsumer getMostConsumer(){
+        Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
+        return new DTOMaterialMostConsumer(material);
    }
 
 }

@@ -28,6 +28,7 @@ public class ConsumeCommand extends Command {
     @Override
     public void execute() {
         material.setQuantity(material.getQuantity() - quantity);
+        material.setConsumerQuantity(material.getConsumerQuantity() + quantity);
         service.update(material, material.getCod());
     }
 }

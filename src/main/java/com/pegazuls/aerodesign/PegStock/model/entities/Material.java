@@ -27,6 +27,8 @@ public class Material {
 
    private int quantity;
 
+   private int consumerQuantity;
+
    @Enumerated(EnumType.STRING)
    private Category category;
 
@@ -60,5 +62,7 @@ public class Material {
               ", registerDate=" + registerDate +
               '}';
    }
+
+
 
 }
