@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 import com.pegazuls.aerodesign.PegStock.principal.Principal;
 
-import front.PegStockFront;
+import front.main.PegStockFront;
 import javafx.application.Application;
 
 @EnableScheduling
