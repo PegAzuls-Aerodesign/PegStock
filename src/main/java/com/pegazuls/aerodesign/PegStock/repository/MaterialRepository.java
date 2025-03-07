@@ -18,4 +18,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
     // create with derived query a  method to search the CONSUMIVEIS category with quantity less than 7
     List<Material> findByCategoryAndQuantityLessThan(Category category, int quantity);
 
+    // return the most consumed material
+    Material findFirstByOrderByConsumerQuantityDesc();
+
 }
