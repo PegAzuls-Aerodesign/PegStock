@@ -1,29 +1,13 @@
 package com.pegazuls.aerodesign.PegStock;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.context.annotation.ComponentScan;
 
-import com.pegazuls.aerodesign.PegStock.principal.Principal;
-
-import front.main.PegStockFront;
-import javafx.application.Application;
-
-@EnableScheduling
 @SpringBootApplication
-public class PegStockApplication implements CommandLineRunner {
-
+@ComponentScan(basePackages = {"com.pegazuls.aerodesign.PegStock", "front.controllers"})
+public class PegStockApplication {
     public static void main(String[] args) {
-        Application.launch(PegStockFront.class, args);
+        SpringApplication.run(PegStockApplication.class, args);
     }
-
-    @Autowired
-    private Principal principal;
-    
-    @Override
-    public void run(String... args) throws Exception {
-        principal.teste();
-    }
-
 }
