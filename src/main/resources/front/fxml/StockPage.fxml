@@ -20,7 +20,7 @@
 
 <AnchorPane prefHeight="628.0" prefWidth="980.0"
            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="front.controllers.StockController">
+           fx:controller="com.pegazuls.aerodesign.PegStock.controllers.StockController">
     <children>
         <AnchorPane prefHeight="628.0" prefWidth="980.0">
             <children>
@@ -42,17 +42,16 @@
                                                    stylesheets="@../styles/centerDesign.css"/>
                                         <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH" layoutX="11.0" layoutY="25.0"
                                                          size="1.2em" text=""/>
-                                        <TableView layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="787.0"
+                                        <TableView fx:id="materialTable" layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="787.0"
                                                    styleClass="table" stylesheets="@../styles/centerDesign.css">
                                             <columns>
-                                                <TableColumn prefWidth="59.0" text="Detalhar"/>
-                                                <TableColumn prefWidth="112.0" text="Produto"/>
-                                                <TableColumn prefWidth="79.0" text="Quantidade"/>
-                                                <TableColumn prefWidth="133.0" text="Categoria"/>
-                                                <TableColumn prefWidth="99.0" text="Armario"/>
-                                                <TableColumn minWidth="2.0" prefWidth="147.66668701171875"
-                                                             text="Validade"/>
-                                                <TableColumn prefWidth="157.33331298828125" text="Ações"/>
+                                                <TableColumn fx:id="detailColumn" prefWidth="59.0" text="Detalhar"/>
+                                                <TableColumn fx:id="productColumn" prefWidth="112.0" text="Produto"/>
+                                                <TableColumn fx:id="quantityColumn" prefWidth="79.0" text="Quantidade"/>
+                                                <TableColumn fx:id="categoryColumn" prefWidth="133.0" text="Categoria"/>
+                                                <TableColumn fx:id="cabinetColumn" prefWidth="99.0" text="Armario"/>
+                                                <TableColumn fx:id="expiryColumn" minWidth="2.0" prefWidth="147.66668701171875" text="Validade"/>
+                                                <TableColumn fx:id="actionsColumn" prefWidth="157.33331298828125" text="Ações"/>
                                             </columns>
                                         </TableView>
                                         <Button fx:id="buttonRegisterStock" layoutX="658.0" layoutY="7.0"

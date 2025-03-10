@@ -5,10 +5,12 @@ import java.util.List;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 
+@Repository
 public interface MaterialRepository extends JpaRepository<Material, Long> {
 
    List<Material> findByCategory(Category category);

@@ -4,29 +4,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 
+@Component
 public class ScreenManager {
-    @Setter
-    private static Stage stage;
 
-    public static void changeScreen(String fxmlFile){
+    private Stage stage;
+
+    @Autowired
+    private ApplicationContext context;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    public void changeScreen(String fxmlFile) {
         try {
-            URL fxmlLocation = ScreenManager.class.getResource(fxmlFile);
+            URL fxmlLocation = getClass().getResource(fxmlFile);
             if (fxmlLocation == null) {
                 throw new IllegalArgumentException("FXML file not found: " + fxmlFile);
             }
-            Parent root = FXMLLoader.load(fxmlLocation);
 
-            // Exemplo de como pegar um bean do contexto
-            //String title = context.getBean("title", String.class);
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            loader.setControllerFactory(context::getBean);
+
+            Parent root = loader.load();
+
             stage.setTitle("PegStock");
-
-            // Defina o tamanho da tela aqui
             stage.setScene(new Scene(root, 1024, 640));
             stage.show();
         } catch (IOException e) {
