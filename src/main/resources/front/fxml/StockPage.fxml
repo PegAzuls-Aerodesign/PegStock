@@ -121,99 +121,110 @@
                                             prefHeight="705.0" prefWidth="1054.0" styleClass="register-background"
                                             stylesheets="@../styles/centerDesign.css" visible="false"/>
                                 <AnchorPane fx:id="registerStockPage" layoutX="192.0" layoutY="28.0" prefHeight="518.0"
-                                            prefWidth="361.0" styleClass="register-card"
-                                            stylesheets="@../styles/centerDesign.css" visible="false">
-                                    <children>
-                                        <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Novo Material">
-                                            <font>
-                                                <Font size="16.0"/>
-                                            </font>
-                                        </Text>
-                                        <Label layoutX="20.0" layoutY="148.0" text="Nome">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <TextField layoutX="121.0" layoutY="145.0" prefHeight="25.0" prefWidth="225.0"
-                                                   promptText="Informe o nome do material" styleClass="register-button"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="20.0" layoutY="191.0" text="Código">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <TextField layoutX="121.0" layoutY="188.0" prefHeight="25.0" prefWidth="225.0"
-                                                   promptText="Informe o código do material"
-                                                   styleClass="register-button"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="21.0" layoutY="237.0" text="Descrição">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <TextField layoutX="122.0" layoutY="234.0" prefHeight="25.0" prefWidth="225.0"
-                                                   promptText="Informe a descrição detalhada"
-                                                   styleClass="register-button"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="21.0" layoutY="286.0" text="Fabricação">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <DatePicker layoutX="122.0" layoutY="284.0" prefHeight="25.0" prefWidth="225.0"
-                                                    promptText="Informe a data de fabricação"
-                                                    styleClass="register-button"
-                                                    stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="21.0" layoutY="331.0" text="Validade">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <DatePicker layoutX="121.0" layoutY="329.0" prefHeight="25.0" prefWidth="225.0"
-                                                    promptText="Informe a data de validade" styleClass="register-button"
-                                                    stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="21.0" layoutY="378.0" text="Categoria">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <ChoiceBox layoutX="121.0" layoutY="376.0" prefHeight="25.0" prefWidth="225.0"
-                                                   styleClass="register-button"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <Label layoutX="21.0" layoutY="422.0" text="Armário">
-                                            <font>
-                                                <Font size="14.0"/>
-                                            </font>
-                                        </Label>
-                                        <ChoiceBox layoutX="121.0" layoutY="420.0" prefHeight="25.0" prefWidth="225.0"
-                                                   styleClass="register-button"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <Button layoutX="213.0" layoutY="482.0" mnemonicParsing="false"
-                                                styleClass="button-standard" stylesheets="@../styles/centerDesign.css"
-                                                text="Adicionar material"/>
-                                        <Button layoutX="121.0" layoutY="482.0" mnemonicParsing="false"
-                                                styleClass="button-cancel" stylesheets="@../styles/centerDesign.css"
-                                                text="Cancelar"/>
-                                        <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0" prefWidth="106.0"
-                                                    styleClass="select-image" stylesheets="@../styles/centerDesign.css">
-                                            <children>
-                                                <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="115.0"
-                                                           layoutX="2.0" layoutY="3.0" pickOnBounds="true"
-                                                           preserveRatio="true"/>
-                                            </children>
-                                        </AnchorPane>
-                                        <Button fx:id="buttonNavigate" layoutX="220.0" layoutY="95.0"
-                                                mnemonicParsing="false" onMouseClicked="#selectImage"
-                                                styleClass="button-image" stylesheets="@../styles/centerDesign.css"
-                                                text="Navegue"/>
-                                        <Label layoutX="189.0" layoutY="73.0" text="Arraste a imagem aqui ou">
-                                            <font>
-                                                <Font size="10.0"/>
-                                            </font>
-                                        </Label>
-                                    </children>
-                                </AnchorPane>
+            prefWidth="361.0" styleClass="register-card"
+            stylesheets="@../styles/centerDesign.css" visible="false">
+    <children>
+        <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Novo Material">
+            <font>
+                <Font size="16.0"/>
+            </font>
+        </Text>
+        <Label layoutX="20.0" layoutY="148.0" text="Nome">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="registerName" layoutX="121.0" layoutY="145.0" prefHeight="25.0" prefWidth="225.0"
+                   promptText="Informe o nome do material" styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+        <Label layoutX="20.0" layoutY="191.0" text="Código">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="registerCod" layoutX="121.0" layoutY="188.0" prefHeight="25.0" prefWidth="225.0"
+                   promptText="Informe o código do material"
+                   styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+
+        <!-- Novo campo: Quantidade -->
+        <Label layoutX="20.0" layoutY="234.0" text="Quantidade">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="registerQuantity" layoutX="121.0" layoutY="231.0" prefHeight="25.0" prefWidth="225.0"
+                   promptText="Informe a quantidade" styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+
+        <Label layoutX="21.0" layoutY="277.0" text="Descrição">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <TextField fx:id="registerDescription" layoutX="122.0" layoutY="274.0" prefHeight="25.0" prefWidth="225.0"
+                   promptText="Informe a descrição detalhada"
+                   styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+        <Label layoutX="21.0" layoutY="320.0" text="Fabricação">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <DatePicker fx:id="registerCreatedDate" layoutX="122.0" layoutY="318.0" prefHeight="25.0" prefWidth="225.0"
+                    promptText="Informe a data de fabricação"
+                    styleClass="register-button"
+                    stylesheets="@../styles/centerDesign.css"/>
+        <Label layoutX="21.0" layoutY="363.0" text="Validade">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <DatePicker fx:id="registerExpirationDate" layoutX="121.0" layoutY="361.0" prefHeight="25.0" prefWidth="225.0"
+                    promptText="Informe a data de validade" styleClass="register-button"
+                    stylesheets="@../styles/centerDesign.css"/>
+        <Label layoutX="21.0" layoutY="406.0" text="Categoria">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="registerCategory" layoutX="121.0" layoutY="404.0" prefHeight="25.0" prefWidth="225.0"
+                   styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+        <Label layoutX="21.0" layoutY="449.0" text="Armário">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Label>
+        <ChoiceBox fx:id="registerBox" layoutX="121.0" layoutY="447.0" prefHeight="25.0" prefWidth="225.0"
+                   styleClass="register-button"
+                   stylesheets="@../styles/centerDesign.css"/>
+        <Button layoutX="213.0" layoutY="482.0" mnemonicParsing="false"
+                styleClass="button-standard" stylesheets="@../styles/centerDesign.css"
+                text="Adicionar material" onMouseClicked="#registerMaterial"/>
+        <Button layoutX="121.0" layoutY="482.0" mnemonicParsing="false"
+                styleClass="button-cancel" stylesheets="@../styles/centerDesign.css"
+                text="Cancelar" onMouseClicked="#cancelRegister"/>
+        <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0" prefWidth="106.0"
+                    styleClass="select-image" stylesheets="@../styles/centerDesign.css">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="115.0"
+                           layoutX="2.0" layoutY="3.0" pickOnBounds="true"
+                           preserveRatio="true"/>
+            </children>
+        </AnchorPane>
+        <Button fx:id="buttonNavigate" layoutX="220.0" layoutY="95.0"
+                mnemonicParsing="false" onMouseClicked="#selectImage"
+                styleClass="button-image" stylesheets="@../styles/centerDesign.css"
+                text="Navegue"/>
+        <Label layoutX="189.0" layoutY="73.0" text="Arraste a imagem aqui ou">
+            <font>
+                <Font size="10.0"/>
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
                             </children>
                         </AnchorPane>
                     </children>
