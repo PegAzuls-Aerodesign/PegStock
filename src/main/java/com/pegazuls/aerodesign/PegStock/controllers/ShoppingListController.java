@@ -1,4 +1,4 @@
-package front.controllers;
+package com.pegazuls.aerodesign.PegStock.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
