@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.pegazuls.aerodesign.PegStock.PegStockApplication;
 
 @Configuration
 @ComponentScan(basePackages = {"front", "com.pegazuls.aerodesign.PegStock"})
@@ -16,7 +18,7 @@ public class PegStockFront extends Application {
     @Override
     public void init() throws Exception {
         // Inicializa o contexto do Spring
-        context = SpringApplication.run(PegStockFront.class);
+        context = SpringApplication.run(PegStockApplication.class);
     }
 
     @Override
@@ -33,5 +35,9 @@ public class PegStockFront extends Application {
     public void stop() throws Exception {
         // Fecha o contexto do Spring ao fechar a aplicação
         context.close();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
