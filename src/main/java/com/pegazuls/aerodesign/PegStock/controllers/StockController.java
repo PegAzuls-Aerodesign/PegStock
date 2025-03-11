@@ -101,20 +101,20 @@ public class StockController implements Initializable {
             private final Button editButton = new Button("Editar");
             private final Button deleteButton = new Button("Deletar");
             private final HBox pane = new HBox(editButton, deleteButton);
-    
+
             {
                 pane.setSpacing(10);
-    
+
                 editButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
                     editMaterial(material);
                 });
-    
+
                 deleteButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
                     deleteMaterial(material);
                 });
-                
+
             }
 
             // Display button if the row is not empty
@@ -127,7 +127,7 @@ public class StockController implements Initializable {
                     setGraphic(pane);
                 }
             }
-            
+
         });
     }
 
@@ -144,35 +144,44 @@ public class StockController implements Initializable {
 
     @FXML
     void registerMaterial(MouseEvent event) {
-        if (currentMaterial == null) {
-            Material material = new Material();
-            material.setName(registerName.getText());
-            material.setQuantity(Integer.parseInt(registerQuantity.getText()));
-            material.setDescription(registerDescription.getText());
-            material.setCreatedDate(registerCreatedDate.getValue());
-            material.setExpirationDate(registerExpirationDate.getValue());
-            material.setCategory(registerCategory.getValue());
-            material.setBox(registerBox.getValue());
+        try {
+            if (currentMaterial == null) {
+                Material material = new Material();
+                material.setName(registerName.getText());
+                material.setQuantity(Integer.parseInt(registerQuantity.getText()));
+                material.setDescription(registerDescription.getText());
+                material.setCreatedDate(registerCreatedDate.getValue());
+                material.setExpirationDate(registerExpirationDate.getValue());
+                material.setCategory(registerCategory.getValue());
+                material.setBox(registerBox.getValue());
 
-            materialService.create(material);
-        } else {
-            currentMaterial.setName(registerName.getText());
-            currentMaterial.setQuantity(Integer.parseInt(registerQuantity.getText()));
-            currentMaterial.setDescription(registerDescription.getText());
-            currentMaterial.setCreatedDate(registerCreatedDate.getValue());
-            currentMaterial.setExpirationDate(registerExpirationDate.getValue());
-            currentMaterial.setCategory(registerCategory.getValue());
-            currentMaterial.setBox(registerBox.getValue());
+                materialService.create(material);
+            } else {
+                currentMaterial.setName(registerName.getText());
+                currentMaterial.setQuantity(Integer.parseInt(registerQuantity.getText()));
+                currentMaterial.setDescription(registerDescription.getText());
+                currentMaterial.setCreatedDate(registerCreatedDate.getValue());
+                currentMaterial.setExpirationDate(registerExpirationDate.getValue());
+                currentMaterial.setCategory(registerCategory.getValue());
+                currentMaterial.setBox(registerBox.getValue());
 
-            materialService.update(currentMaterial, currentMaterial.getCod());
+                materialService.update(currentMaterial, currentMaterial.getCod());
+            }
+
+            loadMaterials();
+            registerStockPageBackground.setVisible(false);
+            registerStockPage.setVisible(false);
+
+            clearForm();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Ocorreu um erro ao salvar o material.");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
-
-        loadMaterials();
-
-        registerStockPageBackground.setVisible(false);
-        registerStockPage.setVisible(false);
-
-        clearForm();
     }
 
     private void editMaterial(Material material) {
@@ -213,6 +222,8 @@ public class StockController implements Initializable {
         registerExpirationDate.setValue(null);
         registerCategory.setValue(null);
         registerBox.setValue(null);
+
+        currentMaterial = null;
     }
 
     @FXML
