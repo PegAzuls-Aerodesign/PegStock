@@ -1,4 +1,4 @@
-package front.controllers;
+package com.pegazuls.aerodesign.PegStock.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,16 +8,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+import front.main.ScreenManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Objects;
 
-@Component
-@Configuration
+@Controller
 public class PegStockController {
 
     @FXML
@@ -33,9 +32,6 @@ public class PegStockController {
     private Button buttonLoan;
 
     @FXML
-    private Button buttonNavigate;
-
-    @FXML
     private Button buttonStock;
 
     @FXML
@@ -44,21 +40,23 @@ public class PegStockController {
     @FXML
     private Pane contentPane;
 
+    @Autowired
+    private ScreenManager screenManager;
+
     @FXML
     void pages(MouseEvent event) {
-        // Dependendo do botão clicado, o nome do botão será exibido no Text e a Page muda
         if (event.getSource() == buttonHome) {
-            buttonHome.setOnMouseClicked(event1 -> nameOut.setText(buttonHome.getText()));
+            nameOut.setText(buttonHome.getText());
         } else if (event.getSource() == buttonDashboard) {
-            buttonDashboard.setOnMouseClicked(event1 -> nameOut.setText(buttonDashboard.getText()));
+            nameOut.setText(buttonDashboard.getText());
         } else if (event.getSource() == buttonStock) {
-            buttonStock.setOnMouseClicked(event1 -> nameOut.setText(buttonStock.getText()));
-            buttonStock.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> showStock());
+            nameOut.setText(buttonStock.getText());
+            showStock();
         } else if (event.getSource() == buttonBuyList) {
-            buttonBuyList.setOnMouseClicked(event1 -> nameOut.setText(buttonBuyList.getText()));
-            buttonBuyList.addEventHandler(MouseEvent.MOUSE_CLICKED, event1 -> showShoppingList());
+            nameOut.setText(buttonBuyList.getText());
+            showShoppingList();
         } else if (event.getSource() == buttonLoan) {
-            buttonLoan.setOnMouseClicked(event1 -> nameOut.setText(buttonLoan.getText()));
+            nameOut.setText(buttonLoan.getText());
         }
     }
 
@@ -83,12 +81,11 @@ public class PegStockController {
         }
     }
 
-    public void showStock(){
-        loadScreen("/front/fxml/StockPage.fxml");
+    public void showStock() {
+        screenManager.changeScreen("/front/fxml/StockPage.fxml");
     }
 
-    public void showShoppingList(){
-        loadScreen("/front/fxml/ShoppingListPage.fxml");
+    public void showShoppingList() {
+        screenManager.changeScreen("/front/fxml/ShoppingListPage.fxml");
     }
-
 }

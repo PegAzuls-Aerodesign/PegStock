@@ -14,7 +14,7 @@
 
 <AnchorPane prefHeight="628.0" prefWidth="980.0"
            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="front.controllers.ShoppingListController">
+           fx:controller="com.pegazuls.aerodesign.PegStock.controllers.ShoppingListController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>

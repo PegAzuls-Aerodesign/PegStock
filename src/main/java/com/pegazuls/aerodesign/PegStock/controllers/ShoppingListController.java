@@ -1,4 +1,6 @@
-package front.controllers;
+package com.pegazuls.aerodesign.PegStock.controllers;
+
+import org.springframework.stereotype.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 
+@Controller
 public class ShoppingListController {
 
     @FXML
