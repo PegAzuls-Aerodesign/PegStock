@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.scene.layout.HBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
@@ -48,10 +49,10 @@ public class StockController implements Initializable {
     private TableColumn<Material, LocalDate> expiryColumn;
 
     @FXML
-    private ImageView imageView;
+    private TableColumn<Material, Void> actionsColumn;
 
     @FXML
-    private TextField registerCod;
+    private ImageView imageView;
 
     @FXML
     private TextField registerName;
@@ -80,21 +81,54 @@ public class StockController implements Initializable {
     @FXML
     private AnchorPane registerStockPageBackground;
 
+    private Material currentMaterial;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Configura as colunas da tabela
         productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         cabinetColumn.setCellValueFactory(new PropertyValueFactory<>("box"));
         expiryColumn.setCellValueFactory(new PropertyValueFactory<>("expirationDate"));
 
-        // Carrega os materiais na tabela
         loadMaterials();
 
-        // Configura as opções dos ChoiceBox
         registerCategory.setItems(FXCollections.observableArrayList(Category.values()));
         registerBox.setItems(FXCollections.observableArrayList(Box.values()));
+
+        // Actions column
+        actionsColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button editButton = new Button("Editar");
+            private final Button deleteButton = new Button("Deletar");
+            private final HBox pane = new HBox(editButton, deleteButton);
+    
+            {
+                pane.setSpacing(10);
+    
+                editButton.setOnAction(event -> {
+                    Material material = getTableView().getItems().get(getIndex());
+                    editMaterial(material);
+                });
+    
+                deleteButton.setOnAction(event -> {
+                    Material material = getTableView().getItems().get(getIndex());
+                    deleteMaterial(material);
+                });
+                
+            }
+
+            // Display button if the row is not empty
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(pane);
+                }
+            }
+            
+        });
     }
 
     private void loadMaterials() {
@@ -110,33 +144,65 @@ public class StockController implements Initializable {
 
     @FXML
     void registerMaterial(MouseEvent event) {
-        String name = registerName.getText();
-        int quantity = Integer.parseInt(registerQuantity.getText());
-        String description = registerDescription.getText();
-        LocalDate createdDate = registerCreatedDate.getValue();
-        LocalDate expirationDate = registerExpirationDate.getValue();
-        Category category = registerCategory.getValue();
-        Box box = registerBox.getValue();
+        if (currentMaterial == null) {
+            Material material = new Material();
+            material.setName(registerName.getText());
+            material.setQuantity(Integer.parseInt(registerQuantity.getText()));
+            material.setDescription(registerDescription.getText());
+            material.setCreatedDate(registerCreatedDate.getValue());
+            material.setExpirationDate(registerExpirationDate.getValue());
+            material.setCategory(registerCategory.getValue());
+            material.setBox(registerBox.getValue());
 
-        Material material = new Material();
-        material.setName(name);
-        material.setQuantity(quantity);
-        material.setDescription(description);
-        material.setCreatedDate(createdDate);
-        material.setExpirationDate(expirationDate);
-        material.setCategory(category);
-        material.setBox(box);
+            materialService.create(material);
+        } else {
+            currentMaterial.setName(registerName.getText());
+            currentMaterial.setQuantity(Integer.parseInt(registerQuantity.getText()));
+            currentMaterial.setDescription(registerDescription.getText());
+            currentMaterial.setCreatedDate(registerCreatedDate.getValue());
+            currentMaterial.setExpirationDate(registerExpirationDate.getValue());
+            currentMaterial.setCategory(registerCategory.getValue());
+            currentMaterial.setBox(registerBox.getValue());
 
-        materialService.create(material);
+            materialService.update(currentMaterial, currentMaterial.getCod());
+        }
 
-        // Update the table
         loadMaterials();
 
-        // Close the registration form
         registerStockPageBackground.setVisible(false);
         registerStockPage.setVisible(false);
 
         clearForm();
+    }
+
+    private void editMaterial(Material material) {
+
+        currentMaterial = materialService.findById(material.getCod());
+
+        registerName.setText(material.getName());
+        registerQuantity.setText(String.valueOf(material.getQuantity()));
+        registerDescription.setText(material.getDescription());
+        registerCreatedDate.setValue(material.getCreatedDate());
+        registerExpirationDate.setValue(material.getExpirationDate());
+        registerCategory.setValue(material.getCategory());
+        registerBox.setValue(material.getBox());
+
+        registerStockPageBackground.setVisible(true);
+        registerStockPage.setVisible(true);
+    }
+
+    private void deleteMaterial(Material material) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("PegStock");
+        alert.setHeaderText("Tem certeza que deseja excluir o material " + material.getName() + "?");
+        alert.setContentText("Essa ação não poderá ser desfeita.");
+
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                materialService.delete(material.getCod());
+                loadMaterials();
+            }
+        });
     }
 
     private void clearForm() {
@@ -159,7 +225,8 @@ public class StockController implements Initializable {
     @FXML
     void selectImage(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.getExtensionFilters()
+                .add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
 
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {

@@ -10,210 +10,264 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableCell?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.util.Callback?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane prefHeight="628.0" prefWidth="980.0"
-           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.pegazuls.aerodesign.PegStock.controllers.StockController">
+    xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.pegazuls.aerodesign.PegStock.controllers.StockController">
     <children>
         <AnchorPane prefHeight="628.0" prefWidth="980.0">
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <AnchorPane fx:id="stockPage" layoutX="14.0" layoutY="14.0" prefHeight="595.0" prefWidth="770.0"
-                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="stockPage" layoutX="14.0" layoutY="14.0"
+                            prefHeight="595.0" prefWidth="770.0"
+                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <AnchorPane layoutX="13.0" layoutY="37.0" prefHeight="417.0" prefWidth="743.0"
-                                            stylesheets="@../styles/centerDesign.css">
+                                <AnchorPane layoutX="13.0" layoutY="37.0" prefHeight="417.0"
+                                    prefWidth="743.0"
+                                    stylesheets="@../styles/centerDesign.css">
                                     <styleClass>
-                                        <String fx:value="shadow"/>
-                                        <String fx:value="background"/>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="background" />
                                     </styleClass>
                                     <children>
-                                        <TextField layoutX="6.0" layoutY="8.0" prefHeight="26.0" prefWidth="177.0"
-                                                   promptText="Search" styleClass="search"
-                                                   stylesheets="@../styles/centerDesign.css"/>
-                                        <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH" layoutX="11.0" layoutY="25.0"
-                                                         size="1.2em" text=""/>
-                                        <TableView fx:id="materialTable" layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="787.0"
-                                                   styleClass="table" stylesheets="@../styles/centerDesign.css">
+                                        <TextField layoutX="6.0" layoutY="8.0" prefHeight="26.0"
+                                            prefWidth="177.0"
+                                            promptText="Search" styleClass="search"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH"
+                                            layoutX="11.0" layoutY="25.0"
+                                            size="1.2em" text="" />
+                                        <TableView fx:id="materialTable" layoutX="6.0"
+                                            layoutY="53.0" prefHeight="355.0" prefWidth="787.0"
+                                            styleClass="table"
+                                            stylesheets="@../styles/centerDesign.css">
                                             <columns>
-                                                <TableColumn fx:id="detailColumn" prefWidth="59.0" text="Detalhar"/>
-                                                <TableColumn fx:id="productColumn" prefWidth="112.0" text="Produto"/>
-                                                <TableColumn fx:id="quantityColumn" prefWidth="79.0" text="Quantidade"/>
-                                                <TableColumn fx:id="categoryColumn" prefWidth="133.0" text="Categoria"/>
-                                                <TableColumn fx:id="cabinetColumn" prefWidth="99.0" text="Armario"/>
-                                                <TableColumn fx:id="expiryColumn" minWidth="2.0" prefWidth="147.66668701171875" text="Validade"/>
-                                                <TableColumn fx:id="actionsColumn" prefWidth="157.33331298828125" text="Ações"/>
+                                                <TableColumn fx:id="detailColumn" prefWidth="59.0"
+                                                    text="Detalhar" />
+                                                <TableColumn fx:id="productColumn" prefWidth="112.0"
+                                                    text="Produto" />
+                                                <TableColumn fx:id="quantityColumn" prefWidth="79.0"
+                                                    text="Quantidade" />
+                                                <TableColumn fx:id="categoryColumn"
+                                                    prefWidth="133.0" text="Categoria" />
+                                                <TableColumn fx:id="cabinetColumn" prefWidth="99.0"
+                                                    text="Armario" />
+                                                <TableColumn fx:id="expiryColumn" minWidth="2.0"
+                                                    prefWidth="147.66668701171875" text="Validade" />
+                                                <TableColumn fx:id="actionsColumn" text="Ações"/>
                                             </columns>
                                         </TableView>
-                                        <Button fx:id="buttonRegisterStock" layoutX="658.0" layoutY="7.0"
-                                                mnemonicParsing="false" onMouseClicked="#showRegisterStockPage"
-                                                styleClass="button-standard" stylesheets="@../styles/centerDesign.css"
-                                                text="Adicionar Produto"/>
-                                        <ComboBox layoutX="213.0" layoutY="6.0" prefHeight="28.0" prefWidth="102.0"
-                                                  promptText="Filtrar" styleClass="button-filter"
-                                                  stylesheets="@../styles/centerDesign.css">
+                                        <Button fx:id="buttonRegisterStock" layoutX="658.0"
+                                            layoutY="7.0"
+                                            mnemonicParsing="false"
+                                            onMouseClicked="#showRegisterStockPage"
+                                            styleClass="button-standard"
+                                            stylesheets="@../styles/centerDesign.css"
+                                            text="Adicionar Produto" />
+                                        <ComboBox layoutX="213.0" layoutY="6.0" prefHeight="28.0"
+                                            prefWidth="102.0"
+                                            promptText="Filtrar" styleClass="button-filter"
+                                            stylesheets="@../styles/centerDesign.css">
                                             <items>
                                                 <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="Esgotado"/>
-                                                    <String fx:value="Vencido"/>
-                                                    <String fx:value="Armario 1"/>
-                                                    <String fx:value="Armario 2"/>
-                                                    <String fx:value="Armario 3"/>
-                                                    <String fx:value="Armario 4"/>
-                                                    <String fx:value="Armario 5"/>
-                                                    <String fx:value="Armario 6"/>
+                                                    <String fx:value="Esgotado" />
+                                                    <String fx:value="Vencido" />
+                                                    <String fx:value="Armario 1" />
+                                                    <String fx:value="Armario 2" />
+                                                    <String fx:value="Armario 3" />
+                                                    <String fx:value="Armario 4" />
+                                                    <String fx:value="Armario 5" />
+                                                    <String fx:value="Armario 6" />
                                                 </FXCollections>
                                             </items>
                                         </ComboBox>
-                                        <FontAwesomeIcon fill="#1258aa" glyphName="FILTER" layoutX="222.0"
-                                                         layoutY="27.0" size="1.5em"/>
+                                        <FontAwesomeIcon fill="#1258aa" glyphName="FILTER"
+                                            layoutX="222.0"
+                                            layoutY="27.0" size="1.5em" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane layoutX="12.0" layoutY="476.0" prefHeight="128.0" prefWidth="143.0"
-                                            stylesheets="@../styles/centerDesign.css">
+                                <AnchorPane layoutX="12.0" layoutY="476.0" prefHeight="128.0"
+                                    prefWidth="143.0"
+                                    stylesheets="@../styles/centerDesign.css">
                                     <styleClass>
-                                        <String fx:value="background"/>
-                                        <String fx:value="shadow"/>
+                                        <String fx:value="background" />
+                                        <String fx:value="shadow" />
                                     </styleClass>
                                     <children>
-                                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Legenda">
+                                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE"
+                                            strokeWidth="0.0"
+                                            text="Legenda">
                                             <font>
-                                                <Font size="14.0"/>
+                                                <Font size="14.0" />
                                             </font>
                                         </Text>
-                                        <Circle fill="#ec221f" layoutX="22.0" layoutY="49.0" radius="7.0"
-                                                stroke="#ec221f" strokeType="INSIDE"/>
-                                        <Circle fill="#fab55a" layoutX="22.0" layoutY="72.0" radius="7.0"
-                                                stroke="#fab55a" strokeType="INSIDE"/>
-                                        <Circle fill="#af52de" layoutX="22.0" layoutY="93.0" radius="7.0"
-                                                stroke="#af52de" strokeType="INSIDE"/>
-                                        <Text layoutX="33.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Esgotado" wrappingWidth="49.88671875">
+                                        <Circle fill="#ec221f" layoutX="22.0" layoutY="49.0"
+                                            radius="7.0"
+                                            stroke="#ec221f" strokeType="INSIDE" />
+                                        <Circle fill="#fab55a" layoutX="22.0" layoutY="72.0"
+                                            radius="7.0"
+                                            stroke="#fab55a" strokeType="INSIDE" />
+                                        <Circle fill="#af52de" layoutX="22.0" layoutY="93.0"
+                                            radius="7.0"
+                                            stroke="#af52de" strokeType="INSIDE" />
+                                        <Text layoutX="33.0" layoutY="52.0" strokeType="OUTSIDE"
+                                            strokeWidth="0.0"
+                                            text="Esgotado" wrappingWidth="49.88671875">
                                             <font>
-                                                <Font size="10.0"/>
+                                                <Font size="10.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="32.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Limite de estoque" wrappingWidth="82.38671875">
+                                        <Text layoutX="32.0" layoutY="75.0" strokeType="OUTSIDE"
+                                            strokeWidth="0.0"
+                                            text="Limite de estoque" wrappingWidth="82.38671875">
                                             <font>
-                                                <Font size="10.0"/>
+                                                <Font size="10.0" />
                                             </font>
                                         </Text>
-                                        <Text layoutX="32.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              text="Vencido" wrappingWidth="49.88671875">
+                                        <Text layoutX="32.0" layoutY="97.0" strokeType="OUTSIDE"
+                                            strokeWidth="0.0"
+                                            text="Vencido" wrappingWidth="49.88671875">
                                             <font>
-                                                <Font size="10.0"/>
+                                                <Font size="10.0" />
                                             </font>
                                         </Text>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="registerStockPageBackground" layoutX="-215.0" layoutY="-99.0"
-                                            prefHeight="705.0" prefWidth="1054.0" styleClass="register-background"
-                                            stylesheets="@../styles/centerDesign.css" visible="false"/>
-                                <AnchorPane fx:id="registerStockPage" layoutX="192.0" layoutY="28.0" prefHeight="518.0"
-            prefWidth="361.0" styleClass="register-card"
-            stylesheets="@../styles/centerDesign.css" visible="false">
-    <children>
-        <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0"
-              text="Novo Material">
-            <font>
-                <Font size="16.0"/>
-            </font>
-        </Text>
-        <Label layoutX="20.0" layoutY="148.0" text="Nome">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <TextField fx:id="registerName" layoutX="121.0" layoutY="145.0" prefHeight="25.0" prefWidth="225.0"
-                   promptText="Informe o nome do material" styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="20.0" layoutY="234.0" text="Quantidade">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <TextField fx:id="registerQuantity" layoutX="121.0" layoutY="231.0" prefHeight="25.0" prefWidth="225.0"
-                   promptText="Informe a quantidade" styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
+                                <AnchorPane fx:id="registerStockPageBackground" layoutX="-215.0"
+                                    layoutY="-99.0"
+                                    prefHeight="705.0" prefWidth="1054.0"
+                                    styleClass="register-background"
+                                    stylesheets="@../styles/centerDesign.css" visible="false" />
+                                <AnchorPane fx:id="registerStockPage" layoutX="192.0" layoutY="28.0"
+                                    prefHeight="518.0"
+                                    prefWidth="361.0" styleClass="register-card"
+                                    stylesheets="@../styles/centerDesign.css" visible="false">
+                                    <children>
+                                        <Text layoutX="20.0" layoutY="32.0" strokeType="OUTSIDE"
+                                            strokeWidth="0.0"
+                                            text="Novo Material">
+                                            <font>
+                                                <Font size="16.0" />
+                                            </font>
+                                        </Text>
+                                        <Label layoutX="20.0" layoutY="148.0" text="Nome">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="registerName" layoutX="121.0"
+                                            layoutY="145.0" prefHeight="25.0" prefWidth="225.0"
+                                            promptText="Informe o nome do material"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Label layoutX="20.0" layoutY="234.0" text="Quantidade">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="registerQuantity" layoutX="121.0"
+                                            layoutY="231.0" prefHeight="25.0" prefWidth="225.0"
+                                            promptText="Informe a quantidade"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
 
-        <Label layoutX="21.0" layoutY="277.0" text="Descrição">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <TextField fx:id="registerDescription" layoutX="122.0" layoutY="274.0" prefHeight="25.0" prefWidth="225.0"
-                   promptText="Informe a descrição detalhada"
-                   styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="21.0" layoutY="320.0" text="Fabricação">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <DatePicker fx:id="registerCreatedDate" layoutX="122.0" layoutY="318.0" prefHeight="25.0" prefWidth="225.0"
-                    promptText="Informe a data de fabricação"
-                    styleClass="register-button"
-                    stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="21.0" layoutY="363.0" text="Validade">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <DatePicker fx:id="registerExpirationDate" layoutX="121.0" layoutY="361.0" prefHeight="25.0" prefWidth="225.0"
-                    promptText="Informe a data de validade" styleClass="register-button"
-                    stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="21.0" layoutY="406.0" text="Categoria">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <ChoiceBox fx:id="registerCategory" layoutX="121.0" layoutY="404.0" prefHeight="25.0" prefWidth="225.0"
-                   styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="21.0" layoutY="449.0" text="Armário">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <ChoiceBox fx:id="registerBox" layoutX="121.0" layoutY="447.0" prefHeight="25.0" prefWidth="225.0"
-                   styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
-        <Button layoutX="213.0" layoutY="482.0" mnemonicParsing="false"
-                styleClass="button-standard" stylesheets="@../styles/centerDesign.css"
-                text="Adicionar material" onMouseClicked="#registerMaterial"/>
-        <Button layoutX="121.0" layoutY="482.0" mnemonicParsing="false"
-                styleClass="button-cancel" stylesheets="@../styles/centerDesign.css"
-                text="Cancelar" onMouseClicked="#cancelRegister"/>
-        <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0" prefWidth="106.0"
-                    styleClass="select-image" stylesheets="@../styles/centerDesign.css">
-            <children>
-                <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="115.0"
-                           layoutX="2.0" layoutY="3.0" pickOnBounds="true"
-                           preserveRatio="true"/>
-            </children>
-        </AnchorPane>
-        <Button fx:id="buttonNavigate" layoutX="220.0" layoutY="95.0"
-                mnemonicParsing="false" onMouseClicked="#selectImage"
-                styleClass="button-image" stylesheets="@../styles/centerDesign.css"
-                text="Navegue"/>
-        <Label layoutX="189.0" layoutY="73.0" text="Arraste a imagem aqui ou">
-            <font>
-                <Font size="10.0"/>
-            </font>
-        </Label>
-    </children>
-</AnchorPane>
+                                        <Label layoutX="21.0" layoutY="277.0" text="Descrição">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="registerDescription" layoutX="122.0"
+                                            layoutY="274.0" prefHeight="25.0" prefWidth="225.0"
+                                            promptText="Informe a descrição detalhada"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Label layoutX="21.0" layoutY="320.0" text="Fabricação">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="registerCreatedDate" layoutX="122.0"
+                                            layoutY="318.0" prefHeight="25.0" prefWidth="225.0"
+                                            promptText="Informe a data de fabricação"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Label layoutX="21.0" layoutY="363.0" text="Validade">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <DatePicker fx:id="registerExpirationDate" layoutX="121.0"
+                                            layoutY="361.0" prefHeight="25.0" prefWidth="225.0"
+                                            promptText="Informe a data de validade"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Label layoutX="21.0" layoutY="406.0" text="Categoria">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <ChoiceBox fx:id="registerCategory" layoutX="121.0"
+                                            layoutY="404.0" prefHeight="25.0" prefWidth="225.0"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Label layoutX="21.0" layoutY="449.0" text="Armário">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <ChoiceBox fx:id="registerBox" layoutX="121.0"
+                                            layoutY="447.0" prefHeight="25.0" prefWidth="225.0"
+                                            styleClass="register-button"
+                                            stylesheets="@../styles/centerDesign.css" />
+                                        <Button layoutX="213.0" layoutY="482.0"
+                                            mnemonicParsing="false"
+                                            styleClass="button-standard"
+                                            stylesheets="@../styles/centerDesign.css"
+                                            text="Adicionar material"
+                                            onMouseClicked="#registerMaterial" />
+                                        <Button layoutX="121.0" layoutY="482.0"
+                                            mnemonicParsing="false"
+                                            styleClass="button-cancel"
+                                            stylesheets="@../styles/centerDesign.css"
+                                            text="Cancelar" onMouseClicked="#cancelRegister" />
+                                        <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0"
+                                            prefWidth="106.0"
+                                            styleClass="select-image"
+                                            stylesheets="@../styles/centerDesign.css">
+                                            <children>
+                                                <ImageView fx:id="imageView" fitHeight="80.0"
+                                                    fitWidth="115.0"
+                                                    layoutX="2.0" layoutY="3.0" pickOnBounds="true"
+                                                    preserveRatio="true" />
+                                            </children>
+                                        </AnchorPane>
+                                        <Button fx:id="buttonNavigate" layoutX="220.0"
+                                            layoutY="95.0"
+                                            mnemonicParsing="false" onMouseClicked="#selectImage"
+                                            styleClass="button-image"
+                                            stylesheets="@../styles/centerDesign.css"
+                                            text="Navegue" />
+                                        <Label layoutX="189.0" layoutY="73.0"
+                                            text="Arraste a imagem aqui ou">
+                                            <font>
+                                                <Font size="10.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
                             </children>
                         </AnchorPane>
                     </children>
