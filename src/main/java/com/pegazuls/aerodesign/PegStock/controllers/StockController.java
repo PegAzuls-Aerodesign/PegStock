@@ -111,7 +111,6 @@ public class StockController implements Initializable {
     @FXML
     void registerMaterial(MouseEvent event) {
         String name = registerName.getText();
-        Long cod = Long.parseLong(registerCod.getText());
         int quantity = Integer.parseInt(registerQuantity.getText());
         String description = registerDescription.getText();
         LocalDate createdDate = registerCreatedDate.getValue();
@@ -121,7 +120,6 @@ public class StockController implements Initializable {
 
         Material material = new Material();
         material.setName(name);
-        material.setCod(cod);
         material.setQuantity(quantity);
         material.setDescription(description);
         material.setCreatedDate(createdDate);
@@ -143,7 +141,6 @@ public class StockController implements Initializable {
 
     private void clearForm() {
         registerName.clear();
-        registerCod.clear();
         registerQuantity.clear();
         registerDescription.clear();
         registerCreatedDate.setValue(null);

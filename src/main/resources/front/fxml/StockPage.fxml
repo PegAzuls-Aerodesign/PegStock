@@ -138,17 +138,6 @@
         <TextField fx:id="registerName" layoutX="121.0" layoutY="145.0" prefHeight="25.0" prefWidth="225.0"
                    promptText="Informe o nome do material" styleClass="register-button"
                    stylesheets="@../styles/centerDesign.css"/>
-        <Label layoutX="20.0" layoutY="191.0" text="Código">
-            <font>
-                <Font size="14.0"/>
-            </font>
-        </Label>
-        <TextField fx:id="registerCod" layoutX="121.0" layoutY="188.0" prefHeight="25.0" prefWidth="225.0"
-                   promptText="Informe o código do material"
-                   styleClass="register-button"
-                   stylesheets="@../styles/centerDesign.css"/>
-
-        <!-- Novo campo: Quantidade -->
         <Label layoutX="20.0" layoutY="234.0" text="Quantidade">
             <font>
                 <Font size="14.0"/>
