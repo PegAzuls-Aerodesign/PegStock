@@ -3,33 +3,25 @@ package com.pegazuls.aerodesign.PegStock.controllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
+import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 
 import java.io.File;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
-import com.pegazuls.aerodesign.PegStock.model.entities.Material;
-import com.pegazuls.aerodesign.PegStock.model.enums.Box;
-import com.pegazuls.aerodesign.PegStock.model.enums.Category;
-import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 
 @Controller
 public class StockController implements Initializable {
@@ -81,9 +73,6 @@ public class StockController implements Initializable {
 
     @FXML
     private ChoiceBox<Box> registerBox;
-
-    @FXML
-    private Button buttonRegisterStock;
 
     @FXML
     private AnchorPane registerStockPage;
@@ -142,10 +131,10 @@ public class StockController implements Initializable {
 
         materialService.create(material);
 
-        // Atualiza a tabela
+        // Update the table
         loadMaterials();
 
-        // Fecha o formulário de cadastro
+        // Close the registration form
         registerStockPageBackground.setVisible(false);
         registerStockPage.setVisible(false);
 
