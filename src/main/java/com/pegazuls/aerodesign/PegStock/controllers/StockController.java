@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 public class StockController implements Initializable {
 
     @Autowired
+    private DetailsController detailsController;
+
+    @Autowired
     private MaterialService materialService;
 
     @FXML
@@ -143,7 +146,6 @@ public class StockController implements Initializable {
 
                 detailButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
-                    DetailsController detailsController = new DetailsController();
                     detailsController.showDetails(material);
                 });
 

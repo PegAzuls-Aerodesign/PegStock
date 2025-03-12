@@ -1,11 +1,21 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
+import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import front.ScreenManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class DetailsController {
+
+    private Material material;
+
+    @Autowired
+    private ScreenManager screenManager;
 
     @FXML
     private Button buttonAdd;
@@ -54,6 +64,14 @@ public class DetailsController {
 
     @FXML
     private Text totalConsumption;
+
+    public void showDetails(Material material) {
+        this.material = material;
+        System.out.println(material);
+        screenManager.changeScreen("/front/fxml/DetailsPage.fxml");
+    }
+
+
 
     @FXML
     void add(MouseEvent event) {
