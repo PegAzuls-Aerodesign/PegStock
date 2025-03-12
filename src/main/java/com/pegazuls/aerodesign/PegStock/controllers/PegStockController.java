@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import front.main.ScreenManager;
+import front.ScreenManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,8 +37,6 @@ public class PegStockController {
     @FXML
     private Text nameOut;
 
-    @FXML
-    private Pane contentPane;
 
     @Autowired
     private ScreenManager screenManager;
@@ -60,32 +58,11 @@ public class PegStockController {
         }
     }
 
-    public void loadScreen(String fxmlFile) {
-        // Carrega a tela de acordo com o botão clicado
-        try {
-            URL fxmlLocation = getClass().getResource(fxmlFile);
-            if (fxmlLocation == null) {
-                throw new IllegalArgumentException("FXML file not found" + fxmlFile);
-            }
-            Parent screen = FXMLLoader.load(fxmlLocation);
-
-            // Garante que a tela carregada preencha o contentPane
-            AnchorPane.setTopAnchor(screen, 0.0);
-            AnchorPane.setBottomAnchor(screen, 0.0);
-            AnchorPane.setLeftAnchor(screen, 0.0);
-            AnchorPane.setRightAnchor(screen, 0.0);
-
-            contentPane.getChildren().setAll(screen);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void showStock() {
-        screenManager.changeScreen("/front/fxml/StockPage.fxml");
+        screenManager.loadScreen("/front/fxml/StockPage.fxml");
     }
 
     public void showShoppingList() {
-        screenManager.changeScreen("/front/fxml/ShoppingListPage.fxml");
+        screenManager.loadScreen("/front/fxml/ShoppingListPage.fxml");
     }
 }

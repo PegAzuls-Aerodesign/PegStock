@@ -1,4 +1,4 @@
-package front.main;
+package front;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
