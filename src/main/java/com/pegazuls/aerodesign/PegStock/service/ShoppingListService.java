@@ -1,6 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
-import com.pegazuls.aerodesign.PegStock.infra.validation.ValidationCreateSL;
+import com.pegazuls.aerodesign.PegStock.infra.validation.shopping_list.ValidationCreateSL;
 import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingSummary;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
@@ -29,12 +29,9 @@ public class ShoppingListService {
         repository.save(shoppingList);
     }
 
-    public List<DTOShoppingDetails> findAll() {
-        List<ShoppingList> products = repository.findAll();
+    public List<ShoppingList> findAll() {
 
-        return products.stream()
-                .map(DTOShoppingDetails::new)
-                .toList();
+        return repository.findAll();
     }
 
     public DTOShoppingDetails findByName(String productName){
@@ -42,9 +39,8 @@ public class ShoppingListService {
         return new DTOShoppingDetails(product);
     }
 
-    public DTOShoppingDetails findById(Long id){
-        ShoppingList product = repository.findById(id).orElseThrow();
-        return new DTOShoppingDetails(product);
+    public ShoppingList findById(Long id){
+        return repository.findById(id).orElseThrow();
     }
 
     public void delete(Long id){
