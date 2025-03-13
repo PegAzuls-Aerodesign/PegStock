@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="628.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pegazuls.aerodesign.PegStock.controllers.LoanController">
+    <children>
+        <AnchorPane prefHeight="628.0" prefWidth="980.0">
+            <children>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="595.0" prefWidth="770.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <AnchorPane layoutX="13.0" layoutY="37.0" prefHeight="417.0" prefWidth="811.0" stylesheets="@../styles/centerDesign.css">
+                                    <styleClass>
+                                        <String fx:value="shadow" />
+                                        <String fx:value="background" />
+                                    </styleClass>
+                                    <children>
+                                        <TextField layoutX="6.0" layoutY="8.0" prefHeight="26.0" prefWidth="177.0" promptText="Search" styleClass="search" stylesheets="@../styles/centerDesign.css" />
+                                        <FontAwesomeIcon fill="#858d9d" glyphName="SEARCH" layoutX="11.0" layoutY="25.0" size="1.2em" text="" />
+                                        <TableView fx:id="borrowingTable" layoutX="6.0" layoutY="53.0" prefHeight="355.0" prefWidth="802.0" styleClass="table" stylesheets="@../styles/centerDesign.css">
+                                            <columns>
+                                                <TableColumn fx:id="materialColumn" text="Material" />
+                                                <TableColumn fx:id="quantityColumn" prefWidth="65.0" text="Quantidade" />
+                                                <TableColumn fx:id="dateBorrowingColumn" prefWidth="115.0" text="Data de empréstimo" />
+                                                <TableColumn fx:id="dateDevolutionColumn" prefWidth="111.0" text="Data de devolução" />
+                                                <TableColumn fx:id="borrowerColumn" prefWidth="91.0" text="Destinatário" />
+                                                <TableColumn fx:id="responsibleColumn" minWidth="2.0" prefWidth="134.0" text="Responsável da equipe" />
+                                    <TableColumn fx:id="statusColumn" prefWidth="72.0" text="Status" />
+                                                <TableColumn fx:id="actionsColumn" prefWidth="134.0" text="Ações" />
+                                            </columns>
+                                        </TableView>
+                                        <Button fx:id="buttonRegisterStock" layoutX="658.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#showRegisterBorrowingPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Cadastrar empréstimo" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane fx:id="registerBorrowingPageBackground" layoutX="-10.0" layoutY="-15.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="660.0" prefWidth="989.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false">
+                                    <children>
+                                        <AnchorPane fx:id="registerBorrowingPage" layoutX="247.0" layoutY="103.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="379.0" prefWidth="324.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                                            <children>
+                                                <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emprestimo">
+                                                    <font>
+                                                        <Font size="16.0" />
+                                                    </font>
+                                                </Text>
+                                                <Label layoutX="11.0" layoutY="203.0" stylesheets="@../styles/centerDesign.css" text="Devedor">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="11.0" layoutY="159.0" stylesheets="@../styles/centerDesign.css" text="Quantidade">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label layoutX="11.0" layoutY="118.0" text="Data de entrega">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="registerQuantity" layoutX="102.0" layoutY="150.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a quantidade" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                                <TextField fx:id="registerBorrower" layoutX="102.0" layoutY="194.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o devedor" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                                <DatePicker fx:id="registerDateDevolution" layoutX="102.0" layoutY="109.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a data de entrega" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                                <Button layoutX="182.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#cancel" styleClass="button-cancel" text="Cancel" />
+                                                <Button fx:id="buttonConfirmBorrowing" layoutX="246.0" layoutY="342.0" mnemonicParsing="false" onMouseClicked="#registerBorrowing" styleClass="button-standard" text="Confirmar" />
+                                                <Label layoutX="11.0" layoutY="249.0" stylesheets="@../styles/centerDesign.css" text="Responsável">
+                                                    <font>
+                                                        <Font size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="registerResponsible" layoutX="102.0" layoutY="240.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o responsável" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                    <Label layoutX="11.0" layoutY="74.0" stylesheets="@../styles/centerDesign.css" text="ID">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="registerMaterialId" layoutX="102.0" layoutY="65.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o id do material" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
