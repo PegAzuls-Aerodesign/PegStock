@@ -1,13 +1,17 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
 import com.pegazuls.aerodesign.PegStock.commands.AddCommand;
+import com.pegazuls.aerodesign.PegStock.commands.BorrowCommand;
 import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
 import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
+import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +40,13 @@ public class DetailsController implements Initializable {
     @Autowired
     private ConsumeCommand consumeCommand;
 
+    @Autowired
+    private BorrowCommand borrowCommand;
+
+    @Autowired
+    private BorrowingService borrowingService;
+
+
     @FXML
     private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption, buttonCancelAdd;
   
@@ -50,6 +61,12 @@ public class DetailsController implements Initializable {
 
     @FXML
     private TextField consumerQuant, addQuantity;
+
+    @FXML
+    private TextField borrower, responsible, borrowQuantity;
+
+    @FXML
+    private DatePicker expirationDate;
   
     @FXML
     private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
@@ -131,6 +148,7 @@ public class DetailsController implements Initializable {
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
         } else if(event.getSource() == buttonConfirmBorrowing) {
+            addBorrowing();
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
         }
@@ -158,6 +176,25 @@ public class DetailsController implements Initializable {
             System.err.println("Error in add method:");
             e.printStackTrace();
 
+        }
+    }
+
+    public void addBorrowing() {
+        try {
+            Borrowing borrowing = new Borrowing();
+            borrowing.setQuantity(Integer.parseInt(borrowQuantity.getText()));
+            borrowing.setBorrower(borrower.getText());
+            borrowing.setExpirationDate(expirationDate.getValue());
+            borrowing.setResponsible(responsible.getText());
+            borrowing.setMaterial(material);
+            material.setQuantity(material.getQuantity() - borrowing.getQuantity()); // Gambiarra
+            borrowCommand.setParameters(material, borrowing);
+            invoker.execute(borrowCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in addBorrowing method:");
+            e.printStackTrace();
         }
     }
 }

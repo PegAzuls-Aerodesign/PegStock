@@ -65,9 +65,9 @@
                   <Button fx:id="buttonBorrowing" layoutX="551.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterBorrowingPage" prefHeight="22.0" prefWidth="76.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Emprestar" />
                   <Button fx:id="buttonConsumption" layoutX="643.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterConsumePage" prefHeight="22.0" prefWidth="63.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Consumir" />
                   <Button fx:id="buttonAdd" layoutX="724.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterAddPage" prefHeight="22.0" prefWidth="70.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar" />
-                  <AnchorPane fx:id="registerBackgroundPage" layoutY="-9.0" prefHeight="652.0" prefWidth="832.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-15.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-9.0">
+                  <AnchorPane fx:id="registerBackgroundPage" layoutY="-9.0" prefHeight="652.0" prefWidth="832.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-15.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-9.0" visible="false">
                      <children>
-                        <AnchorPane fx:id="registerBorrowingPage" layoutX="247.0" layoutY="173.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="309.0" prefWidth="321.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                        <AnchorPane fx:id="registerBorrowingPage" layoutX="247.0" layoutY="173.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="309.0" prefWidth="321.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
                            <children>
                               <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emprestimo">
                                  <font>
@@ -89,9 +89,9 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="105.0" layoutY="105.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a quantidade" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
-                              <TextField layoutX="105.0" layoutY="149.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o devedor" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
-                              <DatePicker layoutX="105.0" layoutY="64.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a data de entrega" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                              <TextField fx:id="borrowQuantity" layoutX="105.0" layoutY="105.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a quantidade" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                              <TextField fx:id="borrower" layoutX="105.0" layoutY="149.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o devedor" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                              <DatePicker fx:id="expirationDate" layoutX="105.0" layoutY="64.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe a data de entrega" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
                               <Button fx:id="buttonCancelBorrowing" layoutX="179.0" layoutY="271.0" mnemonicParsing="false" onMouseClicked="#cancel" styleClass="button-cancel" text="Cancel" />
                               <Button fx:id="buttonConfirmBorrowing" layoutX="243.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#confirm" styleClass="button-standard" text="Confirmar" />
                               <Label layoutX="14.0" layoutY="204.0" stylesheets="@../styles/centerDesign.css" text="Responsável">
@@ -99,7 +99,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="105.0" layoutY="195.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o responsável" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                              <TextField fx:id="responsible" layoutX="105.0" layoutY="195.0" prefHeight="30.0" prefWidth="211.0" promptText="Informe o responsável" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="registerConsumePage" layoutX="263.0" layoutY="236.0" onMouseClicked="#showRegisterConsumePage" prefHeight="170.0" prefWidth="352.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">
