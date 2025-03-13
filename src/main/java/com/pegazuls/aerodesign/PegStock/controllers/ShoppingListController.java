@@ -97,8 +97,14 @@ public class ShoppingListController implements Initializable {
 
     @FXML
     void generateShoppingList(MouseEvent event) {
-        // Gera a lista de compras
         service.generateShoppingListCSV();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("PegStock");
+        alert.setHeaderText("Lista de compras gerada com sucesso");
+        alert.setContentText("A lista de compras foi gerada com sucesso e salva em shoppingList.csv");
+        alert.showAndWait();
+
     }
 
     @FXML
@@ -182,6 +188,8 @@ public class ShoppingListController implements Initializable {
         supplier.clear();
         link.clear();
         description.clear();
+
+        current = null;
     }
 
     @FXML
