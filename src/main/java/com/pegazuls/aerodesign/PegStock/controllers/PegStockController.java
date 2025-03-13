@@ -55,6 +55,7 @@ public class PegStockController {
             showShoppingList();
         } else if (event.getSource() == buttonLoan) {
             nameOut.setText(buttonLoan.getText());
+            showLoan();
         }
     }
 
@@ -64,5 +65,9 @@ public class PegStockController {
 
     public void showShoppingList() {
         screenManager.changeScreen("/front/fxml/ShoppingListPage.fxml");
+    }
+
+    public void showLoan(){
+        screenManager.changeScreen("/front/fxml/LoanPage.fxml");
     }
 }
