@@ -62,9 +62,9 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonBorrowing" layoutX="551.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#borrowingPage" prefHeight="22.0" prefWidth="76.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Emprestar" />
-                  <Button fx:id="buttonConsumption" layoutX="643.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#consumption" prefHeight="22.0" prefWidth="63.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Consumir" />
-                  <Button fx:id="buttonAdd" layoutX="724.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#add" prefHeight="22.0" prefWidth="70.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar" />
+                  <Button fx:id="buttonBorrowing" layoutX="551.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterBorrowingPage" prefHeight="22.0" prefWidth="76.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Emprestar" />
+                  <Button fx:id="buttonConsumption" layoutX="643.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterConsumePage" prefHeight="22.0" prefWidth="63.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Consumir" />
+                  <Button fx:id="buttonAdd" layoutX="724.0" layoutY="579.0" mnemonicParsing="false" onMouseClicked="#showRegisterAddPage" prefHeight="22.0" prefWidth="70.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar" />
                   <AnchorPane fx:id="registerBackgroundPage" layoutY="-9.0" prefHeight="652.0" prefWidth="832.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="-15.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="-9.0">
                      <children>
                         <AnchorPane fx:id="registerBorrowingPage" layoutX="247.0" layoutY="205.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="252.0" prefWidth="321.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css" visible="false">

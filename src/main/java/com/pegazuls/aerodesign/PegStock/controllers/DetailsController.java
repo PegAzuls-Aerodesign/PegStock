@@ -24,16 +24,6 @@ public class DetailsController {
     private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
 
     @FXML
-    void add(MouseEvent event) {
-
-    }
-
-    @FXML
-    void borrowingPage(MouseEvent event) {
-
-    }
-
-    @FXML
     void cancel(MouseEvent event) {
 
     }
@@ -44,18 +34,13 @@ public class DetailsController {
     }
 
     @FXML
-    void consumption(MouseEvent event) {
-
-    }
-
-    @FXML
     void showRegisterConsumePage(MouseEvent event) {
         registerBackgroundPage.setVisible(true);
         registerConsumePage.setVisible(true);
     }
 
     @FXML
-    void showRegisterAddPage(MouseEvent event) {
+        void showRegisterAddPage(MouseEvent event) {
         registerBackgroundPage.setVisible(true);
         registerAddPage.setVisible(true);
     }
