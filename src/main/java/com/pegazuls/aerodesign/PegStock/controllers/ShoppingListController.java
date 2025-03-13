@@ -136,6 +136,8 @@ public class ShoppingListController implements Initializable {
             loadShoppingList();
             registerBuyListPage.setVisible(false);
             registerBuyListPageBackground.setVisible(false);
+
+            clearForm();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
