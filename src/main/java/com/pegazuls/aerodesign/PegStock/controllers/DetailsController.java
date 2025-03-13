@@ -1,9 +1,14 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
+import com.pegazuls.aerodesign.PegStock.commands.AddCommand;
+import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
+import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -22,6 +27,15 @@ public class DetailsController implements Initializable {
     @Autowired
     private ScreenManager screenManager;
 
+    @Autowired
+    private CommandInvoker invoker;
+
+    @Autowired
+    private AddCommand addCommand;
+
+    @Autowired
+    private ConsumeCommand consumeCommand;
+
     @FXML
     private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption, buttonCancelAdd;
   
@@ -33,6 +47,9 @@ public class DetailsController implements Initializable {
     private Text code, dateAdd, dateConsumption, dateCriation, description,
             nameBox, nameCategory, nameTitle, nameValid, quantity,
             totalConsumption;
+
+    @FXML
+    private TextField consumerQuant, addQuantity;
   
     @FXML
     private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
@@ -80,6 +97,8 @@ public class DetailsController implements Initializable {
             nameValid.setText(material.getExpirationDate().toString());
             dateCriation.setText(material.getCreatedDate().toString());
             totalConsumption.setText(String.valueOf(material.getConsumerQuantity()));
+            dateAdd.setText(material.getLastAddDate() == null ? "N/A" : material.getLastAddDate().toString());
+            dateConsumption.setText(material.getLastConsumptionDate() == null ? "N/A" : material.getLastConsumptionDate().toString());
         }
     }
 
@@ -100,5 +119,45 @@ public class DetailsController implements Initializable {
     }
   
     @FXML
-    void confirm(MouseEvent event) {}
+    void confirm(MouseEvent event) {
+        if(event.getSource() == buttonConfirmAdd) {
+            int quantity = Integer.parseInt(addQuantity.getText());
+            add(quantity);
+            registerBackgroundPage.setVisible(false);
+            registerAddPage.setVisible(false);
+        } else if(event.getSource() == buttonConfirmConsume) {
+            int quantity = Integer.parseInt(consumerQuant.getText());
+            consumer(quantity);
+            registerBackgroundPage.setVisible(false);
+            registerConsumePage.setVisible(false);
+        } else if(event.getSource() == buttonConfirmBorrowing) {
+            registerBackgroundPage.setVisible(false);
+            registerBorrowingPage.setVisible(false);
+        }
+    }
+
+    public void consumer(int quantity) {
+        try {
+            consumeCommand.setParameters(material, quantity);
+            invoker.execute(consumeCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in consumer method:");
+            e.printStackTrace();
+        }
+    }
+
+    public void add(int quantity) {
+        try {
+            addCommand.setParameters(material, quantity);
+            invoker.execute(addCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in add method:");
+            e.printStackTrace();
+
+        }
+    }
 }

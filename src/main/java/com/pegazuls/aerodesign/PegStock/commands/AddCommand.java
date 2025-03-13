@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 
 @Component
 public class AddCommand extends Command {
@@ -28,6 +30,7 @@ public class AddCommand extends Command {
     @Override
     public void execute() {
         material.setQuantity(material.getQuantity() + quantity);
+        material.setLastAddDate(LocalDate.now());
         service.update(material, material.getCod());
     }
 }

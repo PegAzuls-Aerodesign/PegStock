@@ -46,8 +46,8 @@
                               <Text layoutX="395.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Último consumo" />
                               <Text fx:id="dateCriation" fill="#858d9d" layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/04/2001" />
                               <Text fx:id="totalConsumption" fill="#858d9d" layoutX="179.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="20" />
-                              <Text fx:id="dateAdd" fill="#858d9d" layoutX="290.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2018" />
-                              <Text fx:id="dateConsumption" fill="#858d9d" layoutX="418.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2040" />
+                              <Text fx:id="dateAdd" fill="#858d9d" layoutX="290.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
+                              <Text fx:id="dateConsumption" fill="#858d9d" layoutX="418.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="" />
                            </children>
                         </AnchorPane>
                         <Text fx:id="nameTitle" layoutX="229.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title-2" text="Vaselina" />
@@ -108,7 +108,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="120.0" layoutY="70.0" prefHeight="30.0" prefWidth="223.0" promptText="Informe a quantidade consumida" styleClass="register-button" />
+                              <TextField fx:id="consumerQuant" layoutX="120.0" layoutY="70.0" prefHeight="30.0" prefWidth="223.0" promptText="Informe a quantidade consumida" styleClass="register-button" />
                               <Button fx:id="buttonCancelConsume" layoutX="206.0" layoutY="125.0" mnemonicParsing="false" onMouseClicked="#cancel" styleClass="button-cancel" text="Cancel" />
                               <Button fx:id="buttonConfirmConsume" layoutX="274.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#confirm" styleClass="button-standard" text="Confirmar" />
                            </children>
@@ -125,7 +125,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="90.0" layoutY="94.0" prefHeight="30.0" prefWidth="223.0" promptText="Informe a quantidade adicionada " styleClass="register-button" />
+                              <TextField fx:id="addQuantity" layoutX="90.0" layoutY="94.0" prefHeight="30.0" prefWidth="223.0" promptText="Informe a quantidade adicionada " styleClass="register-button" />
                               <Button fx:id="buttonCancelAdd" layoutX="181.0" layoutY="168.0" mnemonicParsing="false" onMouseClicked="#cancel" styleClass="button-cancel" text="Cancel" />
                               <Button fx:id="buttonConfirmAdd" layoutX="243.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#confirm" styleClass="button-standard" text="Confirmar" />
                            </children>
