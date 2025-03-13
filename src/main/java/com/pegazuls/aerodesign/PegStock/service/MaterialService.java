@@ -60,6 +60,8 @@ public class MaterialService {
       materialUpdate.setBox(material.getBox());
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
+      materialUpdate.setLastAddDate(material.getLastAddDate());
+        materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
    }
 
    // Delete product

@@ -1,6 +1,7 @@
-package com.pegazuls.aerodesign.PegStock.infra.validation;
+package com.pegazuls.aerodesign.PegStock.infra.validation.shopping_list;
 
 import com.pegazuls.aerodesign.PegStock.infra.exceptions.ValidationException;
+import com.pegazuls.aerodesign.PegStock.infra.validation.shopping_list.ValidationCreateSL;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 import org.springframework.stereotype.Component;
 

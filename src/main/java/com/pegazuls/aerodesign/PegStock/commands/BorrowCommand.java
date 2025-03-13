@@ -18,9 +18,8 @@ public class BorrowCommand extends Command {
         this.service = service;
     }
 
-    public void setParameters(Material material, int quantity, Borrowing borrowing) {
+    public void setParameters(Material material, Borrowing borrowing) {
         this.material = material;
-        this.quantity = quantity;
         this.borrowing = borrowing;
     }
 

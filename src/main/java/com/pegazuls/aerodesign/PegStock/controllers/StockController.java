@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 public class StockController implements Initializable {
 
     @Autowired
+    private DetailsController detailsController;
+
+    @Autowired
     private MaterialService materialService;
 
     @FXML
@@ -50,6 +53,9 @@ public class StockController implements Initializable {
 
     @FXML
     private TableColumn<Material, Void> actionsColumn;
+
+    @FXML
+    private TableColumn<Material, Void> detailColumn;
 
     @FXML
     private ImageView imageView;
@@ -113,6 +119,34 @@ public class StockController implements Initializable {
                 deleteButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
                     deleteMaterial(material);
+                });
+
+            }
+
+            // Display button if the row is not empty
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(pane);
+                }
+            }
+
+        });
+
+        // Detail column
+        detailColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button detailButton = new Button("Detalhar");
+            private final HBox pane = new HBox(detailButton);
+
+            {
+                pane.setSpacing(10);
+
+                detailButton.setOnAction(event -> {
+                    Material material = getTableView().getItems().get(getIndex());
+                    detailsController.showDetails(material);
                 });
 
             }

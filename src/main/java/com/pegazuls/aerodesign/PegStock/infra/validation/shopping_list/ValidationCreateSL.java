@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.infra.validation;
+package com.pegazuls.aerodesign.PegStock.infra.validation.shopping_list;
 
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 

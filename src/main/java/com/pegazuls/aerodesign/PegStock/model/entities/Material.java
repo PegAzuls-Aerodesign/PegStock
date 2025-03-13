@@ -41,6 +41,12 @@ public class Material {
 
    private LocalDate registerDate; // data de registro no sistema
 
+   @Column(nullable = true)
+   private LocalDate lastAddDate; // data da última adição
+
+   @Column(nullable = true)
+   private LocalDate lastConsumptionDate; // data do último consumo
+
    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<Borrowing> borrowing;
 
