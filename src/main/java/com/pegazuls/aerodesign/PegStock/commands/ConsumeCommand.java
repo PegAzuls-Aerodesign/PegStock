@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 
 @Component
 public class ConsumeCommand extends Command {
@@ -29,6 +31,7 @@ public class ConsumeCommand extends Command {
     public void execute() {
         material.setQuantity(material.getQuantity() - quantity);
         material.setConsumerQuantity(material.getConsumerQuantity() + quantity);
+        material.setLastConsumptionDate(LocalDate.now());
         service.update(material, material.getCod());
     }
 }

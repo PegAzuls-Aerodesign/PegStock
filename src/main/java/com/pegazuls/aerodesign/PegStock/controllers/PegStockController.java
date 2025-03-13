@@ -59,10 +59,10 @@ public class PegStockController {
     }
 
     public void showStock() {
-        screenManager.loadScreen("/front/fxml/StockPage.fxml");
+        screenManager.changeScreen("/front/fxml/StockPage.fxml");
     }
 
     public void showShoppingList() {
-        screenManager.loadScreen("/front/fxml/ShoppingListPage.fxml");
+        screenManager.changeScreen("/front/fxml/ShoppingListPage.fxml");
     }
 }

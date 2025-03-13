@@ -1,78 +1,200 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
+import com.pegazuls.aerodesign.PegStock.commands.AddCommand;
+import com.pegazuls.aerodesign.PegStock.commands.BorrowCommand;
+import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
+import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
+import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
+import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
+import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import front.ScreenManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-public class DetailsController {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private Button buttonAdd;
+@Controller
+public class DetailsController implements Initializable {
 
-    @FXML
-    private Button buttonBorrowing;
+    private Material material;
 
-    @FXML
-    private Button buttonCancel;
+    @Autowired
+    private ScreenManager screenManager;
 
-    @FXML
-    private Button buttonConsumption;
+    @Autowired
+    private CommandInvoker invoker;
 
-    @FXML
-    private Text code;
+    @Autowired
+    private AddCommand addCommand;
 
-    @FXML
-    private Text dateAdd;
+    @Autowired
+    private ConsumeCommand consumeCommand;
 
-    @FXML
-    private Text dateConsumption;
+    @Autowired
+    private BorrowCommand borrowCommand;
 
-    @FXML
-    private Text dateCriation;
+    @Autowired
+    private BorrowingService borrowingService;
 
-    @FXML
-    private Text description;
-
-    @FXML
-    private Text nameBox;
 
     @FXML
-    private Text nameCategory;
+    private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption, buttonCancelAdd;
+  
+    @FXML
+    private Button buttonCancelConsume, buttonConfirmAdd, buttonConfirmConsume, buttonCancelBorrowing, buttonConfirmBorrowing;
+  
 
     @FXML
-    private Text nameTitle;
+    private Text code, dateAdd, dateConsumption, dateCriation, description,
+            nameBox, nameCategory, nameTitle, nameValid, quantity,
+            totalConsumption;
 
     @FXML
-    private Text nameValid;
+    private TextField consumerQuant, addQuantity;
 
     @FXML
-    private Text quantity;
+    private TextField borrower, responsible, borrowQuantity;
 
     @FXML
-    private Text totalAdd;
-
+    private DatePicker expirationDate;
+  
     @FXML
-    private Text totalConsumption;
+    private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
 
-    @FXML
-    void add(MouseEvent event) {
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (material != null) {
+            updateUi();
+        }
     }
 
     @FXML
-    void borrowingPage(MouseEvent event) {
+    void showRegisterConsumePage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerConsumePage.setVisible(true);
+    }
 
+    @FXML
+        void showRegisterAddPage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerAddPage.setVisible(true);
+    }
+
+    @FXML
+    void showRegisterBorrowingPage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerBorrowingPage.setVisible(true);
+    }
+  
+    public void showDetails(Material material) {
+        this.material = material;
+        System.out.println(material);
+        screenManager.changeScreen("/front/fxml/DetailsPage.fxml");
+    }
+
+    private void updateUi() {
+        if (material != null && nameTitle != null) { // Verifica se os elementos foram carregados
+            nameTitle.setText(material.getName());
+            code.setText(material.getCod().toString());
+            description.setText(material.getDescription());
+            nameCategory.setText(material.getCategory().toString());
+            nameBox.setText(material.getBox().toString());
+            quantity.setText(String.valueOf(material.getQuantity()));
+            nameValid.setText(material.getExpirationDate().toString());
+            dateCriation.setText(material.getCreatedDate().toString());
+            totalConsumption.setText(String.valueOf(material.getConsumerQuantity()));
+            dateAdd.setText(material.getLastAddDate() == null ? "N/A" : material.getLastAddDate().toString());
+            dateConsumption.setText(material.getLastConsumptionDate() == null ? "N/A" : material.getLastConsumptionDate().toString());
+        }
     }
 
     @FXML
     void cancel(MouseEvent event) {
-
+        if(event.getSource() == buttonCancelAdd) {
+            registerBackgroundPage.setVisible(false);
+            registerAddPage.setVisible(false);
+        } else if(event.getSource() == buttonCancelConsume) {
+            registerBackgroundPage.setVisible(false);
+            registerConsumePage.setVisible(false);
+        } else if(event.getSource() == buttonCancelBorrowing) {
+            registerBackgroundPage.setVisible(false);
+            registerBorrowingPage.setVisible(false);
+        } else if (event.getSource() == buttonCancel) {
+            screenManager.changeScreen("/front/fxml/StockPage.fxml");
+        }
     }
-
+  
     @FXML
-    void consumption(MouseEvent event) {
-
+    void confirm(MouseEvent event) {
+        if(event.getSource() == buttonConfirmAdd) {
+            int quantity = Integer.parseInt(addQuantity.getText());
+            add(quantity);
+            registerBackgroundPage.setVisible(false);
+            registerAddPage.setVisible(false);
+        } else if(event.getSource() == buttonConfirmConsume) {
+            int quantity = Integer.parseInt(consumerQuant.getText());
+            consumer(quantity);
+            registerBackgroundPage.setVisible(false);
+            registerConsumePage.setVisible(false);
+        } else if(event.getSource() == buttonConfirmBorrowing) {
+            addBorrowing();
+            registerBackgroundPage.setVisible(false);
+            registerBorrowingPage.setVisible(false);
+        }
     }
 
+    public void consumer(int quantity) {
+        try {
+            consumeCommand.setParameters(material, quantity);
+            invoker.execute(consumeCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in consumer method:");
+            e.printStackTrace();
+        }
+    }
+
+    public void add(int quantity) {
+        try {
+            addCommand.setParameters(material, quantity);
+            invoker.execute(addCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in add method:");
+            e.printStackTrace();
+
+        }
+    }
+
+    public void addBorrowing() {
+        try {
+            Borrowing borrowing = new Borrowing();
+            borrowing.setQuantity(Integer.parseInt(borrowQuantity.getText()));
+            borrowing.setBorrower(borrower.getText());
+            borrowing.setExpirationDate(expirationDate.getValue());
+            borrowing.setResponsible(responsible.getText());
+            borrowing.setMaterial(material);
+            material.setQuantity(material.getQuantity() - borrowing.getQuantity()); // Gambiarra
+            borrowCommand.setParameters(material, borrowing);
+            invoker.execute(borrowCommand);
+            updateUi();
+        } catch (Exception e) {
+            // Log the exception and handle it appropriately
+            System.err.println("Error in addBorrowing method:");
+            e.printStackTrace();
+        }
+    }
 }
