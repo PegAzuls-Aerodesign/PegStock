@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import front.ScreenManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,20 @@ public class DetailsController implements Initializable {
     private ScreenManager screenManager;
 
     @FXML
-    private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption;
+    private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption, buttonCancelAdd;
+  
+    @FXML
+    private Button buttonCancelConsume, buttonConfirmAdd, buttonConfirmConsume, buttonCancelBorrowing, buttonConfirmBorrowing;
+  
 
     @FXML
     private Text code, dateAdd, dateConsumption, dateCriation, description,
             nameBox, nameCategory, nameTitle, nameValid, quantity,
-            totalAdd, totalConsumption;
+            totalConsumption;
+  
+    @FXML
+    private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,6 +45,24 @@ public class DetailsController implements Initializable {
         }
     }
 
+    @FXML
+    void showRegisterConsumePage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerConsumePage.setVisible(true);
+    }
+
+    @FXML
+        void showRegisterAddPage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerAddPage.setVisible(true);
+    }
+
+    @FXML
+    void showRegisterBorrowingPage(MouseEvent event) {
+        registerBackgroundPage.setVisible(true);
+        registerBorrowingPage.setVisible(true);
+    }
+  
     public void showDetails(Material material) {
         this.material = material;
         System.out.println(material);
@@ -57,14 +84,8 @@ public class DetailsController implements Initializable {
     }
 
     @FXML
-    void add(MouseEvent event) {}
-
-    @FXML
-    void borrowingPage(MouseEvent event) {}
-
-    @FXML
     void cancel(MouseEvent event) {}
-
+  
     @FXML
-    void consumption(MouseEvent event) {}
+    void confirm(MouseEvent event) {}
 }
