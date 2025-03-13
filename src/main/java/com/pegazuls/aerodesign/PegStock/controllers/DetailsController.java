@@ -84,7 +84,20 @@ public class DetailsController implements Initializable {
     }
 
     @FXML
-    void cancel(MouseEvent event) {}
+    void cancel(MouseEvent event) {
+        if(event.getSource() == buttonCancelAdd) {
+            registerBackgroundPage.setVisible(false);
+            registerAddPage.setVisible(false);
+        } else if(event.getSource() == buttonCancelConsume) {
+            registerBackgroundPage.setVisible(false);
+            registerConsumePage.setVisible(false);
+        } else if(event.getSource() == buttonCancelBorrowing) {
+            registerBackgroundPage.setVisible(false);
+            registerBorrowingPage.setVisible(false);
+        } else if (event.getSource() == buttonCancel) {
+            screenManager.changeScreen("/front/fxml/StockPage.fxml");
+        }
+    }
   
     @FXML
     void confirm(MouseEvent event) {}
