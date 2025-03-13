@@ -50,17 +50,7 @@ public class Material {
 
    @Override
    public String toString() {
-      return "Material{" +
-              "cod=" + cod +
-              ", name='" + name + '\'' +
-              ", description='" + description + '\'' +
-              ", quantity=" + quantity +
-              ", category=" + category +
-              ", box=" + box +
-              ", expirationDate=" + expirationDate +
-              ", createdDate=" + createdDate +
-              ", registerDate=" + registerDate +
-              '}';
+      return name;
    }
 
 
