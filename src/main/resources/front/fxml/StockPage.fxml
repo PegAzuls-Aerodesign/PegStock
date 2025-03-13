@@ -85,12 +85,21 @@
                                                 <FXCollections fx:factory="observableArrayList">
                                                     <String fx:value="Esgotado" />
                                                     <String fx:value="Vencido" />
-                                                    <String fx:value="Armario 1" />
-                                                    <String fx:value="Armario 2" />
-                                                    <String fx:value="Armario 3" />
-                                                    <String fx:value="Armario 4" />
-                                                    <String fx:value="Armario 5" />
-                                                    <String fx:value="Armario 6" />
+                                                    <String fx:value="EPI &amp; TI" />
+                                                    <String fx:value="FERRAMENTAS ELETRICAS" />
+                                                    <String fx:value="FERRAMENTAS" />
+                                                    <String fx:value="ELETRICAS" />
+                                                    <String fx:value="DESEMPENHO" />
+                                                    <String fx:value="LIMPEZA" />
+                                                    <String fx:value="PARAFUSO_DERIVADOS" />
+                                                    <String fx:value="FITAS" />
+                                                    <String fx:value="PALITOS" />
+                                                    <String fx:value="BASTAO DE COLA QUENTE" />
+                                                    <String fx:value="COLA" />
+                                                    <String fx:value="FERRAMENTAS CORTANTES" />
+                                                    <String fx:value="LIXAS" />
+                                                    <String fx:value="ESTANTE" />
+                                                    <String fx:value="OUTROS" />
                                                 </FXCollections>
                                             </items>
                                         </ComboBox>
@@ -272,6 +281,7 @@
                         </AnchorPane>
                     </children>
                 </AnchorPane>
+
             </children>
         </AnchorPane>
     </children>
