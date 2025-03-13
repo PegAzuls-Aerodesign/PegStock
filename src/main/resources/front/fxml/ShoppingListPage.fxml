@@ -41,17 +41,18 @@
                                         <Cursor fx:constant="HAND"/>
                                     </cursor>
                                 </Button>
-                                <Button layoutX="474.0" layoutY="7.0" mnemonicParsing="false" styleClass="button-cancel"
+                                <Button fx:id="buttonGenerateShoppingList" layoutX="474.0" layoutY="7.0" mnemonicParsing="false"
+                                        onMouseClicked="#generateShoppingList" styleClass="button-cancel"
                                         stylesheets="@../styles/centerDesign.css" text="Gerar lista de compras"/>
-                                <TableView layoutX="8.0" layoutY="53.0" prefHeight="441.0" prefWidth="766.0"
+                                <TableView fx:id="buyListTable" layoutX="8.0" layoutY="53.0" prefHeight="441.0" prefWidth="766.0"
                                            styleClass="table" stylesheets="@../styles/centerDesign.css">
                                     <columns>
-                                        <TableColumn prefWidth="114.0" text="Produto"/>
-                                        <TableColumn prefWidth="79.0" text="Quantidade"/>
-                                        <TableColumn prefWidth="118.0" text="Valor Unitário"/>
-                                        <TableColumn prefWidth="95.0" text="Loja"/>
-                                        <TableColumn prefWidth="192.0" text="Link da compra"/>
-                                        <TableColumn prefWidth="168.0" text="Ações"/>
+                                        <TableColumn fx:id="productNameColumn" prefWidth="114.0" text="Produto"/>
+                                        <TableColumn fx:id="quantityColumn" prefWidth="79.0" text="Quantidade"/>
+                                        <TableColumn fx:id="priceColumn" prefWidth="118.0" text="Valor Unitário"/>
+                                        <TableColumn fx:id="supplierColumn" prefWidth="95.0" text="Loja"/>
+                                        <TableColumn fx:id="linkColumn" prefWidth="192.0" text="Link da compra"/>
+                                        <TableColumn fx:id="actionsColumn" prefWidth="168.0" text="Ações"/>
                                     </columns>
                                 </TableView>
                             </children>
@@ -74,7 +75,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="123.0" layoutY="89.0" prefHeight="25.0" prefWidth="225.0"
+                                <TextField fx:id="productName" layoutX="123.0" layoutY="89.0" prefHeight="25.0" prefWidth="225.0"
                                            promptText="Informe o nome do material" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Label layoutX="20.0" layoutY="139.0" text="Quantidade">
@@ -82,7 +83,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="123.0" layoutY="137.0" prefHeight="25.0" prefWidth="225.0"
+                                <TextField fx:id="quantity" layoutX="123.0" layoutY="137.0" prefHeight="25.0" prefWidth="225.0"
                                            promptText="Informe a quantidade" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Label layoutX="22.0" layoutY="189.0" text="Valor">
@@ -90,7 +91,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="123.0" layoutY="184.0" prefHeight="25.0" prefWidth="225.0"
+                                <TextField fx:id="unityPrice" layoutX="123.0" layoutY="184.0" prefHeight="25.0" prefWidth="225.0"
                                            promptText="Informe o valor unitário" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Label layoutX="19.0" layoutY="241.0" text="Loja">
@@ -98,7 +99,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="122.0" layoutY="239.0" prefHeight="25.0" prefWidth="225.0"
+                                <TextField fx:id="supplier" layoutX="122.0" layoutY="239.0" prefHeight="25.0" prefWidth="225.0"
                                            promptText="Informe o nome da loja" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Label layoutX="20.0" layoutY="296.0" text="Link">
@@ -106,7 +107,7 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="122.0" layoutY="293.0" prefHeight="25.0" prefWidth="225.0"
+                                <TextField fx:id="link" layoutX="122.0" layoutY="293.0" prefHeight="25.0" prefWidth="225.0"
                                            promptText="Informe o link da compra" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Label layoutX="18.0" layoutY="348.0" text="Especificação">
@@ -114,15 +115,15 @@
                                         <Font size="14.0"/>
                                     </font>
                                 </Label>
-                                <TextField layoutX="121.0" layoutY="345.0" prefHeight="25.0" prefWidth="225.0"
-                                           promptText="Informe o link da compra" styleClass="register-button"
+                                <TextField fx:id="description" layoutX="121.0" layoutY="345.0" prefHeight="25.0" prefWidth="225.0"
+                                           promptText="Informe a descrição da compra" styleClass="register-button"
                                            stylesheets="@../styles/centerDesign.css"/>
                                 <Button layoutX="215.0" layoutY="406.0" mnemonicParsing="false"
                                         styleClass="button-standard" stylesheets="@../styles/centerDesign.css"
-                                        text="Adicionar produto"/>
+                                        text="Adicionar produto" onMouseClicked="#registerShoppingList"/>
                                 <Button layoutX="123.0" layoutY="405.0" mnemonicParsing="false"
                                         styleClass="button-cancel" stylesheets="@../styles/centerDesign.css"
-                                        text="Cancelar"/>
+                                        text="Cancelar" onMouseClicked="#cancelRegister"/>
                             </children>
                         </AnchorPane>
                     </children>
