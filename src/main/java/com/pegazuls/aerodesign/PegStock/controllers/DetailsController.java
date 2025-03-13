@@ -18,7 +18,7 @@ public class DetailsController {
     private Text code, dateAdd, dateConsumption, dateCriation, description, nameBox, nameCategory;
 
     @FXML
-    private Text nameTitle, nameValid, quantity, totalAdd, totalConsumption;
+    private Text nameTitle, nameValid, quantity, totalConsumption;
 
     @FXML
     private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;

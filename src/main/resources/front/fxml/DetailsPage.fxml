@@ -41,15 +41,13 @@
                            <children>
                               <Text layoutX="11.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Estatísticas:" />
                               <Text layoutX="11.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Data de criação" />
-                              <Text layoutX="111.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Total adicionado" />
-                              <Text layoutX="222.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Total consumido" />
-                              <Text layoutX="340.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Última adição" />
-                              <Text layoutX="434.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Último consumo" />
-                              <Text fx:id="dateCriation" fill="#858d9d" layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/04/2001" />
-                              <Text fx:id="totalAdd" fill="#858d9d" layoutX="144.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24" />
-                              <Text fx:id="totalConsumption" fill="#858d9d" layoutX="254.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="20" />
-                              <Text fx:id="dateAdd" fill="#858d9d" layoutX="346.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2018" />
-                              <Text fx:id="dateConsumption" fill="#858d9d" layoutX="444.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2040" />
+                              <Text layoutX="135.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Total consumido" />
+                              <Text layoutX="274.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Última adição" />
+                              <Text layoutX="395.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-label" text="Último consumo" />
+                              <Text fx:id="dateCriation" fill="#858d9d" layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/04/2001" />
+                              <Text fx:id="totalConsumption" fill="#858d9d" layoutX="179.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="20" />
+                              <Text fx:id="dateAdd" fill="#858d9d" layoutX="290.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2018" />
+                              <Text fx:id="dateConsumption" fill="#858d9d" layoutX="418.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="24/08/2040" />
                            </children>
                         </AnchorPane>
                         <Text fx:id="nameTitle" layoutX="229.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title-2" text="Vaselina" />
