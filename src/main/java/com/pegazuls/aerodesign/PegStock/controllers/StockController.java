@@ -158,7 +158,7 @@ public class StockController implements Initializable {
                 detailIcon.setIconColor(Paint.valueOf("#1258aa"));
 
                 detailButton.setGraphic(detailIcon);
-                detailButton.setStyle("-fx-background-color: transparent;");
+                detailButton.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
 
                 pane.setSpacing(0);
 
