@@ -17,8 +17,6 @@ import java.net.URL;
 @Component
 public class ScreenManager {
 
-    @FXML
-    private Pane contentPane;
     private Stage stage;
 
     @Autowired
@@ -40,30 +38,12 @@ public class ScreenManager {
 
             Parent root = loader.load();
 
+            Scene scene = new Scene(root, 1024, 640);
+            scene.getStylesheets().add(getClass().getResource("/front/styles/templateDesign.css ").toExternalForm());
+
             stage.setTitle("PegStock");
-            stage.setScene(new Scene(root, 1024, 640));
+            stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void loadScreen(String fxmlFile) {
-        // Carrega a tela de acordo com o botão clicado
-        try {
-            URL fxmlLocation = getClass().getResource(fxmlFile);
-            if (fxmlLocation == null) {
-                throw new IllegalArgumentException("FXML file not found" + fxmlFile);
-            }
-            Parent screen = FXMLLoader.load(fxmlLocation);
-
-            // Garante que a tela carregada preencha o contentPane
-            AnchorPane.setTopAnchor(screen, 0.0);
-            AnchorPane.setBottomAnchor(screen, 0.0);
-            AnchorPane.setLeftAnchor(screen, 0.0);
-            AnchorPane.setRightAnchor(screen, 0.0);
-
-            contentPane.getChildren().setAll(screen);
         } catch (IOException e) {
             e.printStackTrace();
         }

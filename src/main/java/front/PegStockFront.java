@@ -37,6 +37,7 @@ public class PegStockFront extends Application {
         context.close();
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }

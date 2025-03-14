@@ -74,6 +74,12 @@ public class LoanController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        borrowingTable.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.getStylesheets().add(getClass().getResource("/front/styles/centerDesign.css").toExternalForm());
+            }
+        });
+
         materialColumn.setCellValueFactory(new PropertyValueFactory<>("material"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         dateBorrowingColumn.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
@@ -90,6 +96,9 @@ public class LoanController implements Initializable {
             private final HBox pane = new HBox(statusButton, deleteButton);
 
             {
+                statusButton.getStyleClass().add("button-standard");
+                deleteButton.getStyleClass().add("button-cancel");
+
                 pane.setSpacing(10);
 
                 statusButton.setOnAction(event -> {

@@ -7,7 +7,6 @@ import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
-import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import front.ScreenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -29,7 +27,7 @@ public class DetailsController implements Initializable {
     private Material material;
 
     @Autowired
-    private ScreenManager screenManager;
+    private PegStockController screenManager;
 
     @Autowired
     private CommandInvoker invoker;
@@ -100,7 +98,7 @@ public class DetailsController implements Initializable {
     public void showDetails(Material material) {
         this.material = material;
         System.out.println(material);
-        screenManager.changeScreen("/front/fxml/DetailsPage.fxml");
+        screenManager.loadScreen("/front/fxml/DetailsPage.fxml");
     }
 
     private void updateUi() {
@@ -131,7 +129,7 @@ public class DetailsController implements Initializable {
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
         } else if (event.getSource() == buttonCancel) {
-            screenManager.changeScreen("/front/fxml/StockPage.fxml");
+            screenManager.loadScreen("/front/fxml/StockPage.fxml");
         }
     }
   

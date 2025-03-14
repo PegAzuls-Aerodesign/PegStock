@@ -211,6 +211,12 @@ public class ShoppingListController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        buyListTable.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.getStylesheets().add(getClass().getResource("/front/styles/centerDesign.css").toExternalForm());
+            }
+        });
+
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -227,6 +233,9 @@ public class ShoppingListController implements Initializable {
             private final HBox pane = new HBox(editButton, deleteButton);
 
             {
+                editButton.getStyleClass().add("button-standard");
+                deleteButton.getStyleClass().add("button-cancel");
+
                 pane.setSpacing(10);
 
                 editButton.setOnAction(event -> {

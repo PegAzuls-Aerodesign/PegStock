@@ -9,8 +9,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.stage.FileChooser;
 import javafx.scene.layout.HBox;
+import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
+import org.kordamp.ikonli.javafx.FontIcon;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
@@ -91,6 +94,11 @@ public class StockController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        materialTable.sceneProperty().addListener((observable, oldScene, newScene) -> {
+            if (newScene != null) {
+                newScene.getStylesheets().add(getClass().getResource("/front/styles/centerDesign.css").toExternalForm());
+            }
+        });
         productColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
@@ -109,7 +117,10 @@ public class StockController implements Initializable {
             private final HBox pane = new HBox(editButton, deleteButton);
 
             {
-                pane.setSpacing(10);
+                editButton.getStyleClass().add("button-standard");
+                deleteButton.getStyleClass().add("button-cancel");
+
+                pane.setSpacing(15);
 
                 editButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
@@ -138,11 +149,18 @@ public class StockController implements Initializable {
 
         // Detail column
         detailColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button detailButton = new Button("Detalhar");
+            private final Button detailButton = new Button();
             private final HBox pane = new HBox(detailButton);
 
             {
-                pane.setSpacing(10);
+                FontIcon detailIcon = new FontIcon(FontAwesomeSolid.SEARCH);
+                detailIcon.setIconSize(10);
+                detailIcon.setIconColor(Paint.valueOf("#1258aa"));
+
+                detailButton.setGraphic(detailIcon);
+                detailButton.setStyle("-fx-background-color: transparent;");
+
+                pane.setSpacing(0);
 
                 detailButton.setOnAction(event -> {
                     Material material = getTableView().getItems().get(getIndex());
