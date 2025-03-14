@@ -43,9 +43,9 @@
                                         <Button fx:id="buttonRegisterStock" layoutX="658.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#showRegisterBorrowingPage" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Cadastrar empréstimo" />
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane fx:id="registerBorrowingPageBackground" layoutX="-10.0" layoutY="-15.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="660.0" prefWidth="989.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false">
+                                <AnchorPane fx:id="registerBorrowingPageBackground" layoutX="-272.0" layoutY="-141.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="786.0" prefWidth="1251.0" styleClass="register-background" stylesheets="@../styles/centerDesign.css" visible="false">
                                     <children>
-                                        <AnchorPane fx:id="registerBorrowingPage" layoutX="247.0" layoutY="103.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="379.0" prefWidth="324.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                                        <AnchorPane fx:id="registerBorrowingPage" layoutX="532.0" layoutY="185.0" onMouseClicked="#showRegisterBorrowingPage" prefHeight="379.0" prefWidth="324.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
                                             <children>
                                                 <Text layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emprestimo">
                                                     <font>

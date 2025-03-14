@@ -7,7 +7,6 @@ import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
-import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import front.ScreenManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -29,7 +27,7 @@ public class DetailsController implements Initializable {
     private Material material;
 
     @Autowired
-    private ScreenManager screenManager;
+    private PegStockController screenManager;
 
     @Autowired
     private CommandInvoker invoker;
@@ -100,7 +98,7 @@ public class DetailsController implements Initializable {
     public void showDetails(Material material) {
         this.material = material;
         System.out.println(material);
-        screenManager.changeScreen("/front/fxml/DetailsPage.fxml");
+        screenManager.loadScreen("/front/fxml/DetailsPage.fxml");
     }
 
     private void updateUi() {
@@ -124,14 +122,17 @@ public class DetailsController implements Initializable {
         if(event.getSource() == buttonCancelAdd) {
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
+            clearForm();
         } else if(event.getSource() == buttonCancelConsume) {
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
+            clearForm();
         } else if(event.getSource() == buttonCancelBorrowing) {
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
+            clearForm();
         } else if (event.getSource() == buttonCancel) {
-            screenManager.changeScreen("/front/fxml/StockPage.fxml");
+            screenManager.loadScreen("/front/fxml/StockPage.fxml");
         }
     }
   
@@ -142,15 +143,21 @@ public class DetailsController implements Initializable {
             add(quantity);
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
+
+            clearForm();
         } else if(event.getSource() == buttonConfirmConsume) {
             int quantity = Integer.parseInt(consumerQuant.getText());
             consumer(quantity);
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
+
+            clearForm();
         } else if(event.getSource() == buttonConfirmBorrowing) {
             addBorrowing();
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
+
+            clearForm();
         }
     }
 
@@ -196,5 +203,14 @@ public class DetailsController implements Initializable {
             System.err.println("Error in addBorrowing method:");
             e.printStackTrace();
         }
+    }
+
+    public void clearForm() {
+        addQuantity.clear();
+        consumerQuant.clear();
+        borrower.clear();
+        responsible.clear();
+        borrowQuantity.clear();
+        expirationDate.getEditor().clear();
     }
 }
