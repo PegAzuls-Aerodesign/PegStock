@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import front.ScreenManager;
@@ -37,9 +38,14 @@ public class PegStockController {
     @FXML
     private Text nameOut;
 
+    @FXML
+    private Pane contentPane;
 
     @Autowired
     private ScreenManager screenManager;
+
+    @Autowired
+    private ApplicationContext context;
 
     @FXML
     void pages(MouseEvent event) {
@@ -59,15 +65,43 @@ public class PegStockController {
         }
     }
 
-    public void showStock() {
-        screenManager.changeScreen("/front/fxml/StockPage.fxml");
+    public void loadScreen(String fxmlFile) {
+        // Carrega a tela de acordo com o botão clicado
+        try {
+            URL fxmlLocation = getClass().getResource(fxmlFile);
+            if (fxmlLocation == null) {
+                throw new IllegalArgumentException("FXML file not found" + fxmlFile);
+            }
+
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            loader.setControllerFactory(context::getBean);
+
+            Parent screen = loader.load();
+
+            // Garante que a tela carregada preencha o contentPane
+            AnchorPane.setTopAnchor(screen, 0.0);
+            AnchorPane.setBottomAnchor(screen, 0.0);
+            AnchorPane.setLeftAnchor(screen, 0.0);
+            AnchorPane.setRightAnchor(screen, 0.0);
+
+            contentPane.getChildren().setAll(screen);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    public void showStock() {
+        loadScreen("/front/fxml/StockPage.fxml");
+    }
     public void showShoppingList() {
-        screenManager.changeScreen("/front/fxml/ShoppingListPage.fxml");
+        loadScreen("/front/fxml/ShoppingListPage.fxml");
     }
 
     public void showLoan(){
-        screenManager.changeScreen("/front/fxml/LoanPage.fxml");
+        loadScreen("/front/fxml/LoanPage.fxml");
+    }
+
+    public void showDetails(){
+        loadScreen("/front/fxml/DetailsPage.fxml");
     }
 }
