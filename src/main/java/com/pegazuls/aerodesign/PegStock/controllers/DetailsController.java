@@ -7,7 +7,6 @@ import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
-import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -124,12 +123,15 @@ public class DetailsController implements Initializable {
         if(event.getSource() == buttonCancelAdd) {
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
+            clearForm();
         } else if(event.getSource() == buttonCancelConsume) {
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
+            clearForm();
         } else if(event.getSource() == buttonCancelBorrowing) {
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
+            clearForm();
         } else if (event.getSource() == buttonCancel) {
             screenManager.changeScreen("/front/fxml/StockPage.fxml");
         }
@@ -142,15 +144,21 @@ public class DetailsController implements Initializable {
             add(quantity);
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
+
+            clearForm();
         } else if(event.getSource() == buttonConfirmConsume) {
             int quantity = Integer.parseInt(consumerQuant.getText());
             consumer(quantity);
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
+
+            clearForm();
         } else if(event.getSource() == buttonConfirmBorrowing) {
             addBorrowing();
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
+
+            clearForm();
         }
     }
 
@@ -196,5 +204,14 @@ public class DetailsController implements Initializable {
             System.err.println("Error in addBorrowing method:");
             e.printStackTrace();
         }
+    }
+
+    public void clearForm() {
+        addQuantity.clear();
+        consumerQuant.clear();
+        borrower.clear();
+        responsible.clear();
+        borrowQuantity.clear();
+        expirationDate.getEditor().clear();
     }
 }
