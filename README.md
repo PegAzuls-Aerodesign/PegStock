@@ -1,74 +1,69 @@
 # PegStock  
 
-PegStock é um sistema de gerenciamento de estoque desenvolvido para o subsistema de controle de bens da **PegAzuls AeroDesign**. Ele permite o controle eficiente de materiais, empréstimos e compras, garantindo uma melhor organização e rastreabilidade dos itens utilizados pela equipe.  
+PegStock is a stock management system developed by [PegAzuls AeroDesign](https://www.instagram.com/pegazulsaerodesign/) to control the materials used in the team's projects. The system allows the registration of inputs, outputs, and loans of materials, as well as the generation of reports and notifications.
 
-## Funcionalidades  
+**All the rights of this project are reserved to PegAzuls AeroDesign team.**
 
-- **Controle de empréstimos**: Registro de saídas e devoluções de materiais.  
-- **Gerenciamento de materiais**: Cadastro, edição e exclusão de itens do estoque.  
-- **Histórico de movimentações**: Registro do consumo, adição e empréstimos de materiais.
-- **Lista de compras**: Organização dos itens necessários para aquisição.
-- **Notificações**: Alertas para itens com estoque baixo, esgotados ou próximos da data de validade.
-- **Relatórios de estoque**: Geração de relatórios para controle e planejamento.  
 
-## Tecnologias utilizadas  
+## Installation
+To install PegStock, follow the steps below:
 
-O PegStock foi desenvolvido utilizando as seguintes tecnologias:  
+1. Clone the repository
+    ```bash
+    git clone https://github.com/PegAzuls-Aerodesign/PegStock
+    cd PegStock
+    ```
 
-- **Java** – Linguagem principal do projeto.  
-- **Spring Boot** – Framework para construção da aplicação backend.  
-- **Maven** – Gerenciador de dependências.  
-- **JavaFX** – Biblioteca para criação da interface gráfica.  
-- **Scene Builder** – Ferramenta para construção visual de interfaces JavaFX.  
-- **PostgreSQL** – Banco de dados utilizado.  
+2. Install the dependencies
+    ```bash
+    mvn clean install
+    ``` 
 
-## Clonando o repositóro
-Para utilizar o projeto, siga os passos abaixo:  
+## Configure the database
+The application uses a PostgreSQL database. To configure the database, follow the steps below:
+
+1. Create a PostgreSQL database
+    ```postgresql
+    CREATE DATABASE your_database;
+    ```
+
+2. Create a `application.properties` file in the `src/main/resources` directory
+    ```bash
+    cd src/main/resources
+    # Linux
+    touch application.properties
+    # CMD
+    echo > application.properties
+    ```
+
+3. Add the following content to the `application.properties` file:
+    ```properties
+    spring.datasource.url=jdbc:postgresql://localhost:your_port/your_database
+    spring.datasource.username=your_username
+    spring.datasource.password=your_password
+    spring.datasource.driver-class-name=org.postgresql.Driver
+    spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+    spring.jpa.hibernate.ddl-auto=create
+    ```
+    Replace `your_port`, `your_database`, `your_username`, and `your_password` with your database information.
+    
+## Running the application
+To run the application, run the command below:  
 
 ```bash
-# Clone o repositório
-git clone https://github.com/PegAzuls-Aerodesign/PegStock.git
-
-# Acesse o diretório do projeto
-cd PegStock
+# Run JavaFX + Spring Boot application
+mvn javafx:run
+# Run only Spring Boot application
+mvn spring-boot:run
 ```
 
-## Instalando as dependências
-Para instalar as dependências do projeto, execute o comando abaixo:  
-
-```bash
-mvn install
-```
+# Documentation
+The documentation of the project is available in the [Wiki](link)
 
 
-## Estrutura do projeto
-```
-.vscode/
-src/
-├── main/
-│   ├── java/
-│   │   ├── com/pegazuls/aerodesign/PegStock/
-│   │   │   ├── infra/
-│   │   │   ├── model/
-│   │   │   ├── principal/
-│   │   │   ├── repository/
-│   │   │   ├── service/
-│   │   │   └── PegStockApplication.java
-│   │   └── front/
-│   │       ├── PegStockConfig.java
-│   │       ├── PegStockFront.java
-│   │       └── PegStockFrontController.java
-│   ├── resources/
-│   │   ├── application.properties
-│   │   └── front/
-│   │       ├── assets/
-│   │       ├── fxml/
-│   │       │   └── PegStock.fxml
-│   │       └── styles/
-└── test/
-    └── java/
-        └── com/pegazuls/aerodesign/PegStock/
-            └── PegStockApplicationTests.java
-READEME.md
-```
-
+# Collaborators
+This project is maintened by the development team from PegAzuls AeroDesign. The main contributors are:
+- [Clara Lopes](https://github.com/ClaraLeticia) (Member)
+- [Joás Barros](https://github.com/joas-barros) (Member)
+- [Laura Moroni](https://github.com/lauramoroni) (Member)
+- [Lucas Silva](https://github.com/Lucassilv7) (Member)
