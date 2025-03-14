@@ -1,0 +1,169 @@
+/* Shadow effect */
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 20, 0, 0, 0);
+}
+
+/* Shadow effect card */
+.shadow-card{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.7), 6, 0, 0, 0);
+}
+
+/* Background */
+.background{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+}
+
+/* Search */
+.search{
+    -fx-background-color: transparent;
+    -fx-border-color: #858D9D;
+    -fx-border-width: .8px;
+    -fx-border-radius: 6px;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-padding: 0px 0px 0px 20px;
+}
+
+.search:focused{
+    -fx-border-width: 1.8px;
+}
+
+/* Table */
+.table{
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+}
+
+.table .table-column{
+    -fx-alignment: CENTER;
+}
+
+.table .column-header-background{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8px;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table .column-header .label{
+    -fx-text-fill: #858D9D;
+    -fx-font-family: Tahoma;
+}
+
+/* Button */
+.button-standard {
+    -fx-background-color: #1258aa;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-background-radius: 4px;
+    -fx-padding: 5px 10px;
+}
+
+.button-cancel {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1258aa;
+    -fx-border-color: #1258aa;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-border-radius: 4px;
+    -fx-padding: 5px 10px;
+}
+
+.button-image{
+    -fx-background-color: transparent;
+    -fx-text-fill: #1258aa;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 10px;
+}
+
+.button-cancel, .button-standard, .button-image:hover{
+    -fx-cursor: hand;
+}
+/* Button Filter */
+.button-filter{
+    -fx-background-color: transparent;
+    -fx-background-radius: 6px;
+    -fx-border-color: #858D9D;
+    -fx-text-fill: #1258aa;
+    -fx-border-width: .8px;
+    -fx-border-radius: 6px;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 12px;
+    -fx-padding: 0px 0px 0px 20px;
+}
+
+/* Register background */
+.register-background{
+    -fx-background-color: #3b3b3b;
+    -fx-opacity: 0.8;
+}
+
+.register-card{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10px;
+    -fx-opacity: 100%;
+}
+
+.register-button{
+    -fx-background-color: transparent;
+    -fx-border-color: #1258aa;
+    -fx-border-radius: 6px;
+    -fx-border-width: .8px;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-background-radius: 6px;
+}
+
+/* Image */
+.select-image{
+    -fx-border-color: #858D9D;
+    -fx-border-radius: 10px;
+    -fx-border-style: segments(10, 10);
+}
+
+.show-image {
+    -fx-border-color: #000000;
+    -fx-border-radius: 10px;
+    -fx-border-style: solid;
+}
+/* Text */
+
+.root .text {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 10px;
+    -fx-text-fill: #858D9D;
+}
+
+.root .text-2 {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-text-fill: #858D9D;
+}
+
+.text-title {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+.text-title-2 {
+    -fx-font-family: Tahoma;
+    -fx-font-size: 18px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
+.text-label{
+    -fx-font-family: Tahoma;
+    -fx-font-size: 12px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+}
+
