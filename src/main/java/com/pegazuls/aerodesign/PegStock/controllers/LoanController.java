@@ -175,6 +175,7 @@ public class LoanController implements Initializable {
         registerQuantity.clear();
         registerBorrower.clear();
         registerResponsible.clear();
+        registerMaterialId.clear();
 
         currentBorrowing = null;
     }
