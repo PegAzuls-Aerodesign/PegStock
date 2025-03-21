@@ -1,5 +1,6 @@
 package front;
 
+import com.pegazuls.aerodesign.PegStock.controllers.PegStockController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +30,7 @@ public class PegStockFront extends Application {
 
         // Carrega a tela inicial
         screenManager.changeScreen("/front/fxml/PegStock.fxml");
+        PegStockController.class.getMethod("showHome").invoke(context.getBean(PegStockController.class));
     }
 
     @Override

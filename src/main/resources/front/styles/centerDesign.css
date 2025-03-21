@@ -83,7 +83,7 @@
 }
 
 .button-cancel, .button-standard, .button-image:hover{
-    -fx-cursor: hand;
+        -fx-cursor: hand;
 }
 /* Button Filter */
 .button-filter{
@@ -167,3 +167,11 @@
     -fx-font-weight: bold;
 }
 
+.background-card-overview{
+    -fx-opacity: 0.3;
+}
+
+.icon{
+    -fx-font-size: 12px;
+    -fx-fill: #1258aa;
+}
