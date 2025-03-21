@@ -51,8 +51,10 @@ public class PegStockController {
     void pages(MouseEvent event) {
         if (event.getSource() == buttonHome) {
             nameOut.setText(buttonHome.getText());
+            showHome();
         } else if (event.getSource() == buttonDashboard) {
             nameOut.setText(buttonDashboard.getText());
+            showDashboard();
         } else if (event.getSource() == buttonStock) {
             nameOut.setText(buttonStock.getText());
             showStock();
@@ -103,5 +105,13 @@ public class PegStockController {
 
     public void showDetails(){
         loadScreen("/front/fxml/DetailsPage.fxml");
+    }
+
+    public void showHome(){
+        loadScreen("/front/fxml/HomePage.fxml");
+    }
+
+    public void showDashboard(){
+        loadScreen("/front/fxml/DashboardPage.fxml");
     }
 }
