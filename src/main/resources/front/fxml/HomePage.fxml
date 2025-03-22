@@ -29,7 +29,7 @@
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
                         <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
-                        <Text layoutX="99.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Epi / Ti" wrappingWidth="39.35714340209961" />
+                        <Text layoutX="99.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="EPI / TI" wrappingWidth="39.35714340209961" />
                         <Text fx:id="numberEPI_TI" layoutX="102.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -41,7 +41,7 @@
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
                         <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
-                        <Text layoutX="88.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas Eletricas" wrappingWidth="69.173828125" />
+                        <Text layoutX="88.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas Elétricas" wrappingWidth="69.173828125" />
                         <Text fx:id="numberFERRAMENTAS_ELETRICAS" layoutX="103.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -65,7 +65,7 @@
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
                         <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
-                        <Text layoutX="95.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Eletrica" wrappingWidth="41.14285659790039" />
+                        <Text layoutX="95.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Elétrica" wrappingWidth="41.14285659790039" />
                         <Text fx:id="numberELETRICA" layoutX="99.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -89,7 +89,7 @@
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
                         <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
-                        <Text layoutX="89.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Pararfusos Derivados" wrappingWidth="59.035715103149414" />
+                        <Text layoutX="89.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Parafusos Derivados" wrappingWidth="59.035715103149414" />
                         <Text fx:id="numberPARAFUSO_DERIVADOS" layoutX="106.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -112,7 +112,7 @@
                   <AnchorPane layoutX="401.0" layoutY="271.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
-                        <Text layoutX="86.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Bastão cola quente" wrappingWidth="63.0107421875" />
+                        <Text layoutX="86.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Bastão Cola Quente" wrappingWidth="63.0107421875" />
                         <Text fx:id="numberBASTAO_COLA_QUENTE" layoutX="103.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />
@@ -196,7 +196,7 @@
                   <AnchorPane layoutX="401.0" layoutY="484.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
                      <children>
                         <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
-                        <Text layoutX="84.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas cortantes" wrappingWidth="67.0107421875" />
+                        <Text layoutX="84.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas Cortantes" wrappingWidth="67.0107421875" />
                         <Text fx:id="numberFERRAMENTAS_CORTANTES" layoutX="106.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
                            <font>
                               <Font name="System Bold" size="14.0" />

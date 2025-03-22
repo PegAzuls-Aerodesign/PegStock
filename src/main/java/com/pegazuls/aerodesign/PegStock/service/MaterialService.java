@@ -124,6 +124,17 @@ public class MaterialService {
       return materialRepository.findByBox(box);
    }
 
+   // count products by box
+   public int countByBox(Box box) {
+      int count = 0;
+
+      for (Material m : materialRepository.findByBox(box)) {
+         count += m.getQuantity();
+      }
+
+      return count;
+   }
+
    // list expired products
    public List<Material> findExpired() {
       List<Material> materials = materialRepository.findAll();
