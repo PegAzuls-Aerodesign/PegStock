@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="628.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pegazuls.aerodesign.PegStock.controllers.DashboardController">
+<AnchorPane prefHeight="628.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pegazuls.aerodesign.PegStock.controllers.javafx.DashboardController">
     <children>
         <AnchorPane prefHeight="628.0" prefWidth="980.0">
             <children>
