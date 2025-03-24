@@ -3,37 +3,32 @@ package com.pegazuls.aerodesign.PegStock.model.dto.material;
 
 import java.time.LocalDate;
 
+import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 
 public record DTOMaterial(
+        Long cod,
       String name,
-      String description,
       int quantity,
       Category category,
       Box box,
-      LocalDate expirationLocalDate,
-      LocalDate createdLocalDate,
-      LocalDate registerLocalDate
+      LocalDate expirationLocalDate
    ) {
       
-      public DTOMaterial(String name, String description, int quantity, Category category, Box box, LocalDate expirationLocalDate,
-                  LocalDate createdLocalDate, LocalDate registerLocalDate) {
-            this.name = name;
-            this.description = description;
-            this.quantity = quantity;
-            this.category = category;
-            this.box = box;
-            this.expirationLocalDate = expirationLocalDate;
-            this.createdLocalDate = createdLocalDate;
-            this.registerLocalDate = registerLocalDate;
-      }
+        public DTOMaterial(Material material) {
+                this(material.getCod(), material.getName(), material.getQuantity(), material.getCategory(), material.getBox(), material.getExpirationDate());
+        }
 
-      @Override
-      public String toString() {
-            return "Material [name=" + name + ", description=" + description + ", quantity=" + quantity
-                        + ", category=" + category + ", box=" + box + ", expirationLocalDate=" + expirationLocalDate + ", createdLocalDate="
-                        + createdLocalDate + ", registerLocalDate=" + registerLocalDate + "]";
-      }
-
+    @Override
+    public String toString() {
+        return "DTOMaterial{" +
+                "cod=" + cod +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", category=" + category +
+                ", box=" + box +
+                ", expirationLocalDate=" + expirationLocalDate +
+                '}';
+    }
 }

@@ -48,7 +48,7 @@ public class MaterialService {
 
    // Update product
    @Transactional
-   public void update(Material material, Long id) {
+   public Material update(Material material, Long id) {
       validations.forEach(v -> v.validate(material));
       Material materialUpdate = materialRepository.findById(id).orElse(null);
 
@@ -61,12 +61,18 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
-        materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+      materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+
+      return materialUpdate;
    }
 
    // Delete product
-   public void delete(Long id) {
-      materialRepository.deleteById(id);
+   public boolean delete(Long id) {
+      if (materialRepository.existsById(id)) {
+         materialRepository.deleteById(id);
+         return true; // Deletion successful
+      }
+      return false; // Material not found
    }
 
    // Check if product exists
