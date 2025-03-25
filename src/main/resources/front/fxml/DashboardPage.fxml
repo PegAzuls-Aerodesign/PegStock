@@ -66,7 +66,7 @@
                         <String fx:value="shadow-card" />
                      </styleClass>
                   </LineChart>
-                  <Button fx:id="buttonRelatorio" layoutX="681.0" layoutY="557.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Gerar Relatório">
+                  <Button fx:id="buttonRelatorio" layoutX="681.0" layoutY="557.0" onMouseClicked="#openReport" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Gerar Relatório">
                      <graphic>
                         <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
                      </graphic>
