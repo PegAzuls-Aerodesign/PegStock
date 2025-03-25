@@ -4,6 +4,7 @@ import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/material")
@@ -70,5 +72,12 @@ public class MaterialController {
     public ResponseEntity<DTOMaterialExpirationDate> getNearestExpiration() {
         DTOMaterialExpirationDate material = materialService.nearestExpiration();
         return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
+    }
+
+    @GetMapping("/box/{box}")
+    public ResponseEntity<?> getMaterialByBox(@PathVariable String box) {
+        int count = materialService.countByBox(Box.valueOf(box));
+        Map<String, Integer> map = Map.of(box, count);
+        return ResponseEntity.ok(map);
     }
 }
