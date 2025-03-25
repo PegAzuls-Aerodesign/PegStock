@@ -87,7 +87,7 @@ public class MaterialService {
    }
 
    // Method to verify most available product
-   public Material mostAvailable() {
+   public DTOMaterialMostConsumer mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
 
@@ -97,7 +97,7 @@ public class MaterialService {
          }
       }
 
-      return material;
+      return new DTOMaterialMostConsumer(material);
    }
 
    // Method to verify nearest expiration product

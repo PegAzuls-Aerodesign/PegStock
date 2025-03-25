@@ -39,9 +39,16 @@ public class DashboardController {
         numberConsumido.setText(String.valueOf(mostConsumedMaterial.quantity()));
     }
 
+    private void getMostAvailableMaterial() {
+        var mostAvailableMaterial = materialService.mostAvailable();
+        nameDisponivel.setText(mostAvailableMaterial.name());
+        numberDisponivel.setText(String.valueOf(mostAvailableMaterial.quantity()));
+    }
+
     @FXML
     public void initialize() {
         getMostConsumedMaterial();
+        getMostAvailableMaterial();
     }
 
 }
