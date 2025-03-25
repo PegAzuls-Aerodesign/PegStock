@@ -1,6 +1,7 @@
 package com.pegazuls.aerodesign.PegStock.controllers.api;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
@@ -56,6 +57,18 @@ public class MaterialController {
     @GetMapping("/most_consumed")
     public ResponseEntity<DTOMaterialMostConsumer> getMostConsumed() {
         DTOMaterialMostConsumer material = materialService.getMostConsumer();
+        return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
+    }
+
+    @GetMapping("/most_available")
+    public ResponseEntity<DTOMaterialMostConsumer> getMostAvailable() {
+        DTOMaterialMostConsumer material = materialService.mostAvailable();
+        return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
+    }
+
+    @GetMapping("/nearest_expiration")
+    public ResponseEntity<DTOMaterialExpirationDate> getNearestExpiration() {
+        DTOMaterialExpirationDate material = materialService.nearestExpiration();
         return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
     }
 }
