@@ -1,6 +1,7 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
+import com.pegazuls.aerodesign.PegStock.service.ShoppingListService;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
@@ -14,6 +15,9 @@ public class DashboardController {
 
     @Autowired
     private MaterialService materialService;
+
+    @Autowired
+    private ShoppingListService shoppingListService;
 
     @FXML
     private Button buttonRelatorio;
@@ -45,10 +49,17 @@ public class DashboardController {
         numberDisponivel.setText(String.valueOf(mostAvailableMaterial.quantity()));
     }
 
+    private void getMostExpensiveMaterial() {
+        var mostExpensiveMaterial = shoppingListService.findMostExpensive();
+        nameCaro.setText(mostExpensiveMaterial.name());
+        numberCaro.setText(String.valueOf(mostExpensiveMaterial.price()));
+    }
+
     @FXML
     public void initialize() {
         getMostConsumedMaterial();
         getMostAvailableMaterial();
+        getMostExpensiveMaterial();
     }
 
 }
