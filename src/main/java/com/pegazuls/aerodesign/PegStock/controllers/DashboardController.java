@@ -1,11 +1,14 @@
 package com.pegazuls.aerodesign.PegStock.controllers;
 
+import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import com.pegazuls.aerodesign.PegStock.service.ShoppingListService;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,9 @@ public class DashboardController {
 
     @Autowired
     private ShoppingListService shoppingListService;
+
+    @Autowired
+    private CommandInvoker commandInvoker;
 
     @FXML
     private Button buttonRelatorio;
@@ -38,6 +44,25 @@ public class DashboardController {
 
     @FXML
     private Text numberDisponivel;
+
+    @FXML
+    public void initialize() {
+        getMostConsumedMaterial();
+        getMostAvailableMaterial();
+        getMostExpensiveMaterial();
+        getExpirationDate();
+    }
+
+    @FXML
+    public void openReport(MouseEvent event) {
+        commandInvoker.generateReport();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("PegStock");
+        alert.setHeaderText("Relatorio de ações gerado com sucesso");
+        alert.setContentText("O relatorio foi gerado com sucesso e salvo em report.csv");
+        alert.showAndWait();
+    }
 
     private void getMostConsumedMaterial() {
         var mostConsumedMaterial = materialService.getMostConsumer();
@@ -66,14 +91,6 @@ public class DashboardController {
         nameValidade.setText(expirationDate.name());
         dateValid.setText(date);
 
-    }
-
-    @FXML
-    public void initialize() {
-        getMostConsumedMaterial();
-        getMostAvailableMaterial();
-        getMostExpensiveMaterial();
-        getExpirationDate();
     }
 
 }
