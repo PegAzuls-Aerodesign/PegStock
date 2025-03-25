@@ -5,6 +5,8 @@ import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 
 
 public record DTOShoppingDetails(
+
+        Long cod,
         String name,
         int quantity,
         double price,
@@ -13,7 +15,7 @@ public record DTOShoppingDetails(
 
 
     public DTOShoppingDetails(ShoppingList product) {
-        this(product.getProductName(), product.getQuantity(), product.getPrice(), product.getSupplier(), product.getLink());
+        this(product.getCod(), product.getProductName(), product.getQuantity(), product.getPrice(), product.getSupplier(), product.getLink());
     }
 
     @Override

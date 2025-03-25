@@ -32,7 +32,7 @@ public class MaterialController {
     @GetMapping("/{id}")
     public ResponseEntity<Material> getMaterialByCod(@PathVariable Long id) {
         Material material = materialService.findById(id);
-        return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
+        return material == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(material);
     }
 
     @PostMapping
@@ -47,7 +47,7 @@ public class MaterialController {
     @PutMapping("/{id}")
     public ResponseEntity<Material> updateMaterial(@RequestBody Material material, @PathVariable Long id) {
         Material material1 = materialService.update(material, id);
-        return ResponseEntity.ok(material1);
+        return material1 == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(material1);
     }
 
     @DeleteMapping("/{id}")

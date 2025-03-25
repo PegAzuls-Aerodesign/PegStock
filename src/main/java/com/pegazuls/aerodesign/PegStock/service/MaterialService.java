@@ -29,6 +29,7 @@ public class MaterialService {
    @Transactional
    public Material create(Material material) {
       validations.forEach(v -> v.validate(material));
+      material.setRegisterDate(LocalDate.now());
       return materialRepository.save(material);
    }
 
@@ -52,6 +53,10 @@ public class MaterialService {
    public Material update(Material material, Long id) {
       validations.forEach(v -> v.validate(material));
       Material materialUpdate = materialRepository.findById(id).orElse(null);
+
+      if (materialUpdate == null) {
+         return null; // Product not found
+      }
 
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
