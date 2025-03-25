@@ -10,6 +10,8 @@ import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.time.format.DateTimeFormatter;
+
 @Controller
 public class DashboardController {
 
@@ -55,11 +57,23 @@ public class DashboardController {
         numberCaro.setText(String.valueOf(mostExpensiveMaterial.price()));
     }
 
+    private void getExpirationDate() {
+        var expirationDate = materialService.nearestExpiration();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String date = expirationDate.expirationDate().format(formatter);
+
+        nameValidade.setText(expirationDate.name());
+        dateValid.setText(date);
+
+    }
+
     @FXML
     public void initialize() {
         getMostConsumedMaterial();
         getMostAvailableMaterial();
         getMostExpensiveMaterial();
+        getExpirationDate();
     }
 
 }
