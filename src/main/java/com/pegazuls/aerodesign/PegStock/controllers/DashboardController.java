@@ -34,7 +34,14 @@ public class DashboardController {
     private Text numberDisponivel;
 
     private void getMostConsumedMaterial() {
+        var mostConsumedMaterial = materialService.getMostConsumer();
+        nameConsumido.setText(mostConsumedMaterial.name());
+        numberConsumido.setText(String.valueOf(mostConsumedMaterial.quantity()));
+    }
 
+    @FXML
+    public void initialize() {
+        getMostConsumedMaterial();
     }
 
 }
