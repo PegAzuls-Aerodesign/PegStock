@@ -28,24 +28,32 @@ public class ScreenManager {
 
     public void changeScreen(String fxmlFile) {
         try {
-            URL fxmlLocation = getClass().getResource(fxmlFile);
+            // Remove leading slash if present to ensure consistent path handling
+            String normalizedPath = fxmlFile.startsWith("/") ? fxmlFile.substring(1) : fxmlFile;
+            
+            URL fxmlLocation = getClass().getClassLoader().getResource(normalizedPath);
             if (fxmlLocation == null) {
-                throw new IllegalArgumentException("FXML file not found: " + fxmlFile);
+                throw new IllegalArgumentException("FXML file not found: " + normalizedPath);
             }
-
+    
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             loader.setControllerFactory(context::getBean);
-
+    
             Parent root = loader.load();
-
+    
             Scene scene = new Scene(root, 1024, 640);
-            scene.getStylesheets().add(getClass().getResource("/front/styles/templateDesign.css ").toExternalForm());
-
+            // Fix the stylesheet path similarly
+            URL cssLocation = getClass().getClassLoader().getResource("front/styles/templateDesign.css");
+            if (cssLocation != null) {
+                scene.getStylesheets().add(cssLocation.toExternalForm());
+            }
+    
             stage.setTitle("PegStock");
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException("Failed to load screen: " + fxmlFile, e);
         }
     }
 
