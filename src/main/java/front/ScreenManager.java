@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -49,6 +50,7 @@ public class ScreenManager {
             }
     
             stage.setTitle("PegStock");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/front/assets/icon.png")));
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
