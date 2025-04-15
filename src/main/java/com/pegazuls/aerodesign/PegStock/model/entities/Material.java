@@ -50,6 +50,8 @@ public class Material {
    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<Borrowing> borrowing;
 
+   private String brand;
+
    public Material() {
       this.registerDate = LocalDate.now();
    }

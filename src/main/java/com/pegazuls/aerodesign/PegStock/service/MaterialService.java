@@ -62,7 +62,8 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
-        materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+      materialUpdate.setBrand(material.getBrand());
+      materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
    }
 
    // Delete product
@@ -170,8 +171,8 @@ public class MaterialService {
    }
    
    public DTOMaterialMostConsumer getMostConsumer(){
-        Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
-        return new DTOMaterialMostConsumer(material);
+      Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
+      return new DTOMaterialMostConsumer(material);
    }
 
 }
