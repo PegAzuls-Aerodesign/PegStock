@@ -74,6 +74,7 @@ public class DashboardController {
         var mostAvailableMaterial = materialService.mostAvailable();
         nameDisponivel.setText(mostAvailableMaterial.name());
         numberDisponivel.setText(String.valueOf(mostAvailableMaterial.quantity()));
+        System.out.println(mostAvailableMaterial.quantity());
     }
 
     private void getMostExpensiveMaterial() {

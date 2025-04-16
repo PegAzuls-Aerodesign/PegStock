@@ -108,7 +108,7 @@ public class MaterialService {
       Material material = materials.get(0);
 
       for (Material m : materials) {
-         if (m.getExpirationDate().isBefore(material.getExpirationDate())) {
+         if (m.getExpirationDate() != null && m.getExpirationDate().isBefore(material.getExpirationDate())) {
             material = m;
          }
       }
