@@ -60,6 +60,14 @@ public class ShoppingListService {
 
     public DTOShoppingSummary findMostExpensive(){
         ShoppingList product = repository.findFirstByOrderByPriceDesc();
+
+        if (product == null) {
+            ShoppingList emptyProduct = new ShoppingList();
+            emptyProduct.setProductName("null");
+            emptyProduct.setPrice(0.0);
+            return new DTOShoppingSummary(emptyProduct);
+        }
+
         return new DTOShoppingSummary(product);
     }
 
