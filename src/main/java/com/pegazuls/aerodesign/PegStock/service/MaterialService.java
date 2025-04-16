@@ -6,6 +6,7 @@ import java.util.List;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMostAvailableMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,7 +90,7 @@ public class MaterialService {
    }
 
    // Method to verify most available product
-   public DTOMaterialMostConsumer mostAvailable() {
+   public DTOMostAvailableMaterial mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
 
@@ -99,7 +100,7 @@ public class MaterialService {
          }
       }
 
-      return new DTOMaterialMostConsumer(material);
+      return new DTOMostAvailableMaterial(material);
    }
 
    // Method to verify nearest expiration product
