@@ -1,11 +1,13 @@
 package com.pegazuls.aerodesign.PegStock.controllers.api;
 
+import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -39,5 +41,11 @@ public class BorrowingController {
                 ResponseEntity.notFound().build();
     }
 
-
+    @GetMapping("/expired")
+    public  ResponseEntity<List<DTOBorrowingList>> getExpiredBorrowings(){
+        var expiredBorrowings = service.getExpiredBorrowings(LocalDate.now());
+        return expiredBorrowings.isEmpty() ?
+                ResponseEntity.noContent().build() :
+                ResponseEntity.ok(expiredBorrowings);
+    }
 }
