@@ -46,7 +46,7 @@ public class BorrowingService {
 
 
     public Borrowing findById(Long cod){
-        return borrowingRepository.findById(cod).orElseThrow();
+        return borrowingRepository.findById(cod).orElse(null);
     }
 
     public List<Borrowing> findAll(){
@@ -54,8 +54,13 @@ public class BorrowingService {
     }
 
     @Transactional
-    public void delete(Long cod) {
-        Borrowing borrowing = borrowingRepository.findById(cod).orElseThrow();
+    public boolean delete(Long cod) {
+        Borrowing borrowing = borrowingRepository.findById(cod).orElse(null);
+
+        if(borrowing == null){
+            return false;
+        }
+
         Material material = borrowing.getMaterial();
 
         if (material != null) {
@@ -63,6 +68,7 @@ public class BorrowingService {
         }
 
         borrowingRepository.delete(borrowing);
+        return true;
     }
 
     @Transactional
