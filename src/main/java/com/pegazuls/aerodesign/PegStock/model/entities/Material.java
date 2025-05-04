@@ -23,6 +23,8 @@ public class Material {
 
    private String name;
 
+   private String brand;
+   
    private String description;
 
    private int quantity;
@@ -36,7 +38,7 @@ public class Material {
    private Box box;
 
    private LocalDate expirationDate; // data de validade
- 
+
    private LocalDate createdDate; // data de fabricação
 
    private LocalDate registerDate; // data de registro no sistema
@@ -50,7 +52,6 @@ public class Material {
    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<Borrowing> borrowing;
 
-   private String brand;
 
    public Material() {
       this.registerDate = LocalDate.now();

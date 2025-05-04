@@ -153,8 +153,14 @@
                                             </font>
                                         </Label>
                                         <ChoiceBox fx:id="registerBox" layoutX="120.0" layoutY="414.0" prefHeight="25.0" prefWidth="225.0" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
-                                        <Button layoutX="223.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#registerMaterial" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar material" />
-                                        <Button layoutX="129.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#cancelRegister" styleClass="button-cancel" stylesheets="@../styles/centerDesign.css" text="Cancelar" />
+                                        <Label layoutX="20.0" layoutY="459.0" text="Marca">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="registerBrand" layoutX="120.0" layoutY="457.0" prefHeight="25.0" prefWidth="225.0" promptText="Informe a marca" styleClass="register-button" stylesheets="@../styles/centerDesign.css" />
+                                        <Button layoutX="223.0" layoutY="500.0" mnemonicParsing="false" onMouseClicked="#registerMaterial" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Adicionar material" />
+                                        <Button layoutX="129.0" layoutY="500.0" mnemonicParsing="false" onMouseClicked="#cancelRegister" styleClass="button-cancel" stylesheets="@../styles/centerDesign.css" text="Cancelar" />
                                         <AnchorPane layoutX="63.0" layoutY="41.0" prefHeight="79.0" prefWidth="106.0" styleClass="select-image" stylesheets="@../styles/centerDesign.css">
                                             <children>
                                                 <ImageView fx:id="imageView" fitHeight="80.0" fitWidth="115.0" layoutX="2.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />

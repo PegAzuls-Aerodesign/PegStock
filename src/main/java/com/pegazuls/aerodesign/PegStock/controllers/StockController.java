@@ -67,6 +67,9 @@ public class StockController implements Initializable {
     private TextField registerName;
 
     @FXML
+    private TextField registerBrand;
+
+    @FXML
     private TextField registerQuantity;
 
     @FXML
@@ -200,6 +203,7 @@ public class StockController implements Initializable {
             if (currentMaterial == null) {
                 Material material = new Material();
                 material.setName(registerName.getText());
+                material.setBrand(registerBrand.getText());
                 material.setQuantity(Integer.parseInt(registerQuantity.getText()));
                 material.setDescription(registerDescription.getText());
                 material.setCreatedDate(registerCreatedDate.getValue());
@@ -216,6 +220,7 @@ public class StockController implements Initializable {
                 currentMaterial.setExpirationDate(registerExpirationDate.getValue());
                 currentMaterial.setCategory(registerCategory.getValue());
                 currentMaterial.setBox(registerBox.getValue());
+                currentMaterial.setBrand(registerBrand.getText());
 
                 materialService.update(currentMaterial, currentMaterial.getCod());
             }
@@ -241,6 +246,7 @@ public class StockController implements Initializable {
         currentMaterial = materialService.findById(material.getCod());
 
         registerName.setText(material.getName());
+        registerBrand.setText(material.getBrand());
         registerQuantity.setText(String.valueOf(material.getQuantity()));
         registerDescription.setText(material.getDescription());
         registerCreatedDate.setValue(material.getCreatedDate());
@@ -268,6 +274,7 @@ public class StockController implements Initializable {
 
     private void clearForm() {
         registerName.clear();
+        registerBrand.clear();
         registerQuantity.clear();
         registerDescription.clear();
         registerCreatedDate.setValue(null);

@@ -56,6 +56,7 @@ public class MaterialService {
 
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
+      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setQuantity(material.getQuantity());
       materialUpdate.setConsumerQuantity(material.getConsumerQuantity());
       materialUpdate.setCategory(material.getCategory());
