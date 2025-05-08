@@ -107,15 +107,15 @@ public class MaterialService {
    // Method to verify nearest expiration product
    public DTOMaterialExpirationDate nearestExpiration() {
       List<Material> materials = materialRepository.findAll();
-      Material material = materials.get(0);
+      Material material = null;
 
       for (Material m : materials) {
-         if (m.getExpirationDate() != null && m.getExpirationDate().isBefore(material.getExpirationDate())) {
+         if (m.getExpirationDate() != null && (material == null || m.getExpirationDate().isBefore(material.getExpirationDate()))) {
             material = m;
          }
       }
 
-      return new DTOMaterialExpirationDate(material);
+      return material == null ? new DTOMaterialExpirationDate("N/A", null) : new DTOMaterialExpirationDate(material);
    }
 
    // List products by category
