@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="628.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pegazuls.aerodesign.PegStock.controllers.DashboardController">
+    <children>
+        <AnchorPane prefHeight="628.0" prefWidth="980.0">
+            <children>
+                <AnchorPane prefHeight="628.0" prefWidth="980.0" stylesheets="@../styles/centerDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane layoutX="21.0" layoutY="33.0" prefHeight="200.0" prefWidth="774.0" stylesheets="@../styles/centerDesign.css">
+                     <styleClass>
+                        <String fx:value="register-card" />
+                        <String fx:value="shadow-card" />
+                     </styleClass>
+                     <children>
+                        <Text layoutX="11.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title-2" text="Resumo de controle de bens" />
+                        <Text fill="#858d9d" layoutX="11.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-2" text="Material mais consumido" />
+                        <FontAwesomeIcon fill="#dba362" glyphName="ARCHIVE" layoutX="73.0" layoutY="125.0" size="2.5em" text="" />
+                        <Text fx:id="nameConsumido" layoutX="60.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Madeira balsa" />
+                        <Text fx:id="numberConsumido" layoutX="75.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2300" wrappingWidth="28.4375" />
+                        <Text fill="#858d9d" layoutX="226.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-2" text="Material mais disponível" />
+                        <Text fx:id="nameDisponivel" layoutX="265.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Enforca gato" />
+                        <Text fx:id="numberDisponivel" layoutX="284.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1973" wrappingWidth="29.999999999999943" />
+                        <FontAwesomeIcon fill="#58d365" glyphName="LINE_CHART" layoutX="280.0" layoutY="126.0" size="2.5em" />
+                        <Text fill="#858d9d" layoutX="416.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-2" text="Material mais caro da lista" />
+                        <Text fx:id="nameCaro" layoutX="477.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Controle" />
+                        <Text fx:id="numberCaro" layoutX="483.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10.000" wrappingWidth="35.99999999999994" />
+                        <Text layoutX="468.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="R$" />
+                        <FontAwesomeIcon fill="#629ff4" glyphName="BTC" layoutX="486.0" layoutY="125.0" size="2.5em" />
+                        <Text fill="#858d9d" layoutX="604.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-2" text="Próxima data de validade" />
+                        <Text fx:id="nameValidade" layoutX="669.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Mascara" />
+                        <Text fx:id="dateValid" layoutX="658.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="01/08/2017" wrappingWidth="63.33331298828119" />
+                        <FontAwesomeIcon fill="#fab55a" glyphName="CALENDAR" layoutX="675.0" layoutY="125.0" size="2.5em" />
+                     </children>
+                  </AnchorPane>
+                  <BarChart fx:id="consumeeadicao" layoutX="25.0" layoutY="257.0" prefHeight="268.0" prefWidth="368.0" stylesheets="@../styles/centerDesign.css" title="Consumo e adição">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                     <styleClass>
+                        <String fx:value="register-card" />
+                        <String fx:value="shadow-card" />
+                     </styleClass>
+                  </BarChart>
+                  <LineChart fx:id="evolucaogastos" layoutX="427.0" layoutY="257.0" prefHeight="257.0" prefWidth="368.0" stylesheets="@../styles/centerDesign.css" title="Evolução dos gastos">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                     <styleClass>
+                        <String fx:value="register-card" />
+                        <String fx:value="shadow-card" />
+                     </styleClass>
+                  </LineChart>
+                  <Button fx:id="buttonRelatorio" layoutX="681.0" layoutY="557.0" onMouseClicked="#openReport" mnemonicParsing="false" prefHeight="27.0" prefWidth="114.0" styleClass="button-standard" stylesheets="@../styles/centerDesign.css" text="Gerar Relatório">
+                     <graphic>
+                        <FontAwesomeIcon fill="WHITE" glyphName="FILE_TEXT" />
+                     </graphic>
+                  </Button>
+               </children>
+                </AnchorPane>
+
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

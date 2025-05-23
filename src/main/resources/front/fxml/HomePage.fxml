@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="628.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pegazuls.aerodesign.PegStock.controllers.HomeController">
+    <children>
+        <AnchorPane prefHeight="628.0" prefWidth="980.0">
+            <children>
+                <AnchorPane prefHeight="628.0" prefWidth="980.0" stylesheets="@../styles/centerDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="61.0" fitWidth="78.0" layoutX="13.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/Welcome.png" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="96.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seja bem-vindo(a) ao PegStock">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#858d9d" layoutX="23.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-2" text="Overview" />
+                  <AnchorPane layoutX="27.0" layoutY="169.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="99.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="EPI / TI" wrappingWidth="39.35714340209961" />
+                        <Text fx:id="numberEPI_TI" layoutX="102.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="27.0" layoutY="271.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="88.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas Elétricas" wrappingWidth="69.173828125" />
+                        <Text fx:id="numberFERRAMENTAS_ELETRICAS" layoutX="103.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="27.0" layoutY="381.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="80.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Desempenho" wrappingWidth="71.5107421875" />
+                        <Text fx:id="numberDESEMPENHO" layoutX="99.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="219.0" layoutY="169.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="95.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Elétrica" wrappingWidth="41.14285659790039" />
+                        <Text fx:id="numberELETRICA" layoutX="99.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="219.0" layoutY="271.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="92.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Limpeza" wrappingWidth="47.673828125" />
+                        <Text fx:id="numberLIMPEZA" layoutX="97.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="219.0" layoutY="381.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="89.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Parafusos Derivados" wrappingWidth="59.035715103149414" />
+                        <Text fx:id="numberPARAFUSO_DERIVADOS" layoutX="106.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="401.0" layoutY="169.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="93.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Palitos" wrappingWidth="41.14285659790039" />
+                        <Text fx:id="numberPALITOS" layoutX="93.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="401.0" layoutY="271.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="86.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Bastão Cola Quente" wrappingWidth="63.0107421875" />
+                        <Text fx:id="numberBASTAO_COLA_QUENTE" layoutX="103.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="54.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="401.0" layoutY="381.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="102.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Cola" wrappingWidth="27.173828125" />
+                        <Text fx:id="numberCOLA" layoutX="105.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" text="" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="584.0" layoutY="169.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="92.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Lixas" wrappingWidth="27.673828125" />
+                        <Text fx:id="numberLIXAS" layoutX="94.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="584.0" layoutY="278.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="92.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Estante" wrappingWidth="41.14285659790039" />
+                        <Text fx:id="numberESTANTE" layoutX="98.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="584.0" layoutY="381.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="99.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Outros" wrappingWidth="41.14285659790039" />
+                        <Text fx:id="numberOUTROS" layoutX="99.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="51.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="27.0" layoutY="484.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <FontAwesomeIcon glyphName="BUILDING" layoutX="42.0" layoutY="53.0" size="2em" styleClass="icon" text="" />
+                        <Text layoutX="82.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas" wrappingWidth="67.173828125" />
+                        <Text fx:id="numberFERRAMENTAS" layoutX="101.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="219.0" layoutY="484.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="96.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Fitas" wrappingWidth="25.673828125" />
+                        <Text fx:id="numberFITAS" layoutX="98.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="401.0" layoutY="484.0" prefHeight="85.0" prefWidth="154.0" styleClass="register-card" stylesheets="@../styles/centerDesign.css">
+                     <children>
+                        <Ellipse fill="#858d9d" layoutX="51.0" layoutY="44.0" radiusX="35.0" radiusY="27.0" stroke="BLACK" strokeType="INSIDE" styleClass="background-card-overview" />
+                        <Text layoutX="84.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="Ferramentas Cortantes" wrappingWidth="67.0107421875" />
+                        <Text fx:id="numberFERRAMENTAS_CORTANTES" layoutX="106.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="39.35714340209955">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <FontAwesomeIcon glyphName="INBOX" layoutX="41.0" layoutY="52.0" size="2em" styleClass="icon" text="" />
+                     </children>
+                  </AnchorPane>
+               </children>
+                </AnchorPane>
+
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

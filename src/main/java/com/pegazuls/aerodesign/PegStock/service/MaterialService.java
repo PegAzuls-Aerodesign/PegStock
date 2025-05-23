@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMostAvailableMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +56,7 @@ public class MaterialService {
 
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
+      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setQuantity(material.getQuantity());
       materialUpdate.setConsumerQuantity(material.getConsumerQuantity());
       materialUpdate.setCategory(material.getCategory());
@@ -61,7 +64,8 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
-        materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+      materialUpdate.setBrand(material.getBrand());
+      materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
    }
 
    // Delete product
@@ -87,7 +91,7 @@ public class MaterialService {
    }
 
    // Method to verify most available product
-   public Material mostAvailable() {
+   public DTOMostAvailableMaterial mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
 
@@ -97,21 +101,21 @@ public class MaterialService {
          }
       }
 
-      return material;
+      return new DTOMostAvailableMaterial(material);
    }
 
    // Method to verify nearest expiration product
-   public Material nearestExpiration() {
+   public DTOMaterialExpirationDate nearestExpiration() {
       List<Material> materials = materialRepository.findAll();
-      Material material = materials.get(0);
+      Material material = null;
 
       for (Material m : materials) {
-         if (m.getExpirationDate().isBefore(material.getExpirationDate())) {
+         if (m.getExpirationDate() != null && (material == null || m.getExpirationDate().isBefore(material.getExpirationDate()))) {
             material = m;
          }
       }
 
-      return material;
+      return material == null ? new DTOMaterialExpirationDate("N/A", null) : new DTOMaterialExpirationDate(material);
    }
 
    // List products by category
@@ -122,6 +126,17 @@ public class MaterialService {
    // List products by box
    public List<Material> findByBox(Box box) {
       return materialRepository.findByBox(box);
+   }
+
+   // count products by box
+   public int countByBox(Box box) {
+      int count = 0;
+
+      for (Material m : materialRepository.findByBox(box)) {
+         count += m.getQuantity();
+      }
+
+      return count;
    }
 
    // list expired products
@@ -158,8 +173,8 @@ public class MaterialService {
    }
    
    public DTOMaterialMostConsumer getMostConsumer(){
-        Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
-        return new DTOMaterialMostConsumer(material);
+      Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
+      return new DTOMaterialMostConsumer(material);
    }
 
 }
