@@ -5,6 +5,7 @@ import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOCreateBorrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/borrowing")
+@Tag(name = "Emprestimo", description = "Controller para o gerenciamento dos emprestimos do sistema PegStock")
 public class BorrowingController {
 
     @Autowired

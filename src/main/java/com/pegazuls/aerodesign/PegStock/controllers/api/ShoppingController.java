@@ -4,6 +4,7 @@ import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetai
 import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingSummary;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 import com.pegazuls.aerodesign.PegStock.service.ShoppingListService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/shopping")
+@Tag(name = "Lista de compras", description = "Controller para gerenciar os itens da lista de compras")
 public class ShoppingController {
 
     @Autowired

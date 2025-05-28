@@ -6,6 +6,10 @@ import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsum
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +21,18 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/material")
+@Tag(name = "Material", description = "Controller para gerenciamento de materiais")
 public class MaterialController {
 
     @Autowired
     private MaterialService materialService;
 
     @GetMapping
+    @Operation(summary = "Listar todos os materiais", description = "Retorna uma lista de DTOs dos materiais cadastrados.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Lista de materiais retornada com sucesso."),
+            @ApiResponse(responseCode = "204", description = "Nenhum material encontrado.")
+    })
     public ResponseEntity<List<DTOMaterial>> getMaterials() {
         List<Material> materials = materialService.findAll();
         List<DTOMaterial> dtoMaterials = materials.stream().map(DTOMaterial::new).toList();
