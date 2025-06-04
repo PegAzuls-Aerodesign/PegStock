@@ -39,19 +39,17 @@ public class UserAuthenticationFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(userDetails.getUsername(), null, userDetails.getAuthorities());
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            } else {
-                throw new RuntimeException("O token está ausente.");
             }
         }
         filterChain.doFilter(request, response);
     }
 
     private String recoveryToken(HttpServletRequest request) {
-        String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null) {
-            return authorizationHeader.replace("Bearer ", "");
+        var token = request.getHeader("Authorization");
+        if(token == null || token.isBlank() || !token.startsWith("Bearer ")){
+            return null;
         }
-        return null;
+        return token.replace("Bearer ", "");
     }
 
     private boolean checkIfEndpointIsNotPublic(HttpServletRequest request) {

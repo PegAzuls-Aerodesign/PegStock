@@ -9,6 +9,7 @@ import com.pegazuls.aerodesign.PegStock.service.MaterialService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class MaterialController {
     private MaterialService materialService;
 
     @GetMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Listar todos os materiais", description = "Retorna uma lista de DTOs dos materiais cadastrados.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de materiais retornada com sucesso."),
@@ -40,6 +42,7 @@ public class MaterialController {
     }
 
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Buscar material por ID", description = "Retorna uma descrição destalhada de um material específico")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Material encontrado com sucesso."),
@@ -51,6 +54,7 @@ public class MaterialController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Criar novo material", description = "Cria um novo material e retorna o material criado com o status 201.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Material criado com sucesso."),
@@ -65,6 +69,7 @@ public class MaterialController {
     }
 
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Atualizar material", description = "Atualiza um material existente e retorna o material atualizado.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Material atualizado com sucesso."),
@@ -76,6 +81,7 @@ public class MaterialController {
     }
 
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Deletar material", description = "Deleta um material existente")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Material deletado com sucesso."),
@@ -87,6 +93,7 @@ public class MaterialController {
     }
 
     @GetMapping("/most_consumed")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Material mais consumido", description = "Retorna o material mais consumido. (Utilizar no resumo de controle de bens)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Material mais consumido retornado com sucesso."),
@@ -98,6 +105,7 @@ public class MaterialController {
     }
 
     @GetMapping("/most_available")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Material mais disponível", description = "Retorna o material com maior disponibilidade no estoque. (Utilizar no resumo de controle de bens)")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Material mais disponível retornado com sucesso."),
@@ -109,6 +117,7 @@ public class MaterialController {
     }
 
     @GetMapping("/nearest_expiration")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Material com data de validade mais próxima", description = "Retorna o material com a data de validade mais próxima. (Utilizar no resumo de controle de bens)")
     public ResponseEntity<DTOMaterialExpirationDate> getNearestExpiration() {
         DTOMaterialExpirationDate material = materialService.nearestExpiration();
@@ -116,6 +125,7 @@ public class MaterialController {
     }
 
     @GetMapping("/box")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Contar materiais por armario", description = "Retorna a quantidade de materiais em um armario. (utilizar para pegar a contagem na pagina inicial)")
     public ResponseEntity<?> getMaterialByBox(@RequestParam("Armário") Box box) {
         int count = materialService.countByBox(box);

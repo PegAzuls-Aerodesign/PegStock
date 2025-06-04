@@ -7,6 +7,7 @@ import com.pegazuls.aerodesign.PegStock.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/test")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Teste de autenticação", description = "Endpoint para testar a autenticação do usuário.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Teste de autenticação bem-sucedido."),

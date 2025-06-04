@@ -7,6 +7,7 @@ import com.pegazuls.aerodesign.PegStock.service.ShoppingListService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class ShoppingController {
     private ShoppingListService shoppingService;
 
     @GetMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Listar todas os itens da lista de compras", description = "Retorna uma lista das listas de compras.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de compras retornada com sucesso."),
@@ -41,6 +43,7 @@ public class ShoppingController {
     }
 
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Buscar item da lista de compras por ID", description = "Retorna os detalhes de um item específico da lista de compras.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Item da lista de compras encontrado com sucesso."),
@@ -52,6 +55,7 @@ public class ShoppingController {
     }
 
     @GetMapping("/name/{productName}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Buscar itens da lista de compras por nome do produto", description = "Retorna uma lista de itens da lista de compras que correspondem ao nome do produto.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Itens da lista de compras encontrados com sucesso."),
@@ -63,6 +67,7 @@ public class ShoppingController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Criar novo item na lista de compras", description = "Cria um novo item na lista de compras e retorna o item criado com o status 201.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Item da lista de compras criado com sucesso."),
@@ -75,6 +80,7 @@ public class ShoppingController {
     }
 
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Atualizar item da lista de compras", description = "Atualiza um item existente na lista de compras e retorna o item atualizado.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Item da lista de compras atualizado com sucesso."),
@@ -86,6 +92,7 @@ public class ShoppingController {
     }
 
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Deletar item da lista de compras", description = "Deleta um item existente na lista de compras.")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Item da lista de compras deletado com sucesso."),
@@ -97,6 +104,7 @@ public class ShoppingController {
     }
 
     @GetMapping("/most_expensive")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Buscar item mais caro da lista de compras", description = "Retorna o item mais caro da lista de compras.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Item mais caro da lista de compras encontrado com sucesso."),

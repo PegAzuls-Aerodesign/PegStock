@@ -8,6 +8,7 @@ import com.pegazuls.aerodesign.PegStock.service.BorrowingService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,7 @@ public class BorrowingController {
     private BorrowingService service;
 
     @GetMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Listar todos os emprestimos", description = "Retorna uma lista de DTOs dos emprestimos cadastrados.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de emprestimos retornada com sucesso."),
@@ -41,6 +43,7 @@ public class BorrowingController {
     }
 
     @GetMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Buscar emprestimo por ID", description = "Retorna os detalhes de um emprestimo específico.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Emprestimo encontrado com sucesso."),
@@ -54,6 +57,7 @@ public class BorrowingController {
     }
 
     @DeleteMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Deletar emprestimo por ID", description = "Remove um emprestimo do sistema.")
     @ApiResponses({
             @ApiResponse(responseCode = "204", description = "Emprestimo deletado com sucesso."),
@@ -67,6 +71,7 @@ public class BorrowingController {
     }
 
     @GetMapping("/expired")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Listar emprestimos expirados", description = "Retorna uma lista de emprestimos que estão expirados.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de emprestimos expirados retornada com sucesso."),
@@ -80,6 +85,7 @@ public class BorrowingController {
     }
 
     @PostMapping
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Criar novo emprestimo", description = "Cria um novo emprestimo e retorna o emprestimo criado com o status 201.")
     @ApiResponses({
             @ApiResponse(responseCode = "201", description = "Emprestimo criado com sucesso."),
@@ -94,6 +100,7 @@ public class BorrowingController {
     }
 
     @PutMapping("/devolution/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Devolver emprestimo", description = "Marca um emprestimo como devolvido e atualiza a quantidade do material.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Emprestimo devolvido com sucesso."),
@@ -107,6 +114,7 @@ public class BorrowingController {
     }
 
     @PutMapping("/{id}")
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Atualizar emprestimo", description = "Atualiza a data de expiração de um emprestimo existente.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Emprestimo atualizado com sucesso."),
