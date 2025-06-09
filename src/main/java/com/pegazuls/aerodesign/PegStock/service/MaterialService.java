@@ -30,6 +30,7 @@ public class MaterialService {
    @Transactional
    public Material create(Material material) {
       validations.forEach(v -> v.validate(material));
+      material.setRegisterDate(LocalDate.now());
       return materialRepository.save(material);
    }
 
@@ -50,9 +51,13 @@ public class MaterialService {
 
    // Update product
    @Transactional
-   public void update(Material material, Long id) {
+   public Material update(Material material, Long id) {
       validations.forEach(v -> v.validate(material));
       Material materialUpdate = materialRepository.findById(id).orElse(null);
+
+      if (materialUpdate == null) {
+         return null; // Product not found
+      }
 
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
@@ -64,13 +69,18 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
-      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+
+      return materialUpdate;
    }
 
    // Delete product
-   public void delete(Long id) {
-      materialRepository.deleteById(id);
+   public boolean delete(Long id) {
+      if (existsById(id)) {
+         materialRepository.deleteById(id);
+         return true; // Deletion successful
+      }
+      return false; // Material not found
    }
 
    // Check if product exists
@@ -91,7 +101,7 @@ public class MaterialService {
    }
 
    // Method to verify most available product
-   public DTOMostAvailableMaterial mostAvailable() {
+   public DTOMaterialMostConsumer mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
 
@@ -101,7 +111,7 @@ public class MaterialService {
          }
       }
 
-      return new DTOMostAvailableMaterial(material);
+      return new DTOMaterialMostConsumer(material);
    }
 
    // Method to verify nearest expiration product
@@ -115,7 +125,7 @@ public class MaterialService {
          }
       }
 
-      return material == null ? new DTOMaterialExpirationDate("N/A", null) : new DTOMaterialExpirationDate(material);
+      return new DTOMaterialExpirationDate(material);
    }
 
    // List products by category

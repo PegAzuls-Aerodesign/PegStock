@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.controllers;
+package com.pegazuls.aerodesign.PegStock.controllers.javafx;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

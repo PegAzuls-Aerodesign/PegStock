@@ -1,6 +1,6 @@
 package front;
 
-import com.pegazuls.aerodesign.PegStock.controllers.PegStockController;
+import com.pegazuls.aerodesign.PegStock.controllers.javafx.PegStockController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.springframework.boot.SpringApplication;
