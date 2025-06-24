@@ -6,7 +6,6 @@ import java.util.List;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
-import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMostAvailableMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +68,7 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
+      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
 
       return materialUpdate;

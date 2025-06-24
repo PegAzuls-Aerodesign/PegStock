@@ -79,8 +79,7 @@ public class BorrowingService {
 
     @Transactional
     public Borrowing update(Long cod, Borrowing borrowing){
-        ValidationBorrowing validation = new ValidationBorrowingExpirationDate();
-        validation.validate(borrowing);
+        validationExpirationDate.validate(borrowing);
         Borrowing borrowing1 = borrowingRepository.findById(cod).orElse(null);
         if (borrowing1 == null) {
             return null; // Borrowing not found
