@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.controllers;
+package com.pegazuls.aerodesign.PegStock.controllers.javafx;
 
 import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;

@@ -1,6 +1,7 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBorrowing;
+import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBorrowingExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
@@ -27,16 +28,21 @@ public class BorrowingService {
 
     @Transactional
     public Borrowing create(Long materialCod, Borrowing borrowing){
-        validation.forEach(v -> v.validate(borrowing));
         Material material = materialService.findById(materialCod);
         borrowing.setMaterial(material);
+        validation.forEach(v -> v.validate(borrowing));
         material.getBorrowing().add(borrowing);
         material.setQuantity(material.getQuantity() - borrowing.getQuantity());
         return borrowingRepository.save(borrowing);
     }
 
     public Borrowing devolution(Long cod) {
-        Borrowing borrowing = borrowingRepository.findById(cod).orElseThrow();
+        Borrowing borrowing = borrowingRepository.findById(cod).orElse(null);
+
+        if (borrowing == null || borrowing.isReturned()) {
+            return null; // Borrowing not found or already returned
+        }
+
         Material material = borrowing.getMaterial();
         material.setQuantity(material.getQuantity() + borrowing.getQuantity());
         borrowing.setReturned(true);
@@ -46,7 +52,7 @@ public class BorrowingService {
 
 
     public Borrowing findById(Long cod){
-        return borrowingRepository.findById(cod).orElseThrow();
+        return borrowingRepository.findById(cod).orElse(null);
     }
 
     public List<Borrowing> findAll(){
@@ -54,8 +60,13 @@ public class BorrowingService {
     }
 
     @Transactional
-    public void delete(Long cod) {
-        Borrowing borrowing = borrowingRepository.findById(cod).orElseThrow();
+    public boolean delete(Long cod) {
+        Borrowing borrowing = borrowingRepository.findById(cod).orElse(null);
+
+        if(borrowing == null){
+            return false;
+        }
+
         Material material = borrowing.getMaterial();
 
         if (material != null) {
@@ -63,13 +74,18 @@ public class BorrowingService {
         }
 
         borrowingRepository.delete(borrowing);
+        return true;
     }
 
     @Transactional
-    public void update(Long cod, Borrowing borrowing){
-        validation.forEach(v -> v.validate(borrowing));
-        Borrowing borrowing1 = borrowingRepository.findById(cod).orElseThrow();
+    public Borrowing update(Long cod, Borrowing borrowing){
+        validationExpirationDate.validate(borrowing);
+        Borrowing borrowing1 = borrowingRepository.findById(cod).orElse(null);
+        if (borrowing1 == null) {
+            return null; // Borrowing not found
+        }
         borrowing1.setExpirationDate(borrowing.getExpirationDate());
+        return borrowing1;
     }
 
     public List<DTOBorrowingList> getExpiredBorrowings(LocalDate date){
