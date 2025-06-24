@@ -29,7 +29,7 @@ public class PegStockFront extends Application {
         screenManager.setStage(stage);
 
         // Carrega a tela inicial
-        screenManager.changeScreen("/front/fxml/PegStock.fxml");
+        screenManager.changeScreen("front/fxml/PegStock.fxml");
         PegStockController.class.getMethod("showHome").invoke(context.getBean(PegStockController.class));
     }
 

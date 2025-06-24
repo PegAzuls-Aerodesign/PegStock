@@ -44,13 +44,12 @@ public class DetailsController implements Initializable {
     @Autowired
     private BorrowingService borrowingService;
 
-
     @FXML
     private Button buttonAdd, buttonBorrowing, buttonCancel, buttonConsumption, buttonCancelAdd;
-  
+
     @FXML
-    private Button buttonCancelConsume, buttonConfirmAdd, buttonConfirmConsume, buttonCancelBorrowing, buttonConfirmBorrowing;
-  
+    private Button buttonCancelConsume, buttonConfirmAdd, buttonConfirmConsume, buttonCancelBorrowing,
+            buttonConfirmBorrowing;
 
     @FXML
     private Text code, dateAdd, dateConsumption, dateCriation, description,
@@ -65,10 +64,9 @@ public class DetailsController implements Initializable {
 
     @FXML
     private DatePicker expirationDate;
-  
+
     @FXML
     private AnchorPane registerBackgroundPage, registerConsumePage, registerAddPage, registerBorrowingPage;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -84,7 +82,7 @@ public class DetailsController implements Initializable {
     }
 
     @FXML
-        void showRegisterAddPage(MouseEvent event) {
+    void showRegisterAddPage(MouseEvent event) {
         registerBackgroundPage.setVisible(true);
         registerAddPage.setVisible(true);
     }
@@ -94,7 +92,7 @@ public class DetailsController implements Initializable {
         registerBackgroundPage.setVisible(true);
         registerBorrowingPage.setVisible(true);
     }
-  
+
     public void showDetails(Material material) {
         this.material = material;
         System.out.println(material);
@@ -109,25 +107,26 @@ public class DetailsController implements Initializable {
             nameCategory.setText(material.getCategory().toString());
             nameBox.setText(material.getBox().toString());
             quantity.setText(String.valueOf(material.getQuantity()));
-            nameValid.setText(material.getExpirationDate().toString());
-            dateCriation.setText(material.getCreatedDate().toString());
+            nameValid.setText(material.getExpirationDate() == null ? "N/A" : material.getExpirationDate().toString());
+            dateCriation.setText(material.getCreatedDate() == null ? "N/A" : material.getCreatedDate().toString());
             totalConsumption.setText(String.valueOf(material.getConsumerQuantity()));
             dateAdd.setText(material.getLastAddDate() == null ? "N/A" : material.getLastAddDate().toString());
-            dateConsumption.setText(material.getLastConsumptionDate() == null ? "N/A" : material.getLastConsumptionDate().toString());
+            dateConsumption.setText(
+                    material.getLastConsumptionDate() == null ? "N/A" : material.getLastConsumptionDate().toString());
         }
     }
 
     @FXML
     void cancel(MouseEvent event) {
-        if(event.getSource() == buttonCancelAdd) {
+        if (event.getSource() == buttonCancelAdd) {
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
             clearForm();
-        } else if(event.getSource() == buttonCancelConsume) {
+        } else if (event.getSource() == buttonCancelConsume) {
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
             clearForm();
-        } else if(event.getSource() == buttonCancelBorrowing) {
+        } else if (event.getSource() == buttonCancelBorrowing) {
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);
             clearForm();
@@ -135,24 +134,24 @@ public class DetailsController implements Initializable {
             screenManager.loadScreen("/front/fxml/StockPage.fxml");
         }
     }
-  
+
     @FXML
     void confirm(MouseEvent event) {
-        if(event.getSource() == buttonConfirmAdd) {
+        if (event.getSource() == buttonConfirmAdd) {
             int quantity = Integer.parseInt(addQuantity.getText());
             add(quantity);
             registerBackgroundPage.setVisible(false);
             registerAddPage.setVisible(false);
 
             clearForm();
-        } else if(event.getSource() == buttonConfirmConsume) {
+        } else if (event.getSource() == buttonConfirmConsume) {
             int quantity = Integer.parseInt(consumerQuant.getText());
             consumer(quantity);
             registerBackgroundPage.setVisible(false);
             registerConsumePage.setVisible(false);
 
             clearForm();
-        } else if(event.getSource() == buttonConfirmBorrowing) {
+        } else if (event.getSource() == buttonConfirmBorrowing) {
             addBorrowing();
             registerBackgroundPage.setVisible(false);
             registerBorrowingPage.setVisible(false);

@@ -60,6 +60,7 @@ public class MaterialService {
 
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
+      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setQuantity(material.getQuantity());
       materialUpdate.setConsumerQuantity(material.getConsumerQuantity());
       materialUpdate.setCategory(material.getCategory());
@@ -67,6 +68,7 @@ public class MaterialService {
       materialUpdate.setExpirationDate(material.getExpirationDate());
       materialUpdate.setCreatedDate(material.getCreatedDate());
       materialUpdate.setLastAddDate(material.getLastAddDate());
+      materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
 
       return materialUpdate;
@@ -115,10 +117,10 @@ public class MaterialService {
    // Method to verify nearest expiration product
    public DTOMaterialExpirationDate nearestExpiration() {
       List<Material> materials = materialRepository.findAll();
-      Material material = materials.get(0);
+      Material material = null;
 
       for (Material m : materials) {
-         if (m.getExpirationDate().isBefore(material.getExpirationDate())) {
+         if (m.getExpirationDate() != null && (material == null || m.getExpirationDate().isBefore(material.getExpirationDate()))) {
             material = m;
          }
       }
@@ -181,8 +183,8 @@ public class MaterialService {
    }
    
    public DTOMaterialMostConsumer getMostConsumer(){
-        Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
-        return new DTOMaterialMostConsumer(material);
+      Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
+      return new DTOMaterialMostConsumer(material);
    }
 
 }

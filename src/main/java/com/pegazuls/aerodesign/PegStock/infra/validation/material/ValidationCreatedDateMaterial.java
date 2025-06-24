@@ -13,7 +13,7 @@ public class ValidationCreatedDateMaterial implements ValidationMaterial {
     @Override
     public void validate(Material material) {
         // Verify if the created date is valid
-        if (material.getCreatedDate().isAfter(LocalDate.now())) {
+        if (material.getCreatedDate() != null && material.getCreatedDate().isAfter(LocalDate.now())) {
             throw new ValidationException("Data de fabricação inválida");
         }
     }
