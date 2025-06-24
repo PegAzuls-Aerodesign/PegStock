@@ -70,53 +70,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-controls</artifactId>
-			<version>21.0.6</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-fxml</artifactId>
-			<version>21.0.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics</artifactId>
-			<version>21.0.6</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-base</artifactId>
-			<version>21.0.6</version>
-		</dependency>
-
-		<dependency>
-			<groupId>net.rgielen</groupId>
-			<artifactId>javafx-weaver-spring</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>de.jensd</groupId>
-			<artifactId>fontawesomefx</artifactId>
-			<version>8.2</version>
-		</dependency>
-
-		<!-- Ikonli para FontAwesome -->
-		<dependency>
-			<groupId>org.kordamp.ikonli</groupId>
-			<artifactId>ikonli-fontawesome5-pack</artifactId>
-			<version>12.3.1</version>
-		</dependency>
-
-		<!-- Integração do Ikonli com JavaFX -->
-		<dependency>
-			<groupId>org.kordamp.ikonli</groupId>
-			<artifactId>ikonli-javafx</artifactId>
-			<version>12.3.1</version>
-		</dependency>
-
+		<!-- REMOVIDO: javafx-controls, javafx-fxml, javafx-graphics, javafx-base, javafx-weaver-spring, fontawesomefx, ikonli-fontawesome5-pack, ikonli-javafx -->
 	</dependencies>
 
 	<repositories>
@@ -189,7 +146,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<mainClass>front.PegStockFront</mainClass>
+					<mainClass>com.pegazuls.aerodesign.PegStock.PegStockApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -209,7 +166,7 @@
 				</executions>
 			</plugin>
 
-			<!-- Maven Assembly Plugin pto create JAR with dependencies -->
+			<!-- Maven Assembly Plugin to create JAR with dependencies -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -220,7 +177,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>front.PegStockFront</mainClass>
+							<mainClass>com.pegazuls.aerodesign.PegStock.PegStockApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -235,16 +192,6 @@
 				</executions>
 			</plugin>
 
-			<!-- JavaFX Maven Plugin -->
-			<plugin>
-				<groupId>org.openjfx</groupId>
-				<artifactId>javafx-maven-plugin</artifactId>
-				<version>0.0.8</version>
-				<configuration>
-					<mainClass>front.PegStockFront</mainClass>
-				</configuration>
-			</plugin>
-
 			<!-- Maven Shade Plugin to resolve dependencies conflicts -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -256,24 +203,6 @@
 						<goals>
 							<goal>shade</goal>
 						</goals>
-						<configuration>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>front.PegStockFront</mainClass>
-								</transformer>
-							</transformers>
-							<filters>
-								<filter>
-									<artifact>*:*</artifact>
-									<excludes>
-										<exclude>META-INF/*.SF</exclude>
-										<exclude>META-INF/*.DSA</exclude>
-										<exclude>META-INF/*.RSA</exclude>
-									</excludes>
-								</filter>
-							</filters>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
