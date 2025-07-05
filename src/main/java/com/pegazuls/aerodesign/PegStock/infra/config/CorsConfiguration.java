@@ -1,4 +1,4 @@
-package com.pegazuls.aerodesign.PegStock.config;
+package com.pegazuls.aerodesign.PegStock.infra.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
