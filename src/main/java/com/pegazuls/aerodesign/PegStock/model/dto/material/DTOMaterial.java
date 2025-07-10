@@ -15,7 +15,7 @@ public record DTOMaterial(
       int quantity,
       Category category,
       Box box,
-      LocalDate expirationLocalDate
+      LocalDate expirationDate
    ) {
       
         public DTOMaterial(Material material) {
