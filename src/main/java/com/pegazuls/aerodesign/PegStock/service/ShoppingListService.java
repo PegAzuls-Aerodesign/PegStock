@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,9 +25,11 @@ public class ShoppingListService {
     private List<ValidationCreateSL> validations;
 
     @Transactional
-    public void create(ShoppingList shoppingList) {
+    public ShoppingList create(ShoppingList shoppingList) {
         validations.forEach(v -> v.validate(shoppingList));
-        repository.save(shoppingList);
+        shoppingList.setTotalValue(shoppingList.getPrice() * shoppingList.getQuantity());
+        shoppingList.setDate(LocalDate.now());
+        return repository.save(shoppingList);
     }
 
     public List<ShoppingList> findAll() {
@@ -34,28 +37,38 @@ public class ShoppingListService {
         return repository.findAll();
     }
 
-    public DTOShoppingDetails findByName(String productName){
-        ShoppingList product = repository.findByProductName(productName);
-        return new DTOShoppingDetails(product);
+    public List<DTOShoppingDetails> findByName(String productName){
+        List<ShoppingList> products = repository.findByProductName(productName);
+        return products.stream().map(DTOShoppingDetails::new).toList();
     }
 
     public ShoppingList findById(Long id){
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElse(null);
     }
 
-    public void delete(Long id){
+    public boolean delete(Long id){
+        if (!repository.existsById(id)) {
+            return false;
+        }
         repository.deleteById(id);
+        return true;
     }
 
     @Transactional
-    public void update(Long id, ShoppingList shoppingList){
+    public ShoppingList update(Long id, ShoppingList shoppingList){
         validations.forEach(v -> v.validate(shoppingList));
-        ShoppingList product = repository.findById(id).orElseThrow();
+        ShoppingList product = repository.findById(id).orElse(null);
+        if (product == null) {
+            return null;
+        }
         product.setProductName(shoppingList.getProductName());
         product.setQuantity(shoppingList.getQuantity());
         product.setPrice(shoppingList.getPrice());
         product.setSupplier(shoppingList.getSupplier());
         product.setLink(shoppingList.getLink());
+        product.setDescription(shoppingList.getDescription());
+        product.setTotalValue(shoppingList.getPrice() * shoppingList.getQuantity());
+        return product;
     }
 
     public DTOShoppingSummary findMostExpensive(){

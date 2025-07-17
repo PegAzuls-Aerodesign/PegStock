@@ -1,14 +1,14 @@
 package com.pegazuls.aerodesign.PegStock.model.entities;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import com.pegazuls.aerodesign.PegStock.model.enums.*;
-
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Table
 @Entity(name = "tb_material")
