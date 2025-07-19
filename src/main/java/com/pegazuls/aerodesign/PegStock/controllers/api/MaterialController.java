@@ -60,7 +60,8 @@ public class MaterialController {
             @ApiResponse(responseCode = "201", description = "Material criado com sucesso."),
             @ApiResponse(responseCode = "400", description = "Requisição inválida. Verifique os dados enviados.")
     })
-    public ResponseEntity<Material> createMaterial(@RequestBody Material material, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<Material> createMaterial(@RequestBody DTOMaterial dtoMaterial, UriComponentsBuilder uriBuilder) {
+        Material material = new Material(dtoMaterial);
         Material materialCreated = materialService.create(material);
         URI uri = uriBuilder.path("/material/{id}").buildAndExpand(materialCreated.getCod()).toUri();
 
@@ -75,7 +76,8 @@ public class MaterialController {
             @ApiResponse(responseCode = "200", description = "Material atualizado com sucesso."),
             @ApiResponse(responseCode = "404", description = "Material não encontrado.")
     })
-    public ResponseEntity<Material> updateMaterial(@RequestBody Material material, @PathVariable Long id) {
+    public ResponseEntity<Material> updateMaterial(@RequestBody DTOMaterial dtoMaterial, @PathVariable Long id) {
+        Material material = new Material(dtoMaterial);
         Material material1 = materialService.update(material, id);
         return material1 == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(material1);
     }
@@ -99,8 +101,8 @@ public class MaterialController {
             @ApiResponse(responseCode = "200", description = "Material mais consumido retornado com sucesso."),
             @ApiResponse(responseCode = "204", description = "Nenhum material encontrado.")
     })
-    public ResponseEntity<DTOMaterialMostConsumer> getMostConsumed() {
-        DTOMaterialMostConsumer material = materialService.getMostConsumer();
+    public ResponseEntity<DTOMaterial> getMostConsumed() {
+        DTOMaterial material = materialService.getMostConsumer();
         return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
     }
 
@@ -111,16 +113,16 @@ public class MaterialController {
             @ApiResponse(responseCode = "200", description = "Material mais disponível retornado com sucesso."),
             @ApiResponse(responseCode = "204", description = "Nenhum material encontrado.")
     })
-    public ResponseEntity<DTOMaterialMostConsumer> getMostAvailable() {
-        DTOMaterialMostConsumer material = materialService.mostAvailable();
+    public ResponseEntity<DTOMaterial> getMostAvailable() {
+        DTOMaterial material = materialService.mostAvailable();
         return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
     }
 
     @GetMapping("/nearest_expiration")
     @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Material com data de validade mais próxima", description = "Retorna o material com a data de validade mais próxima. (Utilizar no resumo de controle de bens)")
-    public ResponseEntity<DTOMaterialExpirationDate> getNearestExpiration() {
-        DTOMaterialExpirationDate material = materialService.nearestExpiration();
+    public ResponseEntity<DTOMaterial> getNearestExpiration() {
+        DTOMaterial material = materialService.nearestExpiration();
         return material == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(material);
     }
 

@@ -1,5 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.model.entities;
 
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
 import jakarta.persistence.*;
@@ -57,7 +58,19 @@ public class Material {
       this.registerDate = LocalDate.now();
    }
 
-   @Override
+    public Material(DTOMaterial dtoMaterial) {
+        this.cod = dtoMaterial.cod();
+        this.name = dtoMaterial.name();
+        this.description = dtoMaterial.description();
+        this.brand = dtoMaterial.brand();
+        this.quantity = dtoMaterial.quantity();
+        this.category = dtoMaterial.category();
+        this.box = dtoMaterial.box();
+        this.expirationDate = dtoMaterial.expirationDate();
+        this.createdDate = LocalDate.now(); // Assuming createdDate is set to the current date
+    }
+
+    @Override
    public String toString() {
       return name;
    }
