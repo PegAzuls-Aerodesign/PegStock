@@ -6,6 +6,9 @@ import java.util.List;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
+import com.pegazuls.aerodesign.PegStock.model.entities.StockMovement;
+import com.pegazuls.aerodesign.PegStock.model.enums.MovementType;
+import com.pegazuls.aerodesign.PegStock.repository.StockMovementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +27,19 @@ public class MaterialService {
    private MaterialRepository materialRepository;
    @Autowired
    private List<ValidationMaterial> validations;
+   @Autowired
+   private StockMovementRepository stockMovementRepository;
 
    // Register new product
    @Transactional
    public Material create(Material material) {
       validations.forEach(v -> v.validate(material));
       material.setRegisterDate(LocalDate.now());
+
+      StockMovement movement = new StockMovement(material,
+              material.getQuantity(), MovementType.ADDITION, "System");
+      stockMovementRepository.save(movement);
+
       return materialRepository.save(material);
    }
 
@@ -58,6 +68,8 @@ public class MaterialService {
          return null; // Product not found
       }
 
+      int quantity = materialUpdate.getQuantity();
+
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
       materialUpdate.setBrand(material.getBrand());
@@ -70,6 +82,16 @@ public class MaterialService {
       materialUpdate.setLastAddDate(material.getLastAddDate());
       materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
+
+      if (materialUpdate.getQuantity() > quantity){
+         StockMovement movement = new StockMovement(materialUpdate,
+                 materialUpdate.getQuantity() - quantity, MovementType.ADDITION, "System");
+         stockMovementRepository.save(movement);
+      } else {
+            StockMovement movement = new StockMovement(materialUpdate,
+                    quantity - materialUpdate.getQuantity(), MovementType.CONSUMPTION, "System");
+            stockMovementRepository.save(movement);
+      }
 
       return materialUpdate;
    }
