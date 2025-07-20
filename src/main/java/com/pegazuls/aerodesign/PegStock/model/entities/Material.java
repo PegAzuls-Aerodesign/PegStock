@@ -3,6 +3,7 @@ package com.pegazuls.aerodesign.PegStock.model.entities;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
+import com.pegazuls.aerodesign.PegStock.model.enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,6 +53,15 @@ public class Material {
 
    @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
    private List<Borrowing> borrowing;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(
+            name = "tb_material_status",
+            joinColumns = @JoinColumn(name = "material_id")
+    )
+    @Column(name = "status")
+   private List<Status> status;
 
 
    public Material() {
