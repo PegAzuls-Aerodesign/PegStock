@@ -1,8 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.controllers.api;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
-import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
-import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
@@ -48,9 +46,14 @@ public class MaterialController {
             @ApiResponse(responseCode = "200", description = "Material encontrado com sucesso."),
             @ApiResponse(responseCode = "404", description = "Material não encontrado.")
     })
-    public ResponseEntity<Material> getMaterialByCod(@PathVariable Long id) {
+    public ResponseEntity<DTOMaterial> getMaterialByCod(@PathVariable Long id) {
         Material material = materialService.findById(id);
-        return material == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(material);
+        if (material == null) {
+            return ResponseEntity.notFound().build();
+        }
+        // Convert to DTO if needed
+        DTOMaterial dtoMaterial = new DTOMaterial(material);
+        return ResponseEntity.ok(dtoMaterial);
     }
 
     @PostMapping
