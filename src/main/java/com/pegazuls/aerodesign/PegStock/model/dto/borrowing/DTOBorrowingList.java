@@ -10,6 +10,7 @@ public record DTOBorrowingList(
         String createdDate,
         String responsible,
         Long materialCod,
+        String nameMaterial,
         boolean returned
 ) {
     public DTOBorrowingList(Borrowing borrowing) {
@@ -20,6 +21,7 @@ public record DTOBorrowingList(
                 borrowing.getCreatedDate().toString(),
                 borrowing.getResponsible(),
                 borrowing.getMaterial().getCod(),
+                borrowing.getMaterial().getName(),
                 borrowing.isReturned());
     }
 
