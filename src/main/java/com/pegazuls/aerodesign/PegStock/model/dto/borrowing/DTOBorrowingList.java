@@ -9,7 +9,7 @@ public record DTOBorrowingList(
         String expirationDate,
         String createdDate,
         String responsible,
-        String material,
+        Long materialCod,
         boolean returned
 ) {
     public DTOBorrowingList(Borrowing borrowing) {
@@ -19,12 +19,12 @@ public record DTOBorrowingList(
                 borrowing.getExpirationDate().toString(),
                 borrowing.getCreatedDate().toString(),
                 borrowing.getResponsible(),
-                borrowing.getMaterial().getName(),
+                borrowing.getMaterial().getCod(),
                 borrowing.isReturned());
     }
 
     @Override
     public String toString() {
-        return "quantity: " + quantity + ", borrower: " + borrower + ", expiration date: " + expirationDate + ", created date: " + createdDate + ", responsible: " + responsible + ", material: " + material;
+        return "quantity: " + quantity + ", borrower: " + borrower + ", expiration date: " + expirationDate + ", created date: " + createdDate + ", responsible: " + responsible + ", material: " + materialCod;
     }
 }
