@@ -108,6 +108,7 @@ public class BorrowingController {
     })
     public ResponseEntity<Borrowing> devolution(@PathVariable Long id){
         Borrowing borrowing = service.devolution(id);
+
         return borrowing == null ?
                 ResponseEntity.notFound().build() :
                 ResponseEntity.ok(borrowing);

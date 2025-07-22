@@ -32,7 +32,7 @@ public class BorrowingService {
     private List<ValidationBorrowing> validation;
 
 
-    @Transactional
+    //@Transactional
     public Borrowing create(Long materialCod, Borrowing borrowing){
         Material material = materialService.findById(materialCod);
         borrowing.setMaterial(material);
@@ -46,8 +46,10 @@ public class BorrowingService {
                 borrowing.getQuantity(), MovementType.CONSUMPTION,
                 borrowing.getResponsible(), null);
         stockMovementRepository.save(movement);
-
+      
+        materialService.refreshStatus(material);
         return savedBorrowing;
+
     }
 
     public Borrowing devolution(Long cod) {
