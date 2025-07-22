@@ -1,24 +1,20 @@
 package com.pegazuls.aerodesign.PegStock.service;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
-import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialExpirationDate;
-import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterialMostConsumer;
-import com.pegazuls.aerodesign.PegStock.model.entities.StockMovement;
-import com.pegazuls.aerodesign.PegStock.model.enums.MovementType;
-import com.pegazuls.aerodesign.PegStock.repository.StockMovementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.pegazuls.aerodesign.PegStock.infra.validation.material.ValidationMaterial;
+import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
+import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
+import com.pegazuls.aerodesign.PegStock.model.enums.Status;
 import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
-
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MaterialService {
@@ -27,18 +23,13 @@ public class MaterialService {
    private MaterialRepository materialRepository;
    @Autowired
    private List<ValidationMaterial> validations;
-   @Autowired
-   private StockMovementRepository stockMovementRepository;
+
 
    // Register new product
    @Transactional
    public Material create(Material material) {
       validations.forEach(v -> v.validate(material));
       material.setRegisterDate(LocalDate.now());
-
-      StockMovement movement = new StockMovement(material,
-              material.getQuantity(), MovementType.ADDITION, "System");
-      stockMovementRepository.save(movement);
 
       return materialRepository.save(material);
    }
@@ -82,16 +73,7 @@ public class MaterialService {
       materialUpdate.setLastAddDate(material.getLastAddDate());
       materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
-
-      if (materialUpdate.getQuantity() > quantity){
-         StockMovement movement = new StockMovement(materialUpdate,
-                 materialUpdate.getQuantity() - quantity, MovementType.ADDITION, "System");
-         stockMovementRepository.save(movement);
-      } else {
-            StockMovement movement = new StockMovement(materialUpdate,
-                    quantity - materialUpdate.getQuantity(), MovementType.CONSUMPTION, "System");
-            stockMovementRepository.save(movement);
-      }
+        materialUpdate.setStatus(calculateStatus(material));
 
       return materialUpdate;
    }
@@ -123,7 +105,7 @@ public class MaterialService {
    }
 
    // Method to verify most available product
-   public DTOMaterialMostConsumer mostAvailable() {
+   public DTOMaterial mostAvailable() {
       List<Material> materials = materialRepository.findAll();
       Material material = materials.get(0);
 
@@ -133,11 +115,11 @@ public class MaterialService {
          }
       }
 
-      return new DTOMaterialMostConsumer(material);
+      return new DTOMaterial(material);
    }
 
    // Method to verify nearest expiration product
-   public DTOMaterialExpirationDate nearestExpiration() {
+   public DTOMaterial nearestExpiration() {
       List<Material> materials = materialRepository.findAll();
       Material material = null;
 
@@ -147,7 +129,7 @@ public class MaterialService {
          }
       }
 
-      return new DTOMaterialExpirationDate(material);
+      return new DTOMaterial(material);
    }
 
    // List products by category
@@ -204,9 +186,35 @@ public class MaterialService {
       return materials;
    }
    
-   public DTOMaterialMostConsumer getMostConsumer(){
+   public DTOMaterial getMostConsumer(){
       Material material = materialRepository.findFirstByOrderByConsumerQuantityDesc();
-      return new DTOMaterialMostConsumer(material);
+      return new DTOMaterial(material);
+   }
+
+   private List<Status> calculateStatus(Material material) {
+      List<Status> statusList = new ArrayList<>();
+
+      // Check if expired
+      if (material.getExpirationDate() != null && material.getExpirationDate().isBefore(LocalDate.now())) {
+         statusList.add(Status.EXPIRED);
+      }
+
+      // Check if quantity is zero
+      if (material.getQuantity() == 0) {
+         statusList.add(Status.UNAVAILABLE);
+      }
+
+      // Check if stock is low
+      if (material.getQuantity() <= 5) { // you can customize this threshold
+         statusList.add(Status.LOW_STOCK);
+      }
+
+      return statusList;
+   }
+
+   public void refreshStatus(Material material) {
+      material.setStatus(calculateStatus(material));
+      materialRepository.save(material);
    }
 
 }

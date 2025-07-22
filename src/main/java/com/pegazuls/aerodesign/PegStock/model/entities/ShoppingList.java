@@ -1,5 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.model.entities;
 
+import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetails;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,4 +43,13 @@ public class ShoppingList {
 
     private Double totalValue;
 
+    public ShoppingList(DTOShoppingDetails dtoShoppingList) {
+        this.cod = dtoShoppingList.cod();
+        this.productName = dtoShoppingList.name();
+        this.quantity = dtoShoppingList.quantity();
+        this.price = dtoShoppingList.price();
+        this.supplier = dtoShoppingList.supplier();
+        this.link = dtoShoppingList.link();
+        this.description = dtoShoppingList.description();
+    }
 }

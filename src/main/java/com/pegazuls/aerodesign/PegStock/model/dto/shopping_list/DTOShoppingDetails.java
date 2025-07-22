@@ -11,11 +11,12 @@ public record DTOShoppingDetails(
         int quantity,
         double price,
         String supplier,
-        String link) {
+        String link,
+        String description) {
 
 
     public DTOShoppingDetails(ShoppingList product) {
-        this(product.getCod(), product.getProductName(), product.getQuantity(), product.getPrice(), product.getSupplier(), product.getLink());
+        this(product.getCod(), product.getProductName(), product.getQuantity(), product.getPrice(), product.getSupplier(), product.getLink(), product.getDescription());
     }
 
     @Override
