@@ -42,7 +42,7 @@ public class BorrowingService {
 
         StockMovement movement = new StockMovement(material,
                 borrowing.getQuantity(), MovementType.CONSUMPTION,
-                borrowing.getResponsible());
+                borrowing.getResponsible(), null);
         stockMovementRepository.save(movement);
 
         return borrowingRepository.save(borrowing);
@@ -62,7 +62,7 @@ public class BorrowingService {
 
         StockMovement movement = new StockMovement(material,
                 borrowing.getQuantity(), MovementType.RETURN,
-                borrowing.getResponsible());
+                borrowing.getResponsible(), null);
         stockMovementRepository.save(movement);
 
         return borrowingRepository.save(borrowing);

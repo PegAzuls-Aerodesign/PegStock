@@ -36,11 +36,14 @@ public class StockMovement {
     @Column(nullable = false)
     private String responsible; // Responsável pela movimentação
 
-    public StockMovement(Material material, int quantity, MovementType type, String responsible) {
+    public StockMovement(Material material, int quantity, MovementType type, String responsible, LocalDate movementDate) {
         this.material = material;
         this.quantity = quantity;
         this.type = type;
-        this.movementDate = LocalDate.now();
+        if (movementDate == null)
+            this.movementDate = LocalDate.now();
+        else
+            this.movementDate = movementDate;
         this.responsible = responsible;
     }
 }

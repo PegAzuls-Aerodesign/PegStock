@@ -35,12 +35,14 @@ public class MaterialService {
       validations.forEach(v -> v.validate(material));
       material.setRegisterDate(LocalDate.now());
 
+      Material savedMaterial = materialRepository.save(material);
+
       StockMovement movement = new StockMovement(material,
               material.getQuantity(), MovementType.ADDITION,
-              "System");
+              "System", null);
       stockMovementRepository.save(movement);
 
-      return materialRepository.save(material);
+      return savedMaterial;
    }
 
    public List<DTOBorrowingDetails> getBorrowings(Long cod) {
@@ -87,14 +89,13 @@ public class MaterialService {
 
       if (newQuantity > oldQuantity) {
          StockMovement movement = new StockMovement(materialUpdate,
-                 newQuantity - oldQuantity, MovementType.ADDITION, "System");
+                 newQuantity - oldQuantity, MovementType.ADDITION, "System", null);
          stockMovementRepository.save(movement);
       } else if (newQuantity < oldQuantity) {
          StockMovement movement = new StockMovement(materialUpdate,
-                 oldQuantity - newQuantity, MovementType.CONSUMPTION, "System");
+                 oldQuantity - newQuantity, MovementType.CONSUMPTION, "System", null);
          stockMovementRepository.save(movement);
       }
-
 
       return materialUpdate;
    }
