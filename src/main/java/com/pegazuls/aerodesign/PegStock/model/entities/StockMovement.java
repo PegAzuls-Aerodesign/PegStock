@@ -28,7 +28,7 @@ public class StockMovement {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private MovementType type; // ADDTION, CONSUMPTION, RETURN, ADJUSTMENT
+    private MovementType type; // ADDITION, CONSUMPTION, RETURN, ADJUSTMENT
 
     @Column(nullable = false)
     private LocalDate movementDate;
