@@ -10,6 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Comandos", description = "Controller para o gerenciamento dos comandos do sistema PegStock")
 public class CommandController {
 
-    @Autowired
     
 }
