@@ -4,10 +4,13 @@ import com.pegazuls.aerodesign.PegStock.infra.validation.material.ValidationMate
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingDetails;
 import com.pegazuls.aerodesign.PegStock.model.dto.material.DTOMaterial;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.entities.StockMovement;
 import com.pegazuls.aerodesign.PegStock.model.enums.Box;
 import com.pegazuls.aerodesign.PegStock.model.enums.Category;
+import com.pegazuls.aerodesign.PegStock.model.enums.MovementType;
 import com.pegazuls.aerodesign.PegStock.model.enums.Status;
 import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
+import com.pegazuls.aerodesign.PegStock.repository.StockMovementRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,14 +26,23 @@ public class MaterialService {
    private MaterialRepository materialRepository;
    @Autowired
    private List<ValidationMaterial> validations;
+   @Autowired
+   private StockMovementRepository stockMovementRepository;
 
    // Register new product
    @Transactional
    public Material create(Material material) {
       validations.forEach(v -> v.validate(material));
       material.setRegisterDate(LocalDate.now());
-      material.setStatus(calculateStatus(material));
-      return materialRepository.save(material);
+
+      Material savedMaterial = materialRepository.save(material);
+
+      StockMovement movement = new StockMovement(material,
+              material.getQuantity(), MovementType.ADDITION,
+              "System", null);
+      stockMovementRepository.save(movement);
+
+      return savedMaterial;
    }
 
    public List<DTOBorrowingDetails> getBorrowings(Long cod) {
@@ -58,6 +70,9 @@ public class MaterialService {
          return null; // Product not found
       }
 
+      int oldQuantity = materialUpdate.getQuantity();
+      int newQuantity = material.getQuantity();
+
       materialUpdate.setName(material.getName());
       materialUpdate.setDescription(material.getDescription());
       materialUpdate.setBrand(material.getBrand());
@@ -71,6 +86,16 @@ public class MaterialService {
       materialUpdate.setBrand(material.getBrand());
       materialUpdate.setLastConsumptionDate(material.getLastConsumptionDate());
         materialUpdate.setStatus(calculateStatus(material));
+
+      if (newQuantity > oldQuantity) {
+         StockMovement movement = new StockMovement(materialUpdate,
+                 newQuantity - oldQuantity, MovementType.ADDITION, "System", null);
+         stockMovementRepository.save(movement);
+      } else if (newQuantity < oldQuantity) {
+         StockMovement movement = new StockMovement(materialUpdate,
+                 oldQuantity - newQuantity, MovementType.CONSUMPTION, "System", null);
+         stockMovementRepository.save(movement);
+      }
 
       return materialUpdate;
    }

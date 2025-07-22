@@ -5,7 +5,10 @@ import com.pegazuls.aerodesign.PegStock.infra.validation.borrowing.ValidationBor
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOBorrowingList;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
+import com.pegazuls.aerodesign.PegStock.model.entities.StockMovement;
+import com.pegazuls.aerodesign.PegStock.model.enums.MovementType;
 import com.pegazuls.aerodesign.PegStock.repository.BorrowingRepository;
+import com.pegazuls.aerodesign.PegStock.repository.StockMovementRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,9 @@ public class BorrowingService {
     private MaterialService materialService;
 
     @Autowired
+    private StockMovementRepository stockMovementRepository;
+
+    @Autowired
     private List<ValidationBorrowing> validation;
 
 
@@ -33,8 +39,17 @@ public class BorrowingService {
         validation.forEach(v -> v.validate(borrowing));
         material.getBorrowing().add(borrowing);
         material.setQuantity(material.getQuantity() - borrowing.getQuantity());
+
+        Borrowing savedBorrowing = borrowingRepository.save(borrowing);
+
+        StockMovement movement = new StockMovement(material,
+                borrowing.getQuantity(), MovementType.CONSUMPTION,
+                borrowing.getResponsible(), null);
+        stockMovementRepository.save(movement);
+      
         materialService.refreshStatus(material);
-        return borrowingRepository.save(borrowing);
+        return savedBorrowing;
+
     }
 
     public Borrowing devolution(Long cod) {
@@ -48,7 +63,15 @@ public class BorrowingService {
         material.setQuantity(material.getQuantity() + borrowing.getQuantity());
         borrowing.setReturned(true);
         materialService.update(material, material.getCod());
-        return borrowingRepository.save(borrowing);
+
+        Borrowing devolutionBorrowing = borrowingRepository.save(borrowing);
+
+        StockMovement movement = new StockMovement(material,
+                borrowing.getQuantity(), MovementType.RETURN,
+                borrowing.getResponsible(), null);
+        stockMovementRepository.save(movement);
+
+        return devolutionBorrowing;
     }
 
 
