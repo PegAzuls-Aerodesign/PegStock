@@ -31,7 +31,7 @@ public class BorrowingController {
     @Operation(summary = "Listar todos os emprestimos", description = "Retorna uma lista de DTOs dos emprestimos cadastrados.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de emprestimos retornada com sucesso."),
-            @ApiResponse(responseCode = "204", description = "Nenhum emprestimo cadastrado.")
+            @ApiResponse(responseCode = "404", description = "Nenhum emprestimo cadastrado.")
     })
     public ResponseEntity<List<DTOBorrowingList>> listBorrowings(){
         List<Borrowing> borrowings = service.findAll();
@@ -75,7 +75,7 @@ public class BorrowingController {
     @Operation(summary = "Listar emprestimos expirados", description = "Retorna uma lista de emprestimos que estão expirados.")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Lista de emprestimos expirados retornada com sucesso."),
-            @ApiResponse(responseCode = "204", description = "Nenhum emprestimo expirado encontrado.")
+            @ApiResponse(responseCode = "404", description = "Nenhum emprestimo expirado encontrado.")
     })
     public  ResponseEntity<List<DTOBorrowingList>> getExpiredBorrowings(){
         var expiredBorrowings = service.getExpiredBorrowings(LocalDate.now());
