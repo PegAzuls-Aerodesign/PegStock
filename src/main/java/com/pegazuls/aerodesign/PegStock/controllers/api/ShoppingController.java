@@ -73,7 +73,8 @@ public class ShoppingController {
             @ApiResponse(responseCode = "201", description = "Item da lista de compras criado com sucesso."),
             @ApiResponse(responseCode = "400", description = "Erro ao criar o item da lista de compras.")
     })
-    public ResponseEntity<ShoppingList> create(@RequestBody ShoppingList shoppingList, UriComponentsBuilder uriBuilder){
+    public ResponseEntity<ShoppingList> create(@RequestBody DTOShoppingDetails dtoShoppingList, UriComponentsBuilder uriBuilder){
+        ShoppingList shoppingList = new ShoppingList(dtoShoppingList);
         ShoppingList shoppingListCreated = shoppingService.create(shoppingList);
         URI uri = uriBuilder.path("/shopping/{id}").buildAndExpand(shoppingListCreated.getCod()).toUri();
         return ResponseEntity.created(uri).body(shoppingListCreated);
@@ -86,7 +87,8 @@ public class ShoppingController {
             @ApiResponse(responseCode = "200", description = "Item da lista de compras atualizado com sucesso."),
             @ApiResponse(responseCode = "404", description = "Item da lista de compras não encontrado.")
     })
-    public ResponseEntity<ShoppingList> update(@RequestBody ShoppingList shoppingList, @PathVariable Long id){
+    public ResponseEntity<ShoppingList> update(@RequestBody DTOShoppingDetails dtoShoppingList, @PathVariable Long id){
+        ShoppingList shoppingList = new ShoppingList(dtoShoppingList);
         ShoppingList updated = shoppingService.update(id, shoppingList);
         return updated != null ? ResponseEntity.ok(shoppingList) : ResponseEntity.notFound().build();
     }
@@ -110,8 +112,8 @@ public class ShoppingController {
             @ApiResponse(responseCode = "200", description = "Item mais caro da lista de compras encontrado com sucesso."),
             @ApiResponse(responseCode = "204", description = "Nenhum item encontrado na lista de compras.")
     })
-    public ResponseEntity<DTOShoppingSummary> getMostExpensive(){
-        DTOShoppingSummary shoppingList = shoppingService.findMostExpensive();
+    public ResponseEntity<DTOShoppingDetails> getMostExpensive(){
+        DTOShoppingDetails shoppingList = shoppingService.findMostExpensive();
         return shoppingList == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(shoppingList);
     }
 }
