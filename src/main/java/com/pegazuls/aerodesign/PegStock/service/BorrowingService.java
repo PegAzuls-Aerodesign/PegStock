@@ -26,13 +26,14 @@ public class BorrowingService {
     private List<ValidationBorrowing> validation;
 
 
-    @Transactional
+    //@Transactional
     public Borrowing create(Long materialCod, Borrowing borrowing){
         Material material = materialService.findById(materialCod);
         borrowing.setMaterial(material);
         validation.forEach(v -> v.validate(borrowing));
         material.getBorrowing().add(borrowing);
         material.setQuantity(material.getQuantity() - borrowing.getQuantity());
+        materialService.refreshStatus(material);
         return borrowingRepository.save(borrowing);
     }
 
