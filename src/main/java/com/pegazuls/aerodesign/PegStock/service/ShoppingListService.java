@@ -71,17 +71,17 @@ public class ShoppingListService {
         return product;
     }
 
-    public DTOShoppingSummary findMostExpensive(){
+    public DTOShoppingDetails findMostExpensive(){
         ShoppingList product = repository.findFirstByOrderByPriceDesc();
 
         if (product == null) {
             ShoppingList emptyProduct = new ShoppingList();
             emptyProduct.setProductName("null");
             emptyProduct.setPrice(0.0);
-            return new DTOShoppingSummary(emptyProduct);
+            return new DTOShoppingDetails(emptyProduct);
         }
 
-        return new DTOShoppingSummary(product);
+        return new DTOShoppingDetails(product);
     }
 
     public void generateShoppingListCSV(){
