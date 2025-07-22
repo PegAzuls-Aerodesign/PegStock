@@ -40,12 +40,14 @@ public class BorrowingService {
         material.getBorrowing().add(borrowing);
         material.setQuantity(material.getQuantity() - borrowing.getQuantity());
 
+        Borrowing savedBorrowing = borrowingRepository.save(borrowing);
+
         StockMovement movement = new StockMovement(material,
                 borrowing.getQuantity(), MovementType.CONSUMPTION,
                 borrowing.getResponsible(), null);
         stockMovementRepository.save(movement);
 
-        return borrowingRepository.save(borrowing);
+        return savedBorrowing;
     }
 
     public Borrowing devolution(Long cod) {
@@ -60,12 +62,14 @@ public class BorrowingService {
         borrowing.setReturned(true);
         materialService.update(material, material.getCod());
 
+        Borrowing devolutionBorrowing = borrowingRepository.save(borrowing);
+
         StockMovement movement = new StockMovement(material,
                 borrowing.getQuantity(), MovementType.RETURN,
                 borrowing.getResponsible(), null);
         stockMovementRepository.save(movement);
 
-        return borrowingRepository.save(borrowing);
+        return devolutionBorrowing;
     }
 
 
