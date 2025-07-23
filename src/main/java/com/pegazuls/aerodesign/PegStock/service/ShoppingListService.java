@@ -78,8 +78,9 @@ public class ShoppingListService {
         return products.stream().map(DTOShoppingDetails::new).toList();
     }
 
-    public ShoppingList findById(Long id){
-        return repository.findById(id).orElse(null);
+    public DTOShoppingDetails findById(Long id){
+        ShoppingList shoppingList = repository.findById(id).orElse(null);
+        return new DTOShoppingDetails(shoppingList);
     }
 
     public boolean delete(Long id){
