@@ -43,6 +43,11 @@ public class ShoppingList {
 
     private Double totalValue;
 
+    @ManyToOne
+    @JoinColumn(name = "material_cod")
+    private Material material;
+
+
     public ShoppingList(DTOShoppingDetails dtoShoppingList) {
         this.cod = dtoShoppingList.cod();
         this.productName = dtoShoppingList.name();

@@ -23,4 +23,6 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
     // return the most consumed material
     Material findFirstByOrderByConsumerQuantityDesc();
 
+    Material findByName(String name);
+
 }
