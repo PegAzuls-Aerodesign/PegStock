@@ -2,8 +2,11 @@ package com.pegazuls.aerodesign.PegStock.service;
 
 import com.pegazuls.aerodesign.PegStock.infra.validation.shopping_list.ValidationCreateSL;
 import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetails;
-import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingSummary;
+import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
+import com.pegazuls.aerodesign.PegStock.model.enums.Box;
+import com.pegazuls.aerodesign.PegStock.model.enums.Category;
+import com.pegazuls.aerodesign.PegStock.repository.MaterialRepository;
 import com.pegazuls.aerodesign.PegStock.repository.ShoppingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,12 @@ public class ShoppingListService {
     private ShoppingListRepository repository;
 
     @Autowired
+    private MaterialRepository materialRepository;
+
+    @Autowired
+    private MaterialService materialService;
+
+    @Autowired
     private List<ValidationCreateSL> validations;
 
     @Transactional
@@ -29,7 +38,34 @@ public class ShoppingListService {
         validations.forEach(v -> v.validate(shoppingList));
         shoppingList.setTotalValue(shoppingList.getPrice() * shoppingList.getQuantity());
         shoppingList.setDate(LocalDate.now());
+
+        Material material = materialRepository.findByName(shoppingList.getProductName());
+
+        if (material == null) {
+            Material newMaterial = new Material();
+            newMaterial.setName(shoppingList.getProductName());
+            newMaterial.setDescription("Material criado automaticamente");
+            newMaterial.setQuantity(0); 
+            newMaterial.setCategory(Category.CONSUMIVEL); 
+            newMaterial.setBox(Box.OUTROS); 
+            material = materialService.create(newMaterial);
+        }
+
+        shoppingList.setMaterial(material);
         return repository.save(shoppingList);
+    }
+
+    @Transactional
+    public void purchaseItem(Long shoppingListId) {
+        ShoppingList shoppingList = repository.findById(shoppingListId).orElse(null);
+        if (shoppingList != null) {
+            Material material = shoppingList.getMaterial();
+            if (material != null) {
+                material.setQuantity(material.getQuantity() + shoppingList.getQuantity());
+                materialService.update(material, material.getCod());
+            }
+            delete(shoppingListId);
+        }
     }
 
     public List<ShoppingList> findAll() {

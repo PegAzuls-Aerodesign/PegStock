@@ -1,7 +1,6 @@
 package com.pegazuls.aerodesign.PegStock.controllers.api;
 
 import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingDetails;
-import com.pegazuls.aerodesign.PegStock.model.dto.shopping_list.DTOShoppingSummary;
 import com.pegazuls.aerodesign.PegStock.model.entities.ShoppingList;
 import com.pegazuls.aerodesign.PegStock.service.ShoppingListService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -115,5 +114,17 @@ public class ShoppingController {
     public ResponseEntity<DTOShoppingDetails> getMostExpensive(){
         DTOShoppingDetails shoppingList = shoppingService.findMostExpensive();
         return shoppingList == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(shoppingList);
+    }
+
+    @PostMapping("/{id}/purchase")
+    @SecurityRequirement(name = "bearer-key")
+    @Operation(summary = "Adicionar item da lista de compras ao estoque", description = "Adiciona a quantidade do item da lista de compras ao material existente no estoque.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Item adicionado ao estoque com sucesso."),
+            @ApiResponse(responseCode = "404", description = "Item da lista de compras ou material não encontrado.")
+    })
+    public ResponseEntity<?> purchaseItem(@PathVariable Long id) {
+        shoppingService.purchaseItem(id);
+        return ResponseEntity.ok("Item adicionado ao estoque com sucesso.");
     }
 }

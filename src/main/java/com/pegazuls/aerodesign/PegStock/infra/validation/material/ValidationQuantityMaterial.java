@@ -10,7 +10,7 @@ public class ValidationQuantityMaterial implements ValidationMaterial {
     @Override
     public void validate(Material material) {
         // Verify if the quantity is valid
-        if(material.getQuantity() <= 0){
+        if(material.getQuantity() < 0){
             throw new ValidationException("Quantidade inválida");
         }
     }
