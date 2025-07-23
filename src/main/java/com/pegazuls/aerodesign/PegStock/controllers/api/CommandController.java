@@ -5,6 +5,7 @@ import com.pegazuls.aerodesign.PegStock.commands.BorrowCommand;
 import com.pegazuls.aerodesign.PegStock.commands.ConsumeCommand;
 import com.pegazuls.aerodesign.PegStock.commands.CommandInvoker;
 import com.pegazuls.aerodesign.PegStock.model.dto.borrowing.DTOCreateBorrowing;
+import com.pegazuls.aerodesign.PegStock.model.dto.command.CommandRequest;
 import com.pegazuls.aerodesign.PegStock.model.entities.Borrowing;
 import com.pegazuls.aerodesign.PegStock.model.entities.Material;
 import com.pegazuls.aerodesign.PegStock.service.MaterialService;
@@ -37,11 +38,11 @@ public class CommandController {
             @ApiResponse(responseCode = "200", description = "Quantidade adicionada com sucesso."),
             @ApiResponse(responseCode = "404", description = "Material não encontrado.")
     })
-    public ResponseEntity<?> addMaterial(@RequestParam Long materialCod, @RequestParam int quantity) {
-        Material material = materialService.findById(materialCod);
+    public ResponseEntity<?> addMaterial(@RequestBody CommandRequest request) {
+        Material material = materialService.findById(request.getMaterialCod());
         if (material == null) return ResponseEntity.notFound().build();
 
-        addCommand.setParameters(material, quantity);
+        addCommand.setParameters(material, request.getQuantity());
         commandInvoker.execute(addCommand);
 
         return ResponseEntity.ok("Quantidade adicionada com sucesso.");
@@ -54,11 +55,11 @@ public class CommandController {
             @ApiResponse(responseCode = "200", description = "Material consumido com sucesso."),
             @ApiResponse(responseCode = "404", description = "Material não encontrado.")
     })
-    public ResponseEntity<?> consumeMaterial(@RequestParam Long materialCod, @RequestParam int quantity) {
-        Material material = materialService.findById(materialCod);
+    public ResponseEntity<?> consumeMaterial(@RequestBody CommandRequest consumeRequest) {
+        Material material = materialService.findById(consumeRequest.getMaterialCod());
         if (material == null) return ResponseEntity.notFound().build();
 
-        consumeCommand.setParameters(material, quantity);
+        consumeCommand.setParameters(material, consumeRequest.getQuantity());
         commandInvoker.execute(consumeCommand);
 
         return ResponseEntity.ok("Material consumido com sucesso.");
