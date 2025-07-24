@@ -57,4 +57,4 @@ INSERT INTO tb_stock_movement (material_cod, quantity, type, movement_date, resp
 (51, 3, 'CONSUMPTION', '2025-07-15', 'Admin'),
 (67, 2, 'CONSUMPTION', '2025-07-19', 'Maria'),
 (20, 10, 'ADDITION', '2025-07-22', 'Lucas'),
-(78, 1, 'RETURN', '2025-07-23', 'Admin');
+(77, 1, 'RETURN', '2025-07-23', 'Admin');
