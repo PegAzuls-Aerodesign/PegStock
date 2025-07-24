@@ -5,5 +5,5 @@ public enum MovementType {
     ADDITION, // Entrada por compra, etc.
     CONSUMPTION, // Saída por empréstimo/uso
     RETURN,  // Devolução de um empréstimo
-    ADJUSMENT, // Ajuste de inventário
+    ADJUSTMENT, // Ajuste de inventário
 }
