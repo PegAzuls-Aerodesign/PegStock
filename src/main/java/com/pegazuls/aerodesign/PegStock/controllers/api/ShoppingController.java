@@ -48,8 +48,8 @@ public class ShoppingController {
             @ApiResponse(responseCode = "200", description = "Item da lista de compras encontrado com sucesso."),
             @ApiResponse(responseCode = "404", description = "Item da lista de compras não encontrado.")
     })
-    public ResponseEntity<ShoppingList> findById(@PathVariable Long id){
-        ShoppingList shoppingList = shoppingService.findById(id);
+    public ResponseEntity<DTOShoppingDetails> findById(@PathVariable Long id){
+        DTOShoppingDetails shoppingList = shoppingService.findById(id);
         return shoppingList == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(shoppingList);
     }
 
