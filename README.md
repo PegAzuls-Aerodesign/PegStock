@@ -1,5 +1,11 @@
 # PegStock  
 
+![GitHub pull requests](https://img.shields.io/github/issues-pr/PegAzuls-Aerodesign/PegStock?style=for-the-badge&logo=git)
+![GitHub last commit](https://img.shields.io/github/last-commit/PegAzuls-Aerodesign/PegStock?style=for-the-badge&logo=github)
+![GitHub repo size](https://img.shields.io/github/repo-size/PegAzuls-Aerodesign/PegStock?style=for-the-badge&logo=files)
+![GitHub contributors](https://img.shields.io/github/contributors/PegAzuls-Aerodesign/PegStock?style=for-the-badge&logo=github)
+![GitHub stars](https://img.shields.io/github/stars/PegAzuls-Aerodesign/PegStock?style=for-the-badge&logo=github)
+
 PegStock is a stock management system developed by [PegAzuls AeroDesign](https://www.instagram.com/pegazulsaerodesign/) to control the materials used in the team's projects. The system allows the registration of inputs, outputs, and loans of materials, as well as the generation of reports and notifications.
 
 **All the rights of this project are reserved to PegAzuls AeroDesign team.**
